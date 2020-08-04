@@ -8,3 +8,5 @@ Created on Mon Aug  3 14:35:34 2020
 import code.start_up as stup
 
 stup.start()
+
+"jfdiejfie"
