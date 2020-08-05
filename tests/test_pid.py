@@ -75,13 +75,13 @@ class Testpid(ut.TestCase):
     def test_corrects_by_derivative_on_d(self):
         self.pid.give_measurement(5)
         self.pid.give_measurement(25)
-        smallDerivativeCorrection = self.pid.get_correction()
+        largeDerivativeCorrection = self.pid.get_correction()
         self.setUp()
         
         self.pid.set_D(10)
         self.pid.give_measurement(5)
         self.pid.give_measurement(25)
-        largeDerivativeCorrection = self.pid.get_correction()
+        smallDerivativeCorrection = self.pid.get_correction()
         
         self.assertGreater(largeDerivativeCorrection,smallDerivativeCorrection)
     
@@ -98,3 +98,4 @@ class Testpid(ut.TestCase):
         largeDerivativeCorrection = self.pid.get_correction()
         
         self.assertGreater(largeDerivativeCorrection,smallDerivativeCorrection)
+
