@@ -8,7 +8,7 @@ class PID:
     """
     
     def __init__(self):
-        pass
+        self.errors = []
     
     def set_P(self, p):
         self.P = p
@@ -23,14 +23,26 @@ class PID:
         self.goal = goal
     
     def give_measurement(self, measurement):
-        self.measurement = measurement
+        self.errors.append(self.goal - measurement)
     
     def get_correction(self):
-        return self.goal - self.measurement
+        if(len(self.errors) == 0):
+            return 0
+        
+        p = self.P*(self.errors[-1])
+        
+        i = self.I*sum(self.errors)
+        
+        if(len(self.errors) > 1):
+            d = self.D*(self.errors[-1] - self.errors[-2])
+        else:
+            d = 0
+            
+        return p + i + d
     
     def reset(self):
         self.P = 0 
         self.I = 0
         self.D = 0
         self.goal = 0
-        self.measurement = 0
+        self.errors = []
