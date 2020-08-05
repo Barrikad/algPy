@@ -26,4 +26,11 @@ class PID:
         self.measurement = measurement
     
     def get_correction(self):
-        return self.measurement + 1
+        return self.goal - self.measurement
+    
+    def reset(self):
+        self.P = 0 
+        self.I = 0
+        self.D = 0
+        self.goal = 0
+        self.measurement = 0
