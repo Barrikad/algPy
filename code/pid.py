@@ -9,6 +9,13 @@ class PID:
     
     def __init__(self):
         self.errors = []
+        self.P = 0 
+        self.I = 0
+        self.D = 0
+        self.goal = 0
+        self._p = 0
+        self._i = 0
+        self._d = 0
     
     def set_P(self, p):
         self.P = p
@@ -26,23 +33,24 @@ class PID:
         self.errors.append(self.goal - measurement)
         
         #update correction
-        if(len(self.errors) == 0):
-            return 0
-        
-        p = self.P*(self.errors[-1])
-        
-        #this sum could be more efficient
-        i = self.I*sum(self.errors)
+        if(len(self.errors) > 0):
+            self._p = self.P*(self.errors[-1])
+            self._i = self.I*sum(self.errors)
         
         if(len(self.errors) > 1):
-            d = self.D*(self.errors[-1] - self.errors[-2])
-        else:
-            d = 0
-            
-        self.correction = p + i + d
+            self._d = self.D*(self.errors[-1] - self.errors[-2])
     
     def get_correction(self):
-        return self.correction
+        return self._p + self._i + self._d
+    
+    def get_p_correction(self):
+        return self._p 
+    
+    def get_i_correction(self):
+        return self._i 
+    
+    def get_d_correction(self):
+        return self._d
     
     def reset(self):
         self.P = 0 
@@ -50,4 +58,6 @@ class PID:
         self.D = 0
         self.goal = 0
         self.errors = []
-        self.correction = 0
+        self._p = 0
+        self._i = 0
+        self._d = 0
