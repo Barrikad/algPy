@@ -19,4 +19,3 @@ def start():
         #testing changes
     
 s
-"Hej Hej mojn"
