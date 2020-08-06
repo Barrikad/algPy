@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest as ut
-import code.pid as pd
+import code.APP.pid as pd
 
 class Testpid(ut.TestCase):
     """class containing the pid-tests
@@ -116,5 +116,11 @@ class Testpid(ut.TestCase):
         self.pid.set_max_errors(100)
         for i in range(100):
             self.pid.give_measurement(0)
-        self.assertTrue(False)
+        largeIntegralCorrection = self.pid.get_i_correction()
+        
+        self.pid.give_measurement(10)
+        self.pid.give_measurement(10)
+        smallIntegralCorrection = self.pid.get_i_correction()
+        
+        self.assertGreater(largeIntegralCorrection, smallIntegralCorrection)
         
