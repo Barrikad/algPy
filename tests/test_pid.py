@@ -3,7 +3,7 @@
 import unittest as ut
 import code.APP.pid as pd
 
-class Testpid(ut.TestCase):
+class TestPID(ut.TestCase):
     """class containing the pid-tests
     
     By default the pid runs with p=1, i=1, d=1, and goal=30
