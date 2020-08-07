@@ -3,7 +3,7 @@
 import unittest as ut
 import code.APP.pid as pd
 
-class Testpid(ut.TestCase):
+class TestPID(ut.TestCase):
     """class containing the pid-tests
     
     By default the pid runs with p=1, i=1, d=1, and goal=30
@@ -136,4 +136,13 @@ class Testpid(ut.TestCase):
             self.pid.give_measurement(20)
         self.pid.set_max_errors(150)
         self.assertEqual(self.pid.get_i_correction(),1000)
-        
+    
+    def test_increase_derivative_gap(self):
+        self.pid.set_derivative_error_gap(50)
+        self.pid.give_measurement(10)
+        for i in range(50):
+            self.pid.give_measurement(20)
+        self.assertEqual(self.pid.get_d_correction(), -10)
+
+    def test_cant_increase_gap_beyond_max(self):
+        self.assertRaises(IndexError, self.pid.set_derivative_error_gap, 150)

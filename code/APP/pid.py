@@ -10,6 +10,7 @@ class PID:
     def __init__(self):
         self.maxErrors = 100
         self.errors = [0]*self.maxErrors
+        self.errorGap = 1
         self._errorCursor = 0
         self.P = 0 
         self.I = 0
@@ -46,6 +47,11 @@ class PID:
         
         self.maxErrors = newMaxErrors
         self._errorSum = sum(self.errors)
+        
+    def set_derivative_error_gap(self,gap_value):
+        if gap_value >= self.maxErrors:
+            raise IndexError("Can't increase error gap beyond size of saved errors")
+        self.errorGap = gap_value
     
     def give_measurement(self, measurement):
         overwrittenError = self.errors[self._errorCursor]
@@ -56,7 +62,7 @@ class PID:
             self._errorSum = self._errorSum + self.errors[self._errorCursor] - overwrittenError
         
         if(len(self.errors) > 1):
-            self._d = self.D*(self.errors[self._errorCursor] - self.errors[self._errorCursor - 1])
+            self._d = self.D*(self.errors[self._errorCursor] - self.errors[self._errorCursor - self.errorGap])
             
         self._errorCursor = (self._errorCursor + 1) % self.maxErrors
     
