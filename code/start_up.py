@@ -18,4 +18,3 @@ def start():
         time.sleep(0.2)
         #testing changes
     
-s
