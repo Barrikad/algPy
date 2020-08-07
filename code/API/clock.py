@@ -18,7 +18,7 @@ class Clock:
         self.timer.init(period=10,mode=Timer.PERIODIC,callback=self.tick)
     
     def tick(self):
-        self.count = (self.count + 1) % 1440000
+        self.count = (self.count + 1) % 1440000 #count resets every 4 hours
         for i in self.flagPeriods.keys():
             if self.count % self.flagPeriods[i] == 0:
                 self.flags[i] = True
@@ -31,4 +31,8 @@ class Clock:
         self.flagPeriods[flagName] = flagPeriod
     
     def check_flag(self,flagName):
-        return self.flags[flagName]
+        """checks if a flag is set, unsets it if it is
+        """
+        flagValue = self.flags[flagName]
+        self.flags[flagName] = False
+        return flagValue
