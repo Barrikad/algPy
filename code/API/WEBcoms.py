@@ -30,4 +30,7 @@ s.send(request)
 result = s.recv(10000) 
 print(result) 
 s.close()
-
+class web 
+    def get_value(key):
+        
+    def send_value(key,value)
