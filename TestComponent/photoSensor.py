@@ -12,7 +12,7 @@ Created on Fri Aug  7 10:11:07 2020
 #Note: i'm not sure if it prints the reading, else we need to insert that
 
 #insert adc pin here:
-adcPin = 32
+adcPin = 33
 
 
 import machine
