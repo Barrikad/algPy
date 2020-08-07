@@ -22,7 +22,7 @@ class TestTemperatureController(ut.TestCase):
     def test_create_controller(self):
         self.assertIsNotNone(self.tempCont)
     
-    def test_controller_saves_measurements(self):
+    def test_saves_measurements(self):
         self.coolingAPI.set_current_temperature(15)
         self.tempCont.measure_temperature()
         self.coolingAPI.set_current_temperature(20)
@@ -31,7 +31,7 @@ class TestTemperatureController(ut.TestCase):
         loggedTemps = self.tempCont.report_measurements()
         self.assertEqual(loggedTemps,[15,20])
     
-    def test_controller_deletes_reported_measurments(self):
+    def test_deletes_reported_measurments(self):
         self.coolingAPI.set_current_temperature(15)
         self.tempCont.measure_temperature()
         self.tempCont.measure_temperature()
@@ -40,6 +40,32 @@ class TestTemperatureController(ut.TestCase):
         
         self.tempCont.report_measurements()
         self.assertEqual(self.tempCont.report_measurements(),[])
+    
+    def test_uses_pid_for_cooling(self):
+        #initialize pid and controller
+        self.pid.set_P(1)
+        self.pid.set_I(1)
+        self.pid.set_D(1)
+        self.pid.set_goal(30)
+        self.pid.set_max_errors(100)
+        self.tempCont.set_pid_threshold(20)
+        
+        #measure too cold values
+        self.coolingAPI.set_current_temperature(20)
+        self.tempCont.measure_temperature()
+        self.coolingAPI.set_current_temperature(21)
+        self.tempCont.measure_temperature()
+        self.coolingAPI.set_current_temperature(22)
+        self.tempCont.measure_temperature()
+        self.tempCont.correct_cooling_value()
+        self.assertTrue(self.coolingAPI.get_cooling_value())
+        
+        #measure too warm values
+        self.coolingAPI.set_current_temperature(40)
+        self.tempCont.measure_temperature()
+        self.tempCont.measure_temperature()
+        self.tempCont.correct_cooling_value()
+        self.assertFalse(self.coolingAPI.get_cooling_value())
     
 class EmulatedCoolingAPI:
     
@@ -51,3 +77,10 @@ class EmulatedCoolingAPI:
         
     def get_current_temperature(self):
         return self.current_temperature
+    
+    def intense_cooling(self,on):
+        self.coolingValue = on
+    
+    def get_cooling_value(self):
+        return self.coolingValue
+        
