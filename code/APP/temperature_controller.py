@@ -4,7 +4,6 @@ Created on Fri Aug  7 09:39:37 2020
 
 @author: simon
 """
-import code.APP.pid as pd
 
 class TemperatureController:
     """Class for connecting a PID controller to a temperatur regulating system
@@ -32,7 +31,7 @@ class TemperatureController:
     def get_measurements(self):
         """reports unreported measurements without deleting them
         """
-        return unreportedMeasurements
+        return self.unreportedMeasurements
     
     def correct_cooling_value(self):
         if self.threshold < self.pid.get_correction():
