@@ -113,8 +113,8 @@ class Testpid(ut.TestCase):
         self.assertEqual(self.pid.get_d_correction(),-1)
     
     def test_set_max_errors(self):
-        self.pid.set_max_errors(100)
-        for i in range(100):
+        self.pid.set_max_errors(50)
+        for i in range(50):
             self.pid.give_measurement(0)
         largeIntegralCorrection = self.pid.get_i_correction()
         
@@ -123,4 +123,17 @@ class Testpid(ut.TestCase):
         smallIntegralCorrection = self.pid.get_i_correction()
         
         self.assertGreater(largeIntegralCorrection, smallIntegralCorrection)
+        
+    def test_deletes_errors_when_decreasing_max(self):
+        for i in range(100):
+            self.pid.give_measurement(20)
+        self.pid.set_max_errors(50)
+        self.assertEqual(self.pid.get_i_correction(), 500)
+    
+    def test_saves_errors_when_increasing_max(self):
+        self.pid.set_max_errors(100)
+        for i in range(100):
+            self.pid.give_measurement(20)
+        self.pid.set_max_errors(150)
+        self.assertEqual(self.pid.get_i_correction(),1000)
         
