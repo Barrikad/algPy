@@ -7,4 +7,4 @@ Created on Fri Aug  7 13:17:30 2020
 
 class TemperatureSensor:
     def get_temperature(self):
-        pass
+        pass #insert luca's "Get temp" code, after linerization

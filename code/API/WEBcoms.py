@@ -139,51 +139,44 @@ class web :
     def subscribeCurrentTemp(self):
         return self.subscribe(b'Current Temperature')
     
-    def publishCurrentTemp(self):
-        #Here we insert the values we wish to publish, not 67!
-        return self.publish(b'Current Temperature',"67")
+    def publishCurrentTemp(self,stringToPublish):
+        return self.publish(b'Current Temperature',stringToPublish)
     
     def subscribePPara(self):
         return self.subscribe(b'P parameter')
     
-    def publishPPara(self):
-        #Here we insert the values we wish to publish, not 67!
-        return self.publish(b'P parameter',"67")
+    def publishPPara(self,stringToPublish):
+        return self.publish(b'P parameter',stringToPublish)
     
     def subscribeIPara(self):
         return self.subscribe(b'I parameter')
     
-    def publishIPara(self):
-        #Here we insert the values we wish to publish, not 67!
-        return self.publish(b'I parameter',"67")
+    def publishIPara(self,stringToPublish):
+        return self.publish(b'I parameter',stringToPublish)
     
     def subscribeDPara(self):
         return self.subscribe(b'D parameter')
     
-    def publishDPara(self):
-        #Here we insert the values we wish to publish, not 67!
-        return self.publish(b'D parameter',"67")
+    def publishDPara(self,stringToPublish):
+        return self.publish(b'D parameter',stringToPublish)
     
     def subscribeIdealTemp(self):
         return self.subscribe(b'Ideal Temp')
     
-    def publishIdealTemp(self):
-        #Here we insert the values we wish to publish, not 67!
-        return self.publish(b'Ideal Temp',"67")
+    def publishIdealTemp(self,stringToPublish):
+        return self.publish(b'Ideal Temp',stringToPublish)
     
     def subscribeFeedingStatus(self):
         return self.subscribe(b'FeedingStatus')
     
-    def publishFeedingStatus(self):
-        #Here we insert the values we wish to publish, not 67!
-        return self.publish(b'FeedingStatus',"67")
+    def publishFeedingStatus(self,stringToPublish):
+        return self.publish(b'FeedingStatus',stringToPublish)
     
     def subscribeOD(self):
         return self.subscribe(b'OD')
     
-    def publishOD(self):
-        #Here we insert the values we wish to publish, not 67!
-        return self.publish(b'OD',"67")
+    def publishOD(self,stringToPublish):
+        return self.publish(b'OD',stringToPublish)
     
 
     
