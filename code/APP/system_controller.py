@@ -5,7 +5,7 @@ Created on Fri Aug  7 13:52:40 2020
 @author: simon
 """
 import time
-import code.API.WEBcoms as wb
+import code.API.web_coms as wb
 
 temperaturePeriod = 100
 defaultThreshold = 20
@@ -14,7 +14,7 @@ defaultI = 0.2
 defaultD = 1
 defaultGoal = 18
 
-subscribeKeys = [b'Current Temperature',b'P parameter',b'I parameter',b'D parameter',b'Ideal Temp',b'FeedingStatus',b'OD']
+subscribeKeys = ['P parameter','I parameter','D parameter','Ideal Temp']
 wifiName = '"Mathilde - iPhone"'
 wifiPassword = '"12345678"'
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
@@ -22,7 +22,16 @@ ADAFRUIT_USERNAME = b'munz234'
 ADAFRUIT_IO_KEY = b'aio_GzWu16y16PYJ8plYBlniKEOamHlg'
 
 ###############################QMTT_test#########################
-web = wb.
+web = wb.Web(wifiName,wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY)
+web.connectToWifi()
+web.connectToMQTT()
+web.subscribe_to_keys(subscribeKeys)
+for i in range(1000):
+    web.publish('Current Temperature', str(i))
+    web.update_values()
+    for s in subscribeKeys:
+        print("{} : {}".format(s,web.get_latest_value(s)))
+    time.sleep(1)
 #################################################################
 
 

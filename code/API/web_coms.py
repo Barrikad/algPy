@@ -88,8 +88,9 @@ class Web :
     
     def subscribe_to_keys(self,listOfKeys):
         for s in listOfKeys:
-            self._subscribe(s)
-            self.values[str(s,'utf-8')] = -9999
+            bs = str(s,'utf-8')
+            self._subscribe(bs)
+            self.values[bs] = -9999
     
     def get_latest_value(self,key):
         return self.values[key]
