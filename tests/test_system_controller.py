@@ -11,11 +11,12 @@ import code.APP.pid as pd
 class TestSystemController(ut.TestCase):
     
     def setUp(self):
+        self.web = EmulatedWeb()
         self.pid = pd.PID()
         self.clock = EmulatedClock()
         self.tempController = EmulatedTemperatureController()
         self.tempController.set_temperature(20)
-        self.systemController = sc.SystemController(self.pid,self.tempController,self.clock)
+        self.systemController = sc.SystemController(self.pid,self.tempController,self.clock,self.web)
     
     def test_create_system_controller(self):
         self.assertIsNotNone(self.systemController)
@@ -25,8 +26,54 @@ class TestSystemController(ut.TestCase):
         self.systemController.system_tick()
         self.assertTrue(self.tempController.measured)
         self.assertTrue(self.tempController.corrected)
+    
+    def test_updates_pid_values(self):
+        self.web.set_incoming("P parameter",15.3)
+        self.clock.set_flag("coms")
+        self.systemController.system_tick()
+        self.assertEqual(self.pid.P,15.3)
+    
+    def test_reports_temperature(self):
+        self.tempController.set_temperature(15)
+        self.clock.set_flag("temp")
+        self.systemController.system_tick()
+        self.clock.set_flag("coms")
+        self.systemController.system_tick()
+        self.assertTrue(self.web.pushedValues["Current Temperature"] == 15)
         
+
+class EmulatedWeb():
+    def __init__(self):
+        self.values = { 'P parameter' : -9999,
+                       'I parameter' : -9999,
+                       'D parameter' : -9999,
+                       'Ideal Temp' : -9999 }
+        self.queue = []
         
+        self.pushedValues = {}
+    
+    def connectToWifi():
+        pass
+    
+    def connectToMQTT():
+        pass
+    
+    def subscribe_to_keys(keys):
+        pass
+    
+    def get_latest_value(self,key):
+        return self.values[key]
+    
+    def set_incoming(self,key,value):
+        self.queue.append((key,value))
+    
+    def update_values(self):
+        if len(self.queue) > 0:
+            xs = self.queue.pop()
+            self.values[xs[0]] = xs[1]
+    
+    def publish(self,key, value):
+        self.pushedValues[key] = value
         
 class EmulatedClock:
     def __init__(self):
@@ -58,10 +105,10 @@ class EmulatedTemperatureController:
         self.measured = True
     
     def report_measurements(self):
-        pass
+        return [self.temp]
     
     def get_measurements(self):
-        return self.temp
+        return [self.temp]
     
     def correct_cooling_value(self):
         self.corrected = True
