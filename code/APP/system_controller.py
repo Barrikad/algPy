@@ -11,7 +11,13 @@ defaultP = 2
 defaultI = 0.2
 defaultD = 1
 defaultGoal = 18
+subscribeKeys = ['feedinStatus','pValue']
 
+wifiName = '"Mathilde - iPhone"'
+wifiPassword = '"12345678"'
+ADAFRUIT_IO_URL = b'io.adafruit.com' 
+ADAFRUIT_USERNAME = b'munz234'
+ADAFRUIT_IO_KEY = b'aio_GzWu16y16PYJ8plYBlniKEOamHlg'
 
 class SystemController:
     def __init__(self,pid,temperatureController,clock):

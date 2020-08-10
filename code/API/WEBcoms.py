@@ -5,19 +5,39 @@ import os
 import sys
 
 
-wifiName = '"Mathilde - iPhone"'
-wifiPassword = '"12345678"'
-ADAFRUIT_IO_URL = b'io.adafruit.com' 
-ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = b'aio_GzWu16y16PYJ8plYBlniKEOamHlg'
-ADAFRUIT_IO_FEEDNAME = "tbd"
+
 
 class web :
     
-    def connectToWifi():
+    def __init__(self,wifiName,wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY):
+        self.wifiName = wifiName
+        self.wifiPassword = wifiPassword
+        self.ADAFRUIT_IO_URL = ADAFRUIT_IO_URL
+        self.ADAFRUIT_USERNAME = ADAFRUIT_USERNAME
+        self.ADAFRUIT_IO_KEY = ADAFRUIT_IO_KEY
+        
+        # create a random MQTT clientID 
+        random_num = int.from_bytes(os.urandom(3), 'little')
+        self.mqtt_client_id = bytes('client_'+str(random_num), 'utf-8')
+        
+        # connect to Adafruit IO MQTT broker using unsecure TCP (port 1883)
+        # 
+        # To use a secure connection (encrypted) with TLS: 
+        #   set MQTTClient initializer parameter to "ssl=True"
+        #   Caveat: a secure connection uses about 9k bytes of the heap
+        #         (about 1/4 of the micropython heap on the ESP8266 platform)
+        self.client = MQTTClient(client_id=self.mqtt_client_id, 
+                                 server=ADAFRUIT_IO_URL, 
+                                 user=ADAFRUIT_USERNAME, 
+                                 password=ADAFRUIT_IO_KEY,
+                                 ssl=False)
+        
+        self.values = {}
+    
+    def connectToWifi(self):
         # WiFi connection information
-        WIFI_SSID = wifiName
-        WIFI_PASSWORD = wifiPassword
+        WIFI_SSID = self.wifiName
+        WIFI_PASSWORD = self.wifiPassword
         
         # turn off the WiFi Access Point
         ap_if = network.WLAN(network.AP_IF)
@@ -37,147 +57,43 @@ class web :
 
         if attempt_count == MAX_ATTEMPTS:
             print('could not connect to the WiFi network')
-            sys.exit()
+            return -1
+        
+        return 0
     
-    
-    def cb(topic, msg):
-        print('Received Data:  Topic = {}, Msg = {}'.format(topic, msg))
-        free_heap = int(str(msg,'utf-8'))
-        print('free heap size = {} bytes'.format(free_heap))
-        
-    def subscribe(self,feedname):
-        self.feedname = feedname
-        
-        # create a random MQTT clientID 
-        random_num = int.from_bytes(os.urandom(3), 'little')
-        mqtt_client_id = bytes('client_'+str(random_num), 'utf-8')
-
-        # connect to Adafruit IO MQTT broker using unsecure TCP (port 1883)
-        # 
-        # To use a secure connection (encrypted) with TLS: 
-        #   set MQTTClient initializer parameter to "ssl=True"
-        #   Caveat: a secure connection uses about 9k bytes of the heap
-        #         (about 1/4 of the micropython heap on the ESP8266 platform)
-        
-        client = MQTTClient(client_id=mqtt_client_id, 
-                            server=ADAFRUIT_IO_URL, 
-                            user=ADAFRUIT_USERNAME, 
-                            password=ADAFRUIT_IO_KEY,
-                            ssl=False)
-            
+    def connectToMQTT(self):
         try:      
-            client.connect()
-            print("Connected to feed")
-        except Exception as e:
-            print('could not connect to MQTT server {}{}'.format(type(e).__name__, e))
-            sys.exit()
+            self.client.connect()
+            return 0
+        except Exception:
+            return -1
+    
+    def cb(self,topic, msg):
+        tp = str(topic,'utf-8')
+        ms = int(str(msg,'utf-8'))
+        self.value[tp] = ms
         
-        mqtt_feedname = bytes('{:s}/feeds/{:s}'.format(ADAFRUIT_USERNAME, ADAFRUIT_IO_FEEDNAME), 'utf-8')    
-        client.set_callback(self.cb)                    
-        client.subscribe(mqtt_feedname)  
+    def _subscribe(self,feedname):
+        mqtt_feedname = bytes('{:s}/feeds/{:s}'.format(self.ADAFRUIT_USERNAME, feedname), 'utf-8')    
+        self.client.set_callback(self.cb)                    
+        self.client.subscribe(mqtt_feedname)  
         
-        # following two lines is an Adafruit-specific implementation of the Publish "retain" feature 
-        # which allows a Subscription to immediately receive the last Published value for a feed,
-        # even if that value was Published two hours ago.
-        # Described in the Adafruit IO blog, April 22, 2018:  https://io.adafruit.com/blog/  
-        mqtt_feedname_get = bytes('{:s}/get'.format(mqtt_feedname), 'utf-8')    
-        client.publish(mqtt_feedname_get, '\0')  
         
-        # wait until data has been Published to the Adafruit IO feed
-        while True:
-            try:
-                client.wait_msg()
-                print("Client subscribed!")
-            except KeyboardInterrupt:
-                print('Ctrl-C pressed...exiting')
-                client.disconnect()
-                sys.exit()
+    def publish(self, feedname, stringToPublish): 
+        mqtt_feedname = bytes('{:s}/feeds/{:s}'.format(self.ADAFRUIT_USERNAME, feedname), 'utf-8')   
         
-    def publish(self, feedname, stringToPublish):
-        self.feedname = feedname
-        
-        # create a random MQTT clientID 
-        random_num = int.from_bytes(os.urandom(3), 'little')
-        mqtt_client_id = bytes('client_'+str(random_num), 'utf-8')
+        self.client.publish(mqtt_feedname,    
+                            bytes(stringToPublish, 'utf-8'), 
+                            qos=0)
+    
+    def subscribe_to_keys(self,listOfKeys):
+        for s in listOfKeys:
+            self._subscribe(s)
+            self.values[str(s,'utf-8')] = -9999
+    
+    def get_latest_value(self,key):
+        return self.values[key]
 
-        # connect to Adafruit IO MQTT broker using unsecure TCP (port 1883)
-        # 
-        # To use a secure connection (encrypted) with TLS: 
-        #   set MQTTClient initializer parameter to "ssl=True"
-        #   Caveat: a secure connection uses about 9k bytes of the heap
-        #         (about 1/4 of the micropython heap on the ESP8266 platform)
-        
-        client = MQTTClient(client_id=mqtt_client_id, 
-                            server=ADAFRUIT_IO_URL, 
-                            user=ADAFRUIT_USERNAME, 
-                            password=ADAFRUIT_IO_KEY,
-                            ssl=False)
-            
-        try:      
-            client.connect()
-            print("Connected!")
-        except Exception as e:
-            print('could not connect to MQTT server {}{}'.format(type(e).__name__, e))
-            sys.exit()
-        
-        mqtt_feedname = bytes('{:s}/feeds/{:s}'.format(ADAFRUIT_USERNAME, ADAFRUIT_IO_FEEDNAME), 'utf-8')   
-        
-        PUBLISH_PERIOD_IN_SEC = 10 
-        while True:
-            try:
-                client.publish(mqtt_feedname,    
-                           bytes(stringToPublish, 'utf-8'), 
-                           qos=0)  
-                print("Client published!")
-                time.sleep(PUBLISH_PERIOD_IN_SEC)
-            except KeyboardInterrupt:
-                print('Ctrl-C pressed...exiting')
-                client.disconnect()
-                sys.exit()
-    
-    
-    def subscribeCurrentTemp(self):
-        return self.subscribe(b'Current Temperature')
-    
-    def publishCurrentTemp(self,stringToPublish):
-        return self.publish(b'Current Temperature',stringToPublish)
-    
-    def subscribePPara(self):
-        return self.subscribe(b'P parameter')
-    
-    def publishPPara(self,stringToPublish):
-        return self.publish(b'P parameter',stringToPublish)
-    
-    def subscribeIPara(self):
-        return self.subscribe(b'I parameter')
-    
-    def publishIPara(self,stringToPublish):
-        return self.publish(b'I parameter',stringToPublish)
-    
-    def subscribeDPara(self):
-        return self.subscribe(b'D parameter')
-    
-    def publishDPara(self,stringToPublish):
-        return self.publish(b'D parameter',stringToPublish)
-    
-    def subscribeIdealTemp(self):
-        return self.subscribe(b'Ideal Temp')
-    
-    def publishIdealTemp(self,stringToPublish):
-        return self.publish(b'Ideal Temp',stringToPublish)
-    
-    def subscribeFeedingStatus(self):
-        return self.subscribe(b'FeedingStatus')
-    
-    def publishFeedingStatus(self,stringToPublish):
-        return self.publish(b'FeedingStatus',stringToPublish)
-    
-    def subscribeOD(self):
-        return self.subscribe(b'OD')
-    
-    def publishOD(self,stringToPublish):
-        return self.publish(b'OD',stringToPublish)
-    
-
-    
+    def update_values(self):
+        self.client.check_msg()
   
