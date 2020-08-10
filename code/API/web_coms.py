@@ -7,7 +7,7 @@ import sys
 
 
 
-class web :
+class Web :
     
     def __init__(self,wifiName,wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY):
         self.wifiName = wifiName
