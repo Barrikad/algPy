@@ -70,8 +70,9 @@ class Web :
     
     def cb(self,topic, msg):
         tp = str(topic,'utf-8')
-        ms = int(str(msg,'utf-8'))
-        self.value[tp] = ms
+        tp = (tp.split('/'))[-1]
+        ms = float(str(msg,'utf-8'))
+        self.values[tp] = ms
         
     def _subscribe(self,feedname):
         mqtt_feedname = bytes('{:s}/feeds/{:s}'.format(self.ADAFRUIT_USERNAME, feedname), 'utf-8')    
