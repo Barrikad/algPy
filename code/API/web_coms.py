@@ -3,6 +3,20 @@ import time
 from umqtt.robust import MQTTClient
 import os
 
+###############################QMTT_test#########################
+def web_test(wifiName,wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY,subscribeKeys):
+    web = Web(wifiName,wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY)
+    web.connectToWifi()
+    web.connectToMQTT()
+    web.subscribe_to_keys(subscribeKeys)
+    for i in range(1000):
+        web.publish('Current Temperature', str(i))
+        web.update_values()
+        for s in subscribeKeys:
+            print("{} : {}".format(s,web.get_latest_value(s)))
+        time.sleep(5)
+#################################################################
+
 class Web :
     
     def __init__(self,wifiName,wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY):

@@ -4,15 +4,13 @@ Created on Fri Aug  7 13:52:40 2020
 
 @author: simon
 """
-import time
-import code.API.web_coms as wb
 
 temperaturePeriod = 100
 defaultThreshold = 20
 defaultP = 2
 defaultI = 0.2
 defaultD = 1
-defaultGoal = 18
+defaultGoal = 14
 
 subscribeKeys = ['P parameter','I parameter','D parameter','Ideal Temp']
 wifiName = "Simons_network"
@@ -20,20 +18,6 @@ wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
 ADAFRUIT_IO_KEY = b'aio_TQUe15YVaE3e4GfvL0zhQEjbNOgN'
-
-###############################QMTT_test#########################
-def web_test():
-    web = wb.Web(wifiName,wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY)
-    web.connectToWifi()
-    web.connectToMQTT()
-    web.subscribe_to_keys(subscribeKeys)
-    for i in range(1000):
-        web.publish('Current Temperature', str(i))
-        web.update_values()
-        for s in subscribeKeys:
-            print("{} : {}".format(s,web.get_latest_value(s)))
-        time.sleep(5)
-#################################################################
 
 
 class SystemController:
