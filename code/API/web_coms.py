@@ -2,10 +2,6 @@ import network
 import time
 from umqtt.robust import MQTTClient
 import os
-import sys
-
-
-
 
 class Web :
     
