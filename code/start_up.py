@@ -21,7 +21,7 @@ wifiName = "Simons_network"
 wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = b'aio_TQUe15YVaE3e4GfvL0zhQEjbNOgN'
+ADAFRUIT_IO_KEY = b'CENSORED'
 
 def start():
     clock = clk.Clock()
