@@ -28,12 +28,14 @@ tempPin = 14
 relayPin = 25
 stepPinCool = 33
 
+stepsPerPump = 3 #tbd after pump experimenting
+
 
 def start():
     clock = clk.Clock()
     tempSensor = ts.TemperatureSensor(tempPin)
     relay = rl.Relay(relayPin)
-    pump = pa.Stepper(stepPinCool)
+    pump = pa.Stepper(stepPinCool,stepsPerPump)
     coolingAPI = ca.CoolingAPI(tempSensor,relay,pump)
     pid = pd.PID()
     tempCont = tc.TemperatureController(coolingAPI, pid)
