@@ -5,27 +5,25 @@ Created on Mon Aug 10 21:52:23 2020
 
 @author: mathildetannebaek
 """
-import time
-
-algaeLevelToFeed = 9999 #algae (To Be decided! after experiments)
-
 
 class FeedingSystem:
-    def __init__(self, feedingAPI):
-        self.feedingAPI = feedingAPI
+    def __init__(self, feedingAPI, algaeLevelToFeed, stepsPerPump):
+        self.algaeLevelToFeed = algaeLevelToFeed
+        self.stepsPerPump = stepsPerPump
+        self.feedingAPI = feedingAPI(self.stepsPerPump)
         
-    def feeding(self):
+    def feedingMussels(self):
         self.web.publish("OD",self.feedingAPI.get_current_algea_density())
         self.web.publish("Feeding status","Feeding mussels")
         self.feedingAPI.start_feeding()
         
-        while self.feedingAPI.total_fed_algea() < algaeLevelToFeed:
+        while self.feedingAPI.total_fed_algea() < self.algaeLevelToFeed:
             self.feedingAPI.continue_feeding()
         
         self.web.publish("Feeding status","Not feeding mussels")
-        time.sleep(60*15) #15 minutes before pumping back water?
-        
-        self.web.publish("Feeding status","Pumping back mussels water")
+    
+    def feedingAlgae(self):
+        self.web.publish("Feeding status","Pumping back musselwater")
         self.feedingAPI.send_back_water()
         
         self.web.publish("Feeding status","Not feeding mussels")
