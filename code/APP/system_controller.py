@@ -7,6 +7,8 @@ Created on Fri Aug  7 13:52:40 2020
 
 temperaturePeriod = 100
 comPeriod = 600
+coolingPumpPeriod = 10
+mlPerPumpCooling = 0.1
 defaultThreshold = 20
 defaultP = 2
 defaultI = 0.2
@@ -28,6 +30,7 @@ class SystemController:
         self.pid.set_goal(defaultGoal)
         self.clock.add_flag("temp", temperaturePeriod)
         self.clock.add_flag("coms", comPeriod)
+        self.clock.add_flag("coolPump", coolingPumpPeriod)
         
         self.web = web
         self.toBePublishedTemp = []
@@ -47,6 +50,8 @@ class SystemController:
                 self.web.publish("Current Temperature",self.toBePublishedTemp[0])
                 del self.toBePublishedTemp[0]
                 
+        if(self.clock.check_flag("coolPump")):
+            self.temperatureController.pump()
                 
     def _update_parameters(self):
         self.web.update_values()

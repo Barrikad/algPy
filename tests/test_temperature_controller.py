@@ -83,4 +83,9 @@ class EmulatedCoolingAPI:
     
     def get_cooling_value(self):
         return self.coolingValue
-        
+    
+    def pump_once():
+        pass
+    
+    def set_throughflow(self,mlPerPump):
+        pass

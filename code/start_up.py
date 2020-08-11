@@ -7,6 +7,7 @@ Created on Tue Aug  4 12:51:29 2020
 
 import machine as mc
 import time
+import code.HAL.pump_API as pa
 import code.HAL.temperature_sensor as ts
 import code.HAL.relay as rl
 import code.API.cooling_api as ca
@@ -22,11 +23,18 @@ wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
 ADAFRUIT_IO_KEY = b'CENSORED'
+
+tempPin = 14
+relayPin = 25
+stepPinCool = 33
+
+
 def start():
     clock = clk.Clock()
-    tempSensor = ts.TemperatureSensor()
-    relay = rl.Relay()
-    coolingAPI = ca.CoolingAPI(tempSensor,relay)
+    tempSensor = ts.TemperatureSensor(tempPin)
+    relay = rl.Relay(relayPin)
+    pump = pa.Stepper(stepPinCool)
+    coolingAPI = ca.CoolingAPI(tempSensor,relay,pump)
     pid = pd.PID()
     tempCont = tc.TemperatureController(coolingAPI, pid)
     web = wc.Web(wifiName,wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY)
