@@ -18,4 +18,7 @@ class PhotoSensor:
         #convert adc.read() into algae concentration algae per mL
         
         return adc.read()
+    
+    def get_density(self):
+        pass
         
