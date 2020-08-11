@@ -15,5 +15,7 @@ class PhotoSensor:
         adc = machine.ADC(machine.Pin(adcPin))
         adc.atten(machine.ADC.ATTN_11DB)
         
+        #convert adc.read() into algae concentration algae per mL
+        
         return adc.read()
         
