@@ -11,7 +11,7 @@ Created on Fri Aug  7 13:52:40 2020
 
 feedingMusselsPeriod = 100 * 60 * 45 #45 min
 feedingAlgaePeriod = 100 * 60 * 15 #15 min
-temperaturePeriod = 100
+temperaturePeriod = 500
 comPeriod = 600
 coolingPumpPeriod = 100
 oledPeriod = 500
@@ -80,9 +80,9 @@ class SystemController:
             self.temperatureController.pump()
         
         if(self.clock.check_flag("oled")):
-            line1 = "p{}:t{}".format(int(10*self.pid._p) / 10,int(self.temperatureController.get_latest_temperature()*10)/10)
-            line2 = "i{}".format(int(10*self.pid._error_sum*self.pid.I) / 10)
-            line3 = "d{}".format(int(10*self.pid._d) / 10)
+            line1 = "p{:.4}:t{:.4}".format(self.pid._p, int(self.temperatureController.get_latest_temperature()*10)/10)
+            line2 = "i{:.4}".format(self.pid._errorSum*self.pid.I)
+            line3 = "d{:.4}".format(self.pid._d)
             self.oled.write_to_oled(line1,line2,line3)
         
                 
@@ -91,7 +91,8 @@ class SystemController:
         pW = self.web.get_latest_value("P parameter")
         iW = self.web.get_latest_value("I parameter")
         dW = self.web.get_latest_value("D parameter")
-        gW = self.web.get_latest_value("Ideal Temp")
+        im = self.web.get_latest_value("Integral memory")
+        dg = self.web.get_latest_value("Derivative gap")
         th = self.web.get_latest_value("Threshold")
         
         if pW != -9999:
@@ -100,8 +101,10 @@ class SystemController:
             self.pid.set_I(iW)
         if dW != -9999:
             self.pid.set_D(dW)
-        if gW != -9999:
-            self.pid.set_goal(gW)
+        if im != -9999:
+            self.pid.set_max_errors(int(im))
+        if dg != -9999:
+            self.pid.set_derivative_error_gap(int(dg))
         if th != -9999:
             self.temperatureController.set_pid_threshold(th)
             

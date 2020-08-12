@@ -12,20 +12,24 @@ class TemperatureController:
     def __init__(self,coolingAPI,pid):
         self.coolingAPI = coolingAPI
         self.pid = pid
-        self.unreportedMeasurements = []
+        self.unreportedMeasurements = [self.coolingAPI.get_current_temperature()]
     
     def set_pid_threshold(self,threshold):
         self.threshold = threshold
         
     def measure_temperature(self):
-        self.unreportedMeasurements.append(self.coolingAPI.get_current_temperature())
+        tSum = 0
+        for i in range(5):
+            tSum += self.coolingAPI.get_current_temperature()
+        tSum /= 5
+        self.unreportedMeasurements.append(tSum)
         self.pid.give_measurement(self.unreportedMeasurements[-1])
     
     def report_measurements(self):
         """returns unreported measurements, then deletes them
         """
         unreportedMeasurements = self.unreportedMeasurements
-        self.unreportedMeasurements = []
+        self.unreportedMeasurements = [self.coolingAPI.get_current_temperature()]
         return unreportedMeasurements
     
     def get_latest_temperature(self):
