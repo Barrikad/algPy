@@ -80,10 +80,10 @@ class SystemController:
             self.temperatureController.pump()
         
         if(self.clock.check_flag("oled")):
-            line1 = "{}".format(int(10*self.pid.P) / 10)
-            line2 = 
-            line3 = 
-            self.oled.write_to_oled(,"{}".format(int(10*self.pid._error_sum*self.pid.) / 10),"{}")
+            line1 = "p{}:t{}".format(int(10*self.pid._p) / 10,int(self.temperatureController.get_latest_temperature()*10)/10)
+            line2 = "i{}".format(int(10*self.pid._error_sum*self.pid.I) / 10)
+            line3 = "d{}".format(int(10*self.pid._d) / 10)
+            self.oled.write_to_oled(line1,line2,line3)
         
                 
     def _update_parameters(self):
