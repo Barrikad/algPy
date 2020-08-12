@@ -6,20 +6,21 @@ from time import sleep_us
 class Stepper:
     """Class for stepper motor driven by Easy Driver."""
 
-    def __init__(self, step_pin, stepsPerPump, dir_pin = -9999):
+    def __init__(self, step_pin, stepsPerPump, mlPerStep = 2/(3*3600), dir_pin = -9999):
         """Initialise stepper."""
-        self.stp = step_pin
+        self.stp = Pin(step_pin)
 
         self.stp.init(Pin.OUT)
         if dir_pin != -9999:
-            self.dir.init(Pin.OUT)
+            self.dir = Pin(dir_pin)
             self.dir.init(Pin.OUT)
 
-        self.step_time = 20  # us
+        self.step_time = 80  # us
         self.steps_per_rev = 1600
         self.stepsDelta = 0
         
         self.stepsPerPump = stepsPerPump    
+        self.mlPerStep = mlPerStep
 
     def reverse_direction(self):
         if self.dir.value==1:
@@ -44,5 +45,6 @@ class Stepper:
             sleep_us(self.step_time)
             self.stp.value(0)
             sleep_us(self.step_time)
-        
+    
+    
 

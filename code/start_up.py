@@ -17,18 +17,19 @@ import code.APP.pid as pd
 import code.APP.temperature_controller as tc
 import code.APP.system_controller as sc
 
-subscribeKeys = ['P parameter','I parameter','D parameter','Ideal Temp']
+subscribeKeys = ['P parameter','I parameter','D parameter','Ideal Temp','Threshold']
 wifiName = "Simons_network"
 wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = b'CENSORED'
+ADAFRUIT_IO_KEY = b'aio_UOve1534u3Rg0pdOglDdJ3aQxRA4'
 
-tempPin = 14
+tempPin = 32
 relayPin = 25
 stepPinCool = 33
 
-stepsPerPump = 3 #tbd after pump experimenting
+stepsPerPump = 3600 
+mlPerPump = 0.67
 
 
 def start():

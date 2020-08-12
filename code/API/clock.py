@@ -14,10 +14,10 @@ class Clock:
         self.count = 0
         self.flagPeriods = {}
         self.flags = {}
-        self.timer = Timer(-1)
+        self.timer = Timer(0)
         self.timer.init(period=10,mode=Timer.PERIODIC,callback=self.tick)
     
-    def tick(self):
+    def tick(self,timer):
         self.count = (self.count + 1) % 1440000 #count resets every 4 hours
         for i in self.flagPeriods.keys():
             if self.count % self.flagPeriods[i] == 0:

@@ -34,7 +34,7 @@ class TemperatureController:
         return self.unreportedMeasurements
     
     def correct_cooling_value(self):
-        if self.threshold < self.pid.get_correction():
+        if self.threshold > self.pid.get_correction():
             self.coolingAPI.intense_cooling(True)
         else:
             self.coolingAPI.intense_cooling(False)
