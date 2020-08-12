@@ -8,6 +8,7 @@ Created on Sat Aug  8 20:49:03 2020
 import machine
 
 class PhotoSensor:
+    
     def __init__(self, algeaConstant,odPinNo):
         self.algeaConstant = algeaConstant
         self.odPinNo = odPinNo

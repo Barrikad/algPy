@@ -20,5 +20,5 @@ for i in range(1000):
     pump.pump(3600)
     if(i%5 == 0):
         oled.fill(0)
-        oled.text("{}".format(i), 0, 8)
+        oled.text("{}".format(i*2), 0, 8)
         oled.show()

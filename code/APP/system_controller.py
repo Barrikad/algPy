@@ -11,7 +11,7 @@ import time
 #600 cycles : 400ml
 #2/3ml per cycle
 
-feedingMusselsPeriod = 500 #tbd
+feedingMusselsPeriod = 3000 #tbd
 temperaturePeriod = 500
 comPeriod = 600
 oledPeriod = 500
