@@ -34,7 +34,5 @@ class TemperatureController:
         else:
             self.coolingAPI.intense_cooling(False)
         
-        self.coolingAPI.set_throughflow(0.1*self.pid.get_correction())
+        self.coolingAPI.set_rps(max(8,0.05*self.pid.get_correction()))
     
-    def pump(self):
-        self.coolingAPI.pump_once()

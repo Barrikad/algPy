@@ -14,7 +14,6 @@ import time
 feedingMusselsPeriod = 500 #tbd
 temperaturePeriod = 500
 comPeriod = 600
-coolingPumpPeriod = 100
 oledPeriod = 500
 defaultThreshold = -20
 defaultP = 2
@@ -41,11 +40,11 @@ class SystemController:
         self.pid.set_goal(defaultGoal)
         self.clock.add_flag("temp", temperaturePeriod)
         self.clock.add_flag("coms", comPeriod)
-        self.clock.add_flag("pumpCool",coolingPumpPeriod)
         self.clock.add_flag("oled",oledPeriod)
         self.clock.add_flag("feedMussels", feedingMusselsPeriod)
         self.offset_done = False
         self.feedingMussels = False
+        self.sendingBackWater = False
         self.web = web        
         self.previousAlgaeLevel = 0
         self.previousTempLevel = 0
@@ -79,15 +78,19 @@ class SystemController:
         
         if self.feedingMussels:
             if(self.feedingAPI.total_fed_algea() < algaeLevelToFeed):
-                self.feedingAPI.continue_feeding()
+                pass
             else:
+                self.feedingAPI.stop_feeding()
                 self.feedingMussels = False
         
         if(self.offset_done and self.clock.check_flag("feedAlgae")):
-            self.feedingAPI.send_back_water()
-            
-        if(self.clock.check_flag("pumpCool")):
-            self.temperatureController.pump()
+            self.feedingAPI.start_back_water()
+            self.sendingBackWater = True
+        
+        if(self.sendingBackWater):
+            if self.feedingAPI.should_stop_back_water():
+                self.sendingBackWater = False
+                self.feedingAPI.stop_back_water()
         
         if(self.clock.check_flag("oled")):
             line1 = "p{:.4}:t{:.4}".format(self.pid.get_p_correction(), int(self.temperatureController.get_latest_temperature()*10)/10)
