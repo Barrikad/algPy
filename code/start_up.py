@@ -20,18 +20,19 @@ import code.APP.pid as pd
 import code.APP.temperature_controller as tc
 import code.APP.system_controller as sc
 
-subscribeKeys = ['P parameter','I parameter','D parameter','Ideal Temp','Threshold']
+subscribeKeys = ['P parameter','I parameter','D parameter','Integral memory','Derivative gap','Threshold']
 wifiName = "Simons_network"
 wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = b'aio_UOve1534u3Rg0pdOglDdJ3aQxRA4'
+ADAFRUIT_IO_KEY = b'CENCORED'
 
 tempPin = 32
 relayPin = 25
 stepPinCool = 33
-odPin = 0#tbd
-feedPumpPin = 0#tbd
+odPin = 34#A0
+feedPumpPin = 14
+feedDirPin = 15
 
 stepsPerPump = 3600 
 mlPerPump = 2/3
@@ -45,7 +46,7 @@ def start():
     tempSensor = ts.TemperatureSensor(tempPin)
     relay = rl.Relay(relayPin)
     algaeSensor = ps.PhotoSensor(algaeConstant, odPin)
-    feedPump = pa.Stepper(feedPumpPin, stepsPerPump, stepsPerRev, mlPerPump/stepsPerPump)
+    feedPump = pa.Stepper(feedPumpPin, stepsPerPump, stepsPerRev, mlPerPump/stepsPerPump,feedDirPin)
     feedingAPI = fa.FeedingAPI(algaeSensor, feedPump)
     coolPump = pa.Stepper(stepPinCool,stepsPerPump,stepsPerRev,mlPerPump/stepsPerPump)
     coolingAPI = ca.CoolingAPI(tempSensor,relay,coolPump)

@@ -5,13 +5,13 @@ Created on Tue Aug 11 21:22:59 2020
 
 @author: mathildetannebaek
 """
-import ssd1306
+import code.HAL.ssd1306 as ssd1306
 from machine import I2C, Pin
 
 class Oled:
-    def write_to_oled(line1,line2,line3):
+    def write_to_oled(self,line1,line2,line3):
         i2c = I2C(scl= Pin(22), sda=Pin(23), freq=100000)
-        oled = ssd1306.SSD1306_12C(128,32,i2c)
+        oled = ssd1306.SSD1306_I2C(128,32,i2c)
         
         oled.fill(0)
         oled.text(line1, 0, 8)

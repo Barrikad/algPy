@@ -51,5 +51,7 @@ class Stepper:
             sleep_us(self.step_time)
         self.stepsDelta = (self.stepsPerPump + steps)
     
+    def get_pumped_volume(self):
+        return self.stepsDelta * self.mlPerStep
     
 

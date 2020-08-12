@@ -11,8 +11,8 @@ import time
 #600 cycles : 400ml
 #2/3ml per cycle
 
-feedingMusselsPeriod = 100 * 60 * 45 #45 min
-temperaturePeriod = 100
+feedingMusselsPeriod = 500 #tbd
+temperaturePeriod = 500
 comPeriod = 600
 coolingPumpPeriod = 100
 oledPeriod = 500
@@ -46,9 +46,9 @@ class SystemController:
         self.clock.add_flag("feedMussels", feedingMusselsPeriod)
         self.offset_done = False
         self.feedingMussels = False
-        self.web = web
-        self.toBePublishedTemp = []
+        self.web = web        
         self.previousAlgaeLevel = 0
+        self.previousTempLevel = 0
         
         self.start_algae_offset()
     
@@ -60,12 +60,10 @@ class SystemController:
         if(self.clock.check_flag("coms")):
             self._update_parameters()
             
-            if(len(self.toBePublishedTemp) == 0):
-                self.toBePublishedTemp = self.temperatureController.report_measurements()
-            
-            if(len(self.toBePublishedTemp) != 0):
-                self.web.publish("Current Temperature",str(self.toBePublishedTemp[0]))
-                del self.toBePublishedTemp[0]
+            tempTempLevel = self.temperatureController.get_latest_temperature()
+            if tempTempLevel != self.previousTempLevel:
+                self.previousAlgaeLevel = tempTempLevel
+                self.web.publish("Current Temperature",str(self.previousTempLevel))
             
             tempAlgaeLevel = self.feedingAPI.get_current_algea_density()
             if tempAlgaeLevel != self.previousAlgaeLevel:
@@ -92,9 +90,9 @@ class SystemController:
             self.temperatureController.pump()
         
         if(self.clock.check_flag("oled")):
-            line1 = "p{}:t{}".format(int(10*self.pid._p) / 10,int(self.temperatureController.get_latest_temperature()*10)/10)
-            line2 = "i{}".format(int(10*self.pid._error_sum*self.pid.I) / 10)
-            line3 = "d{}".format(int(10*self.pid._d) / 10)
+            line1 = "p{:.4}:t{:.4}".format(self.pid.get_p_correction(), int(self.temperatureController.get_latest_temperature()*10)/10)
+            line2 = "i{:.4}".format(self.pid.get_i_correction())
+            line3 = "d{:.4}".format(self.pid.get_d_correction())
             self.oled.write_to_oled(line1,line2,line3)
         
                 
@@ -103,7 +101,8 @@ class SystemController:
         pW = self.web.get_latest_value("P parameter")
         iW = self.web.get_latest_value("I parameter")
         dW = self.web.get_latest_value("D parameter")
-        gW = self.web.get_latest_value("Ideal Temp")
+        im = self.web.get_latest_value("Integral memory")
+        dg = self.web.get_latest_value("Derivative gap")
         th = self.web.get_latest_value("Threshold")
         
         if pW != -9999:
@@ -112,8 +111,10 @@ class SystemController:
             self.pid.set_I(iW)
         if dW != -9999:
             self.pid.set_D(dW)
-        if gW != -9999:
-            self.pid.set_goal(gW)
+        if im != -9999:
+            self.pid.set_max_errors(int(im))
+        if dg != -9999:
+            self.pid.set_derivative_error_gap(int(dg))
         if th != -9999:
             self.temperatureController.set_pid_threshold(th)
     
@@ -122,4 +123,4 @@ class SystemController:
             self.clock.add_flag("feedAlgae", feedingMusselsPeriod)
             self.offset_done = True
         t1 = Timer(2)
-        t1.init(period=10*feedingMusselsPeriod/2,mode=Timer.ONE_SHOT,callback=start_algae_timer)
+        t1.init(period=int(10*feedingMusselsPeriod/2),mode=Timer.ONE_SHOT,callback=start_algae_timer)
