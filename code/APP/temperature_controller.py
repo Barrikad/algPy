@@ -28,6 +28,9 @@ class TemperatureController:
         self.unreportedMeasurements = []
         return unreportedMeasurements
     
+    def get_latest_temperature(self):
+        return self.unreportedMeasurements[-1]
+    
     def get_measurements(self):
         """reports unreported measurements without deleting them
         """

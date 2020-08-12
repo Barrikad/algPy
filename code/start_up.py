@@ -27,6 +27,7 @@ ADAFRUIT_IO_KEY = b'aio_UOve1534u3Rg0pdOglDdJ3aQxRA4'
 tempPin = 32
 relayPin = 25
 stepPinCool = 33
+#odPin = tbd
 
 stepsPerPump = 3600 
 mlPerPump = 0.67

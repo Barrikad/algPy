@@ -8,17 +8,17 @@ Created on Sat Aug  8 20:49:03 2020
 import machine
 
 class PhotoSensor:
+    def __init__(self, algeaConstant,odPinNo):
+        self.algeaConstant = algeaConstant
+        self.odPinNo = odPinNo
+        
     def get_OD(self):
-        #insert adc pin here:
-        adcPin = 33
         
-        adc = machine.ADC(machine.Pin(adcPin))
+        adc = machine.ADC(machine.Pin(self.odPinNo))
         adc.atten(machine.ADC.ATTN_11DB)
-        
-        #convert adc.read() into algae concentration algae per mL
         
         return adc.read()
     
     def get_density(self):
-        pass
+        return self.get_od*self.algeaConstant
         

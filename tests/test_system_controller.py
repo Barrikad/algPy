@@ -14,9 +14,10 @@ class TestSystemController(ut.TestCase):
         self.web = EmulatedWeb()
         self.pid = pd.PID()
         self.clock = EmulatedClock()
+        self.oled = EmulatedOLED()
         self.tempController = EmulatedTemperatureController()
         self.tempController.set_temperature(20)
-        self.systemController = sc.SystemController(self.pid,self.tempController,self.clock,self.web)
+        self.systemController = sc.SystemController(self.pid,self.tempController,self.clock,self.web,self.oled)
     
     def test_create_system_controller(self):
         self.assertIsNotNone(self.systemController)
@@ -47,7 +48,8 @@ class EmulatedWeb():
         self.values = { 'P parameter' : -9999,
                        'I parameter' : -9999,
                        'D parameter' : -9999,
-                       'Ideal Temp' : -9999 }
+                       'Ideal Temp' : -9999 ,
+                       "Threshold" : -9999}
         self.queue = []
         
         self.pushedValues = {}
@@ -112,3 +114,7 @@ class EmulatedTemperatureController:
     
     def correct_cooling_value(self):
         self.corrected = True
+
+class EmulatedOLED:
+    def write_to_oled(self):
+        pass
