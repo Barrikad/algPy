@@ -14,6 +14,7 @@ feedingAlgaePeriod = 100 * 60 * 15 #15 min
 temperaturePeriod = 100
 comPeriod = 600
 coolingPumpPeriod = 100
+oledPeriod = 500
 defaultThreshold = -20
 defaultP = 2
 defaultI = 0.2
@@ -39,6 +40,7 @@ class SystemController:
         self.clock.add_flag("temp", temperaturePeriod)
         self.clock.add_flag("coms", comPeriod)
         self.clock.add_flag("pumpCool",coolingPumpPeriod)
+        self.clock.add_flag("oled",oledPeriod)
         #feeding stuff added after temp-test
         #self.clock.add_flag("feedMussels", feedingMusselsPeriod)
         #self.clock.add_flag("feedAlgae", feedingAlgaePeriod)
@@ -47,21 +49,21 @@ class SystemController:
     
     def system_tick(self):
         if(self.clock.check_flag("temp")):
-            self.write_to_oled("measuring","temperature","")
+            #self.write_to_oled("measuring","temperature","")
             self.temperatureController.measure_temperature()
-            self.write_to_oled("Correct","cooling","value")
+            #self.write_to_oled("Correct","cooling","value")
             self.temperatureController.correct_cooling_value()
         
         if(self.clock.check_flag("coms")):
-            self.write_to_oled("Updating","PID","Parameters")
+            #self.write_to_oled("Updating","PID","Parameters")
             self._update_parameters()
             
             if(len(self.toBePublishedTemp) == 0):
-                self.write_to_oled("Reporting","temp to be","published")
+                #self.write_to_oled("Reporting","temp to be","published")
                 self.toBePublishedTemp = self.temperatureController.report_measurements()
             
             if(len(self.toBePublishedTemp) != 0):
-                self.write_to_oled("Publishing","current","temperature")
+                #self.write_to_oled("Publishing","current","temperature")
                 self.web.publish("Current Temperature",str(self.toBePublishedTemp[0]))
                 del self.toBePublishedTemp[0]
         """
@@ -74,8 +76,14 @@ class SystemController:
             self.feedingSystem.feedingAlgae()"""
             
         if(self.clock.check_flag("pumpCool")):
-            self.write_to_oled("Cool","pump","")
+            #self.write_to_oled("Cool","pump","")
             self.temperatureController.pump()
+        
+        if(self.clock.check_flag("oled")):
+            line1 = "{}".format(int(10*self.pid.P) / 10)
+            line2 = 
+            line3 = 
+            self.oled.write_to_oled(,"{}".format(int(10*self.pid._error_sum*self.pid.) / 10),"{}")
         
                 
     def _update_parameters(self):

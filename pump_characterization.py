@@ -18,6 +18,7 @@ oled = SSD1306_I2C(128,32,i2c)
 
 for i in range(1000):
     pump.pump(3600)
-    oled.fill(0)
-    oled.text("{}".format(i), 0, 8)
-    oled.show()
+    if(i%5 == 0):
+        oled.fill(0)
+        oled.text("{}".format(i), 0, 8)
+        oled.show()

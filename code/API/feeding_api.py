@@ -13,7 +13,7 @@ class FeedingAPI:
     def get_current_algea_density(self):
         """algea per ml
         """
-        return self.algeaSensor.get_density()
+        return self.algeaSensor.get_density() #algea/ml
     
     def start_feeding(self):
         self.pump.clear_steps()
