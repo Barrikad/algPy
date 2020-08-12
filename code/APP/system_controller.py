@@ -23,12 +23,13 @@ algaeLevelToFeed = 9999 #algae (To Be decided! after experiments)
 
 
 class SystemController:
-    def __init__(self,pid,temperatureController,clock,web):
+    def __init__(self,pid,temperatureController,clock,web,oled):
         """pid should be the same as the one used in temp-controller
         """
         self.temperatureController = temperatureController
         self.clock = clock
         self.pid = pid
+        self.oled = oled
         #self.feedingSystem = feedingSystem(algaeLevelToFeed,stepsPerPump)
         self.temperatureController.set_pid_threshold(defaultThreshold)
         self.pid.set_P(defaultP)
@@ -46,26 +47,34 @@ class SystemController:
     
     def system_tick(self):
         if(self.clock.check_flag("temp")):
+            self.write_to_oled("measuring","temperature","")
             self.temperatureController.measure_temperature()
+            self.write_to_oled("Correct","cooling","value")
             self.temperatureController.correct_cooling_value()
         
         if(self.clock.check_flag("coms")):
+            self.write_to_oled("Updating","PID","Parameters")
             self._update_parameters()
             
             if(len(self.toBePublishedTemp) == 0):
+                self.write_to_oled("Reporting","temp to be","published")
                 self.toBePublishedTemp = self.temperatureController.report_measurements()
             
             if(len(self.toBePublishedTemp) != 0):
+                self.write_to_oled("Publishing","current","temperature")
                 self.web.publish("Current Temperature",str(self.toBePublishedTemp[0]))
                 del self.toBePublishedTemp[0]
         """
         if(self.clock.check_flag("feedMussels")):
+            self.write_to_oled("Feeding","mussels","")
             self.feedingSystem.feedingMussels()
         
         if(self.clock.check_flag("feedAlgae")):
+            self.write_to_oled("Feeding","algae","")
             self.feedingSystem.feedingAlgae()"""
-        
+            
         if(self.clock.check_flag("pumpCool")):
+            self.write_to_oled("Cool","pump","")
             self.temperatureController.pump()
         
                 
