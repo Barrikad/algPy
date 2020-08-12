@@ -11,14 +11,12 @@ class PhotoSensor:
     def __init__(self, algeaConstant,odPinNo):
         self.algeaConstant = algeaConstant
         self.odPinNo = odPinNo
+        self.adc = machine.ADC(machine.Pin(self.odPinNo))
+        self.adc.atten(machine.ADC.ATTN_11DB)
         
     def get_OD(self):
-        
-        adc = machine.ADC(machine.Pin(self.odPinNo))
-        adc.atten(machine.ADC.ATTN_11DB)
-        
-        return adc.read()
+        return self.adc.read()
     
     def get_density(self):
-        return self.get_od*self.algeaConstant
+        return self.get_OD()*self.algeaConstant
         

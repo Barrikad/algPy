@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import gc
 class PID:
     """A class for general use pid controllers
     
@@ -8,7 +8,7 @@ class PID:
     """
     
     def __init__(self):
-        self.maxErrors = 100
+        self.maxErrors = 50
         self.errors = [0]*self.maxErrors
         self.errorGap = 1
         self._errorCursor = 0
@@ -41,12 +41,16 @@ class PID:
         previousErrors = self.errors[max(0, self._errorCursor - newMaxErrors) : self._errorCursor]
         #Too complicated fuck me
         wrappingErrors = self.errors[self._errorCursor + max(0,  self.maxErrors - newMaxErrors) : self.maxErrors]
+        del self.errors
         freeSpace = [0] * (newMaxErrors - len(previousErrors) - len(wrappingErrors))
-        self.errors = wrappingErrors + previousErrors + freeSpace
         self._errorCursor = (len(wrappingErrors) + len(previousErrors)) % newMaxErrors
-        
+        self.errors = wrappingErrors + previousErrors + freeSpace
         self.maxErrors = newMaxErrors
         self._errorSum = sum(self.errors)
+        del previousErrors
+        del wrappingErrors
+        del freeSpace
+        gc.collect()
         
     def set_derivative_error_gap(self,gap_value):
         if gap_value >= self.maxErrors:

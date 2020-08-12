@@ -7,10 +7,12 @@ Created on Tue Aug  4 12:51:29 2020
 
 import machine as mc
 import time
+import code.HAL.photoSensor as ps
 import code.HAL.pump_API as pa
 import code.HAL.temperature_sensor as ts
 import code.HAL.relay as rl
 import code.HAL.oled as ol
+import code.API.feeding_api as fa
 import code.API.cooling_api as ca
 import code.API.clock as clk
 import code.API.web_coms as wc
@@ -23,23 +25,31 @@ wifiName = "Simons_network"
 wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = b'aio_smvh94fRHt0TkKvF6B3nxVH5Qvz4'
+ADAFRUIT_IO_KEY = b'CENCORED'
 
 tempPin = 32
 relayPin = 25
 stepPinCool = 33
-#odPin = tbd
+odPin = 34#A0
+feedPumpPin = 14
+feedDirPin = 15
 
 stepsPerPump = 3600 
-mlPerPump = 0.67
+mlPerPump = 2/3
+stepsPerRev = 3600
 
+algaeConstant = 3#tbd
 
 def start():
+    
     clock = clk.Clock()
     tempSensor = ts.TemperatureSensor(tempPin)
     relay = rl.Relay(relayPin)
-    pump = pa.Stepper(stepPinCool,stepsPerPump)
-    coolingAPI = ca.CoolingAPI(tempSensor,relay,pump)
+    algaeSensor = ps.PhotoSensor(algaeConstant, odPin)
+    feedPump = pa.Stepper(feedPumpPin, stepsPerPump, stepsPerRev, mlPerPump/stepsPerPump,feedDirPin)
+    feedingAPI = fa.FeedingAPI(algaeSensor, feedPump)
+    coolPump = pa.Stepper(stepPinCool,stepsPerPump,stepsPerRev,mlPerPump/stepsPerPump)
+    coolingAPI = ca.CoolingAPI(tempSensor,relay,coolPump)
     pid = pd.PID()
     oled = ol.Oled()
     tempCont = tc.TemperatureController(coolingAPI, pid)
@@ -47,7 +57,7 @@ def start():
     web.connectToWifi()
     web.connectToMQTT()
     web.subscribe_to_keys(subscribeKeys)
-    sysCont = sc.SystemController(pid,tempCont,clock,web,oled)
+    sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI)
     
     while(True):
         sysCont.system_tick()
