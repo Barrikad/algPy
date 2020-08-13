@@ -8,14 +8,18 @@ class PID:
     """
     
     def __init__(self):
+        """
         persFile = open("persistenceFile.txt","r") 
         values = persFile.readlines()
         
         self.maxErrors = float(values[4][:-1]) 
         self.errors = [0]*self.maxErrors
         self.errorGap = float(values[5][:-1]) 
-        persFile.close()
+        persFile.close()"""
         
+        self.maxErrors = 100
+        self.errors = [0]*self.maxErrors
+        self.errorGap = 10
         self._errorCursor = 0
         self.P = 0 
         self.I = 0

@@ -9,8 +9,9 @@ import machine
 
 class PhotoSensor:
     
-    def __init__(self, algeaConstant,odPinNo):
+    def __init__(self, algeaConstant, algaeZero,odPinNo):
         self.algeaConstant = algeaConstant
+        self.algaeZero = algaeZero
         self.odPinNo = odPinNo
         self.adc = machine.ADC(machine.Pin(self.odPinNo))
         self.adc.atten(machine.ADC.ATTN_11DB)
@@ -19,5 +20,5 @@ class PhotoSensor:
         return self.adc.read()
     
     def get_density(self):
-        return self.get_OD()*self.algeaConstant
+        return self.get_OD()*self.algeaConstant + self.algaeZero
         

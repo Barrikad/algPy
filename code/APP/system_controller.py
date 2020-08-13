@@ -10,19 +10,26 @@ from machine import Timer
 #600 cycles : 400ml
 #2/3ml per cycle
 
-feedingMusselsPeriod = 3000 #tbd
+feedingMusselsPeriod = 360000 #tbd
 temperaturePeriod = 500
 comPeriod = 800
 oledPeriod = 500
-defaultGoal = 14
+defaultGoal = 18
 
-persFile = open("persistenceFile.txt","r") 
+#temp
+defaultP = 6.1
+defaultI = 0.1
+defaultD = 8.8
+defaultThreshold = -7
+
+"""
+persFile = open("persistenceFile.txt","rw") 
 values = persFile.readlines() #values = [P,I,D,threshold,maxerrors,errorgap]
 defaultP = float(values[0][:-1])
 defaultI = float(values[1][:-1])
 defaultD = float(values[2][:-1])
 defaultThreshold = float(values[3][:-1])
-persFile.close()
+persFile.close()"""
 
 class SystemController:
     def __init__(self,pid,temperatureController,clock,web,oled,feedingAPI,algaeLevelToFeed):
@@ -131,37 +138,31 @@ class SystemController:
         th = self.web.get_latest_value("Threshold")
         fl = self.web.get_latest_value("Feeding Level")
         
-        valuesPrev = values 
-        persFile = open("persistenceFile.txt","w") 
+        #valuesPrev = values 
+        #persFile = open("persistenceFile.txt","w") 
         if pW != -9999 and pW != pWprev:
             self.pid.set_P(pW)
-            values[0] = str(pW)+'\n'
+            #values[0] = str(pW)+'\n'
         if iW != -9999 and iW != iWprev:
             self.pid.set_I(iW)
-            values[1] = str(iW)+'\n'
+            #values[1] = str(iW)+'\n'
         if dW != -9999 and dW != dWprev:
             self.pid.set_D(dW)
-            values[2] = str(iW)+'\n'
+            #values[2] = str(iW)+'\n'
         if im != -9999 and im != imprev:
             self.pid.set_max_errors(int(im))
-            values[4] = str(im)+'\n'
+            #values[4] = str(im)+'\n'
         if dg != -9999 and dg != dgprev:
             self.pid.set_derivative_error_gap(int(dg))
-            values[5] = str(dg)+'\n'
+            #values[5] = str(dg)+'\n'
         if th != -9999 and th != thprev:
             self.temperatureController.set_pid_threshold(th)
-            values[3] = str(th)+'\n'
+            #values[3] = str(th)+'\n'
         if fl != -9999 and fl != flprev:
             self.algaeLevelToFeed = fl
         
-        if valuesPrev != values:
-            persFile.write(''.join(values))
+        #if valuesPrev != values:
+            #persFile.write(''.join(values))
         
-        persFile.close()
+        #persFile.close()
     
-    def start_algae_offset(self):
-        def start_algae_timer(timer):
-            self.clock.add_flag("feedAlgae", feedingMusselsPeriod)
-            self.offset_done = True
-        t1 = Timer(2)
-        t1.init(period=int(10*feedingMusselsPeriod/2),mode=Timer.ONE_SHOT,callback=start_algae_timer)
