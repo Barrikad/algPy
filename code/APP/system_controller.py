@@ -5,7 +5,6 @@ Created on Fri Aug  7 13:52:40 2020
 @author: simon
 """
 from machine import Timer
-import time
 
 #pump experiment:
 #600 cycles : 400ml
@@ -15,12 +14,15 @@ feedingMusselsPeriod = 3000 #tbd
 temperaturePeriod = 500
 comPeriod = 800
 oledPeriod = 500
-defaultThreshold = -20
-defaultP = 2
-defaultI = 0.2
-defaultD = 1
 defaultGoal = 14
 
+persFile = open("persistenceFile.txt","r") 
+values = persFile.readlines() #values = [P,I,D,threshold,maxerrors,errorgap]
+defaultP = float(values[0][:-1])
+defaultI = float(values[1][:-1])
+defaultD = float(values[2][:-1])
+defaultThreshold = float(values[3][:-1])
+persFile.close()
 
 class SystemController:
     def __init__(self,pid,temperatureController,clock,web,oled,feedingAPI,algaeLevelToFeed):
@@ -63,13 +65,13 @@ class SystemController:
             print("sending data to web")
             tempTempLevel = self.temperatureController.get_latest_temperature()
             if tempTempLevel != self.previousTempLevel:
-                print("sending...")
+                print("sending od")
                 self.previousTempLevel = tempTempLevel
                 self.web.publish("Current Temperature",str(self.previousTempLevel))
             
             tempAlgaeLevel = self.feedingAPI.get_current_algea_density()
             if tempAlgaeLevel != self.previousAlgaeLevel:
-                print("sending")
+                print("sending temp")
                 self.previousAlgaeLevel = tempAlgaeLevel
                 self.web.publish("OD",str(self.previousAlgaeLevel))            
             
@@ -113,6 +115,13 @@ class SystemController:
         
                 
     def _update_parameters(self):
+        pWprev = self.web.get_latest_value("P parameter")
+        iWprev = self.web.get_latest_value("I parameter")
+        dWprev = self.web.get_latest_value("D parameter")
+        imprev = self.web.get_latest_value("Integral memory")
+        dgprev = self.web.get_latest_value("Derivative gap")
+        thprev = self.web.get_latest_value("Threshold")
+        flprev = self.web.get_latest_value("Feeding Level")
         self.web.update_values()
         pW = self.web.get_latest_value("P parameter")
         iW = self.web.get_latest_value("I parameter")
@@ -122,18 +131,37 @@ class SystemController:
         th = self.web.get_latest_value("Threshold")
         fl = self.web.get_latest_value("Feeding Level")
         
-        if pW != -9999:
+        valuesPrev = values 
+        persFile = open("persistenceFile.txt","w") 
+        if pW != -9999 & pW != pWprev:
             self.pid.set_P(pW)
-        if iW != -9999:
+            values[0] = str(pW)+'\n'
+        if iW != -9999 & iW != iWprev:
             self.pid.set_I(iW)
-        if dW != -9999:
+            values[1] = str(iW)+'\n'
+        if dW != -9999 & dW != dWprev:
             self.pid.set_D(dW)
-        if im != -9999:
+            values[2] = str(iW)+'\n'
+        if im != -9999 & im != imprev:
             self.pid.set_max_errors(int(im))
-        if dg != -9999:
+            values[4] = str(im)+'\n'
+        if dg != -9999 & dg != dgprev:
             self.pid.set_derivative_error_gap(int(dg))
-        if th != -9999:
+            values[5] = str(dg)+'\n'
+        if th != -9999 & th != thprev:
             self.temperatureController.set_pid_threshold(th)
-        if fl != -9999:
+            values[3] = str(th)+'\n'
+        if fl != -9999 & fl != flprev:
             self.algaeLevelToFeed = fl
+        
+        if valuesPrev != values:
+            persFile.write(''.join(values))
+        
+        persFile.close()
     
+    def start_algae_offset(self):
+        def start_algae_timer(timer):
+            self.clock.add_flag("feedAlgae", feedingMusselsPeriod)
+            self.offset_done = True
+        t1 = Timer(2)
+        t1.init(period=int(10*feedingMusselsPeriod/2),mode=Timer.ONE_SHOT,callback=start_algae_timer)
