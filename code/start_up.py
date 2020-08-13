@@ -20,12 +20,12 @@ import code.APP.pid as pd
 import code.APP.temperature_controller as tc
 import code.APP.system_controller as sc
 
-subscribeKeys = ['P parameter','I parameter','D parameter','Integral memory','Derivative gap','Threshold']
+subscribeKeys = ['P parameter','I parameter','D parameter','Integral memory','Derivative gap','Threshold','Feeding Level']
 wifiName = "Simons_network"
 wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = b'aio_lyvx0984GHTIxPxJtLuHCrZxkXA9'
+ADAFRUIT_IO_KEY = b'CENSORED'
 
 tempPin = 32
 relayPin = 25
@@ -33,6 +33,7 @@ stepPinCool = 33
 odPin = 34#A0
 feedPumpPin = 14
 feedDirPin = 15
+algaeLevelToFeed = 4000 #algae (To Be decided! after experiments)
 
 mlPerRev = 2/3
 stepsPerRev = 3600
@@ -57,7 +58,7 @@ def start():
     web.connectToWifi()
     web.connectToMQTT()
     web.subscribe_to_keys(subscribeKeys)
-    sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI)
+    sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI,algaeLevelToFeed)
     
     while(True):
         sysCont.system_tick()

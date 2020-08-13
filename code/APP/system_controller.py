@@ -20,11 +20,10 @@ defaultP = 2
 defaultI = 0.2
 defaultD = 1
 defaultGoal = 14
-algaeLevelToFeed = 450 #algae (To Be decided! after experiments)
 
 
 class SystemController:
-    def __init__(self,pid,temperatureController,clock,web,oled,feedingAPI):
+    def __init__(self,pid,temperatureController,clock,web,oled,feedingAPI,algaeLevelToFeed):
         """pid should be the same as the one used in temp-controller
         """
         self.temperatureController = temperatureController
@@ -48,11 +47,12 @@ class SystemController:
         self.web = web        
         self.previousAlgaeLevel = 0
         self.previousTempLevel = 0
+        self.algaeLevelToFeed = algaeLevelToFeed
         
         self.start_algae_offset()
     
     def system_tick(self):
-        if(self.clock.check_flag("temp")):
+        if(self.clock.check_flag("temp") and not (self.feedingMussels or self.sendingBackWater)):
             self.temperatureController.measure_temperature()
             self.temperatureController.correct_cooling_value()
         
@@ -67,30 +67,34 @@ class SystemController:
             tempAlgaeLevel = self.feedingAPI.get_current_algea_density()
             if tempAlgaeLevel != self.previousAlgaeLevel:
                 self.previousAlgaeLevel = tempAlgaeLevel
-                self.web.publish("OD",str(self.previousAlgaeLevel))
+                self.web.publish("OD",str(self.previousAlgaeLevel))            
             
-            if self.feedingMussels:
-                self.web.publish("Feeding status","Feeding mussels")
         
         if(self.clock.check_flag("feedMussels")):
             self.feedingAPI.start_feeding()
             self.feedingMussels = True
+            self.feedingAPI.pump.set_rps(4)
+            self.web.publish("Feeding status", "Feeding mussels")
         
         if self.feedingMussels:
-            if(self.feedingAPI.total_fed_algea() < algaeLevelToFeed):
+            if(self.feedingAPI.total_fed_algea() < self.algaeLevelToFeed):
                 pass
             else:
+                self.web.publish("Feeding status", "Stop feeding mussels")
                 self.feedingAPI.stop_feeding()
                 self.feedingMussels = False
         
         if(self.offset_done and self.clock.check_flag("feedAlgae")):
             self.feedingAPI.start_back_water()
             self.sendingBackWater = True
+            self.feedingAPI.pump.set_rps(4)
+            self.web.publish("Feeding status", "Feeding algae")
         
         if(self.sendingBackWater):
             if self.feedingAPI.should_stop_back_water():
                 self.sendingBackWater = False
                 self.feedingAPI.stop_back_water()
+                self.web.publish("Feeding status", "Stop feeding algae")
         
         if(self.clock.check_flag("oled")):
             line1 = "p{:.4}:t{:.4}".format(self.pid.get_p_correction(), int(self.temperatureController.get_latest_temperature()*10)/10)
@@ -107,6 +111,7 @@ class SystemController:
         im = self.web.get_latest_value("Integral memory")
         dg = self.web.get_latest_value("Derivative gap")
         th = self.web.get_latest_value("Threshold")
+        fl = self.web.get_latest_value("Feeding Level")
         
         if pW != -9999:
             self.pid.set_P(pW)
@@ -120,6 +125,8 @@ class SystemController:
             self.pid.set_derivative_error_gap(int(dg))
         if th != -9999:
             self.temperatureController.set_pid_threshold(th)
+        if fl != -9999:
+            self.algaeLevelToFeed = fl
     
     def start_algae_offset(self):
         def start_algae_timer(timer):
