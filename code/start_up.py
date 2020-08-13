@@ -34,9 +34,9 @@ odPin = 34#A0
 feedPumpPin = 14
 feedDirPin = 15
 
-stepsPerPump = 3600 
-mlPerPump = 2/3
+mlPerRev = 2/3
 stepsPerRev = 3600
+rps = 1
 
 algaeConstant = 3#tbd
 
@@ -46,9 +46,9 @@ def start():
     tempSensor = ts.TemperatureSensor(tempPin)
     relay = rl.Relay(relayPin)
     algaeSensor = ps.PhotoSensor(algaeConstant, odPin)
-    feedPump = pa.Stepper(feedPumpPin, stepsPerPump, stepsPerRev, mlPerPump/stepsPerPump,feedDirPin)
+    feedPump = pa.Stepper(feedPumpPin, stepsPerRev, rps, mlPerRev,feedDirPin)
     feedingAPI = fa.FeedingAPI(algaeSensor, feedPump)
-    coolPump = pa.Stepper(stepPinCool,stepsPerPump,stepsPerRev,mlPerPump/stepsPerPump)
+    coolPump = pa.Stepper(stepPinCool,stepsPerRev, rps, mlPerRev)
     coolingAPI = ca.CoolingAPI(tempSensor,relay,coolPump)
     pid = pd.PID()
     oled = ol.Oled()

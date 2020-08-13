@@ -14,6 +14,7 @@ class CoolingAPI:
         self.relay = relay
         self.stepsPerPump = 1
         self.pump = pump
+        pump.start_pump()
     
     def intense_cooling(self,on):
         if on:
@@ -21,17 +22,11 @@ class CoolingAPI:
         else:
             self.relay.set_fan_low()
             
-    def set_throughflow(self,mlPerPump):
+    def set_rps(self,rps):
         """set how much water the pump is putting through the cooler
         max is ??? and min is ???
         """
-        self.stepsPerPump = int(mlPerPump / self.pump.mlPerStep)
-    
-    def pump_once(self):
-        """perform a pumping through the cooling system
-        how much water is pumped is defined by the set throughflow
-        """
-        self.pump.pump(self.stepsPerPump)
+        self.pump.set_rps(rps)
     
     def get_current_temperature(self):
         return self.temperatureSensor.get_temperature()

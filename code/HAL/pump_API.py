@@ -1,15 +1,15 @@
-
+import machine as mc
 from machine import Pin
-from time import sleep_us
+import time
 
 
 class Stepper:
     """Class for stepper motor driven by Easy Driver."""
+    rps = 0
 
-    def __init__(self, step_pin, stepsPerPump, steps_per_rev, mlPerStep , dir_pin = -9999):
+    def __init__(self, step_pin, steps_per_rev, rps, mlPerRev , dir_pin = -9999):
         """Initialise stepper."""
         self.stp = Pin(step_pin)
-        self.stp.init(Pin.OUT)
         
         if dir_pin != -9999:
             self.dir = Pin(dir_pin)
@@ -17,12 +17,19 @@ class Stepper:
             self.dir.value(0)
             self.direction = 0
 
-        self.step_time = 80  # us
         self.steps_per_rev = steps_per_rev
-        self.stepsDelta = 0
+        self.mlPerRev = mlPerRev
+        self.pwm = None
+        self.running = False
         
-        self.stepsPerPump = stepsPerPump    
-        self.mlPerStep = mlPerStep
+        #pwm is same freq for all pumps, so class member
+        Stepper.rps = rps
+    
+    def set_rps(self,rps):
+        """Only use when pump is on!!
+        """
+        Stepper.rps = rps
+        self.pwm.freq(self.rps * self.steps_per_rev)
 
     def reverse_direction(self):
         if self.direction==1:
@@ -31,27 +38,21 @@ class Stepper:
         else:
             self.dir.value(1)
             self.direction = 1
-
-    def clear_steps(self):
-        self.stepsDelta = 0
-        
-    def pump_standard_pump(self):
-        for i in range(abs(self.stepsPerPump)):
-            self.stp.value(1)
-            sleep_us(self.step_time)
-            self.stp.value(0)
-            sleep_us(self.step_time)
-        self.stepsDelta = (self.stepsPerPump + self.stepsDelta)
     
-    def pump(self,steps):
-        for i in range(abs(steps)):
-            self.stp.value(1)
-            sleep_us(self.step_time)
-            self.stp.value(0)
-            sleep_us(self.step_time)
-        self.stepsDelta = (self.stepsPerPump + steps)
+    def start_pump(self):
+        freq = self.rps * self.steps_per_rev
+        self.pwm = mc.PWM(self.stp, int(freq), 512)
+        self.startTime = time.time()
+    
+    def stop_pump(self):
+        self.pwm.deinit()
+        
     
     def get_pumped_volume(self):
-        return self.stepsDelta * self.mlPerStep
+        if self.running:
+            curTime = time.time()
+            return (curTime - self.startTime) * self.mlPerRev * self.steps_per_rev * self.rps
+        else:
+            return 0
     
 
