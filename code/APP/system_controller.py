@@ -133,25 +133,25 @@ class SystemController:
         
         valuesPrev = values 
         persFile = open("persistenceFile.txt","w") 
-        if pW != -9999 & pW != pWprev:
+        if pW != -9999 and pW != pWprev:
             self.pid.set_P(pW)
             values[0] = str(pW)+'\n'
-        if iW != -9999 & iW != iWprev:
+        if iW != -9999 and iW != iWprev:
             self.pid.set_I(iW)
             values[1] = str(iW)+'\n'
-        if dW != -9999 & dW != dWprev:
+        if dW != -9999 and dW != dWprev:
             self.pid.set_D(dW)
             values[2] = str(iW)+'\n'
-        if im != -9999 & im != imprev:
+        if im != -9999 and im != imprev:
             self.pid.set_max_errors(int(im))
             values[4] = str(im)+'\n'
-        if dg != -9999 & dg != dgprev:
+        if dg != -9999 and dg != dgprev:
             self.pid.set_derivative_error_gap(int(dg))
             values[5] = str(dg)+'\n'
-        if th != -9999 & th != thprev:
+        if th != -9999 and th != thprev:
             self.temperatureController.set_pid_threshold(th)
             values[3] = str(th)+'\n'
-        if fl != -9999 & fl != flprev:
+        if fl != -9999 and fl != flprev:
             self.algaeLevelToFeed = fl
         
         if valuesPrev != values:
