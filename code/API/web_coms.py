@@ -105,6 +105,8 @@ class Web :
             bs = str(s,'utf-8')
             self._subscribe(bs)
             self.values[bs] = -9999
+        for i in range(10):
+            self.client.check_msg()
     
     def get_latest_value(self,key):
         return self.values[key]
