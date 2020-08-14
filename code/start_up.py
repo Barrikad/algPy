@@ -26,7 +26,7 @@ wifiName = "Simons_network"
 wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = 'aio_utLL84g8XHwfI6tqjryLw3si4172'
+ADAFRUIT_IO_KEY = 'CENSORED'
 
 tempPin = 32
 relayPin = 25
@@ -46,12 +46,12 @@ algaeConstant = -308487#tbd
 algaeZero = 498933
 
 def start():
-    errorLog = open("errorLog.txt","r") 
+    """errorLog = open("errorLog.txt","r") 
     if os.stat("errorLog.txt").st_size != 0:
         errors = errorLog.readlines()
         for i in errors: 
             wc.publish("Feeding status", i)
-    errorLog.close()
+    errorLog.close()"""
     
     clock = clk.Clock()
     tempSensor = ts.TemperatureSensor(lookup,tempPin)
