@@ -34,5 +34,5 @@ class TemperatureController:
         else:
             self.coolingAPI.intense_cooling(False)
         
-        self.coolingAPI.set_rps(min(10,max(-0.1*self.pid.get_correction(),0)))
+        self.coolingAPI.set_rps(min(4,max(-0.1*self.pid.get_correction(),1)))
     

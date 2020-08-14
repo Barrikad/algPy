@@ -26,7 +26,7 @@ wifiName = "Simons_network"
 wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = 'CENSORED'
+ADAFRUIT_IO_KEY = 'here'
 
 tempPin = 32
 relayPin = 25
