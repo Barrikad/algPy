@@ -17,7 +17,7 @@ class PID:
         self.errorGap = float(values[5][:-1]) 
         persFile.close()"""
         
-        self.maxErrors = 100
+        self.maxErrors = 25
         self.errors = [0]*self.maxErrors
         self.errorGap = 10
         self._errorCursor = 0

@@ -28,7 +28,7 @@ class FeedingAPI:
         self.pump.stop_pump()
     
     def total_fed_algea(self):
-        algae_density = 1800000 #self.algeaSensor.get_density()
+        algae_density = self.algeaSensor.get_density()
         pVolume = self.pump.get_pumped_volume
         self.algaeSum += (pVolume - self.pumpedVolume) * algae_density
         self.pumpedVolume = pVolume

@@ -14,7 +14,7 @@ feedingMusselsPeriod = 360000 #tbd
 temperaturePeriod = 500
 comPeriod = 800
 oledPeriod = 500
-defaultGoal = 18
+defaultGoal = 17
 
 #temp
 defaultP = 6.1

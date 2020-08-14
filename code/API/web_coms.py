@@ -89,6 +89,9 @@ class Web :
         self.client.set_callback(self.cb)                    
         self.client.subscribe(mqtt_feedname)  
         
+        mqtt_feedname_get = bytes('{:s}/get'.format(mqtt_feedname), 'utf-8')    
+        self.client.publish(mqtt_feedname_get, '\0')  
+        
         
     def publish(self, feedname, stringToPublish): 
         mqtt_feedname = bytes('{:s}/feeds/{:s}'.format(self.ADAFRUIT_USERNAME, feedname), 'utf-8')   
