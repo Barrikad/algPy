@@ -17,36 +17,37 @@ comPeriod = 800
 oledPeriod = 500
 defaultGoal = 17
 
-#temp
-defaultP = 6.1
-defaultI = 0.1
-defaultD = 8.8
-defaultThreshold = -7
 
-"""
-persFile = open("persistenceFile.txt","rw") 
-values = persFile.readlines() #values = [P,I,D,threshold,maxerrors,errorgap]
-defaultP = float(values[0][:-1])
-defaultI = float(values[1][:-1])
-defaultD = float(values[2][:-1])
-defaultThreshold = float(values[3][:-1])
-persFile.close()"""
+
 
 class SystemController:
-    def __init__(self,pid,temperatureController,clock,web,oled,feedingAPI,algaeLevelToFeed):
+    def __init__(self,pid,temperatureController,clock,web,oled,feedingAPI):
         """pid should be the same as the one used in temp-controller
         """
+        persFile = open("persistenceFile.txt","r") 
+        persFile.seek(0,0)
+        self.values = persFile.readlines() #values = [P,I,D,threshold,maxerrors,errorgap,leveltoFeed]
+        defaultP = float(self.values[0][:-2])
+        defaultI = float(self.values[1][:-2])
+        defaultD = float(self.values[2][:-2])
+        defaultThreshold = float(self.values[3][:-2])
+        defaultMaxErrors = int(self.values[4][:-2])
+        defaultErrorGap = int(self.values[5][:-2])
+        algaeLevelToFeed = int(self.values[6][:-2])
+        persFile.close()
+        
         self.temperatureController = temperatureController
         self.clock = clock
         self.pid = pid
         self.oled = oled
         self.feedingAPI = feedingAPI
-        #self.feedingSystem = feedingSystem(algaeLevelToFeed,stepsPerPump)
         self.temperatureController.set_pid_threshold(defaultThreshold)
         self.pid.set_P(defaultP)
         self.pid.set_I(defaultI)
         self.pid.set_D(defaultD)
         self.pid.set_goal(defaultGoal)
+        self.pid.set_max_errors(defaultMaxErrors)
+        self.pid.set_derivative_error_gap(defaultErrorGap)
         self.clock.add_flag("temp", temperaturePeriod)
         self.clock.add_flag("coms", comPeriod)
         self.clock.add_flag("oled",oledPeriod)
@@ -191,31 +192,64 @@ class SystemController:
         th = self.web.get_latest_value("Threshold")
         fl = self.web.get_latest_value("Feeding Level")
         
-        #valuesPrev = values 
-        #persFile = open("persistenceFile.txt","w") 
-        if pW != -9999 and pW != pWprev:
-            self.pid.set_P(pW)
-            #values[0] = str(pW)+'\n'
-        if iW != -9999 and iW != iWprev:
-            self.pid.set_I(iW)
-            #values[1] = str(iW)+'\n'
-        if dW != -9999 and dW != dWprev:
-            self.pid.set_D(dW)
-            #values[2] = str(iW)+'\n'
-        if im != -9999 and im != imprev:
-            self.pid.set_max_errors(int(im))
-            #values[4] = str(im)+'\n'
-        if dg != -9999 and dg != dgprev:
-            self.pid.set_derivative_error_gap(int(dg))
-            #values[5] = str(dg)+'\n'
-        if th != -9999 and th != thprev:
-            self.temperatureController.set_pid_threshold(th)
-            #values[3] = str(th)+'\n'
-        if fl != -9999 and fl != flprev:
-            self.algaeLevelToFeed = fl
+        valuesPrev = self.values.copy()
+        persFile = open("persistenceFile.txt","w") 
+        persFile.seek(0,0)
+        if pW != -9999:
+            self.values[0] = str(pW)+'\r\n'
+            if pW != pWprev:
+                self.pid.set_P(pW)
+        else:
+            self.values[0] = valuesPrev[0]
         
-        #if valuesPrev != values:
-            #persFile.write(''.join(values))
+        if iW != -9999:
+            self.values[1] = str(iW)+'\r\n'
+            if iW != iWprev:
+                self.pid.set_I(iW)
+        else:
+            self.values[1] = valuesPrev[1]
+                
+        if dW != -9999:
+            self.values[2] = str(dW)+'\r\n'
+            if dW != dWprev:
+                self.pid.set_D(dW)
+        else:
+            self.values[2] = valuesPrev[2]
+       
+        if im != -9999:
+            self.values[4] = str(int(im))+'\r\n'
+            if im != imprev:
+                self.pid.set_max_errors(int(im))
+        else:
+            self.values[4] = valuesPrev[4]
         
-        #persFile.close()
+        if dg != -9999:
+            self.values[5] = str(int(dg))+'\r\n'
+            if dg != dgprev:
+                self.pid.set_derivative_error_gap(int(dg))
+        else:
+            self.values[5] = valuesPrev[5]
+        
+        if th != -9999:
+            self.values[3] = str(th)+'\r\n'
+            if th != thprev:
+                self.temperatureController.set_pid_threshold(th)
+        else:
+            self.values[3] = valuesPrev[3]
+        
+        if fl != -9999:
+            self.values[6] = str(int(fl)) + '\r\n'
+            if fl != flprev:
+                self.algaeLevelToFeed = int(fl)
+        else:
+            self.values[6] = valuesPrev[6]
+        
+        print("P ",self.pid.P)
+        print("I ",self.pid.I)
+        print("D ",self.pid.D)
+        print("Tr ",self.temperatureController.threshold)
+        
+        persFile.write(''.join(self.values))
+        
+        persFile.close()
     

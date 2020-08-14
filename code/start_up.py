@@ -26,7 +26,7 @@ wifiName = "Simons_network"
 wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = 'CENSORED'
+ADAFRUIT_IO_KEY = 'aio_BzMo490GhTAVLfEGenrwg6FCIkQr'
 
 tempPin = 32
 relayPin = 25
@@ -34,7 +34,6 @@ stepPinCool = 27
 odPin = 33
 feedPumpPin = 14
 feedDirPin = 15
-algaeLevelToFeed = 18000000 #algae (To Be decided! after experiments)
 
 mlPerRev = 2/3
 stepsPerRev = 3600
@@ -68,7 +67,7 @@ def start():
     web.connectToWifi()
     web.connectToMQTT()
     web.subscribe_to_keys(subscribeKeys)
-    sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI,algaeLevelToFeed)
+    sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI)
     
     while(True):
         

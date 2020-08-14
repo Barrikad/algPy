@@ -89,8 +89,10 @@ class Web :
         self.client.set_callback(self.cb)                    
         self.client.subscribe(mqtt_feedname)  
         
-        mqtt_feedname_get = bytes('{:s}/get'.format(mqtt_feedname), 'utf-8')    
+        mqtt_feedname_get = bytes('{:s}/feeds/{:s}/get'.format(self.ADAFRUIT_USERNAME,feedname), 'utf-8')    
         self.client.publish(mqtt_feedname_get, '\0')  
+        
+        self.client.wait_msg()
         
         
     def publish(self, feedname, stringToPublish): 
@@ -103,10 +105,8 @@ class Web :
     def subscribe_to_keys(self,listOfKeys):
         for s in listOfKeys:
             bs = str(s,'utf-8')
+            self.values[s] = -9999
             self._subscribe(bs)
-            self.values[bs] = -9999
-        for i in range(10):
-            self.client.check_msg()
     
     def get_latest_value(self,key):
         return self.values[key]
