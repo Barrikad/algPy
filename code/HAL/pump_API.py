@@ -12,15 +12,18 @@ class Stepper:
         self.stp = Pin(step_pin)
         
         if dir_pin != -9999:
-            self.dir = Pin(dir_pin)
-            self.dir.init(Pin.OUT)
-            self.dir.value(0)
-            self.direction = 0
+            self.dir = Pin(dir_pin, Pin.OUT)
+            self.dir.value(1)
+            self.direction = 1
 
         self.steps_per_rev = steps_per_rev
         self.mlPerRev = mlPerRev
-        self.pwm = None
         self.running = False
+        
+        freq = self.rps * self.steps_per_rev
+        self.pwm = mc.PWM(self.stp)
+        self.pwm.freq(freq)
+        self.pwm.duty(0)
         
         #pwm is same freq for all pumps, so class member
         Stepper.rps = rps
@@ -29,7 +32,7 @@ class Stepper:
         """Only use when pump is on!!
         """
         Stepper.rps = rps
-        self.pwm.freq(self.rps * self.steps_per_rev)
+        self.pwm.freq(int(self.rps * self.steps_per_rev))
 
     def reverse_direction(self):
         if self.direction==1:
@@ -40,12 +43,13 @@ class Stepper:
             self.direction = 1
     
     def start_pump(self):
-        freq = self.rps * self.steps_per_rev
-        self.pwm = mc.PWM(self.stp, int(freq), 512)
+        self.pwm.duty(512)
         self.startTime = time.time()
+        self.running = True
     
     def stop_pump(self):
-        self.pwm.deinit()
+        self.running = False
+        self.pwm.duty(0)
         
     
     def get_pumped_volume(self):

@@ -25,28 +25,29 @@ wifiName = "Simons_network"
 wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = b'CENSORED'
+ADAFRUIT_IO_KEY = 'here'
 
 tempPin = 32
 relayPin = 25
-stepPinCool = 33
-odPin = 34#A0
+stepPinCool = 27
+odPin = 33
 feedPumpPin = 14
 feedDirPin = 15
-algaeLevelToFeed = 4000 #algae (To Be decided! after experiments)
+algaeLevelToFeed = 18000000 #algae (To Be decided! after experiments)
 
 mlPerRev = 2/3
-stepsPerRev = 3600
-rps = 1
+stepsPerRev = 1800
+rps = 2
 
-algaeConstant = 3#tbd
+algaeConstant = -308487#tbd
+algaeZero = 498933
 
 def start():
     
     clock = clk.Clock()
     tempSensor = ts.TemperatureSensor(tempPin)
     relay = rl.Relay(relayPin)
-    algaeSensor = ps.PhotoSensor(algaeConstant, odPin)
+    algaeSensor = ps.PhotoSensor(algaeConstant, algaeZero, odPin)
     feedPump = pa.Stepper(feedPumpPin, stepsPerRev, rps, mlPerRev,feedDirPin)
     feedingAPI = fa.FeedingAPI(algaeSensor, feedPump)
     coolPump = pa.Stepper(stepPinCool,stepsPerRev, rps, mlPerRev)
