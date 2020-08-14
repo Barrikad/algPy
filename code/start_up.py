@@ -7,6 +7,7 @@ Created on Tue Aug  4 12:51:29 2020
 
 import machine as mc
 import time
+import os
 import code.HAL.photoSensor as ps
 import code.HAL.pump_API as pa
 import code.HAL.temperature_sensor as ts
@@ -45,6 +46,12 @@ algaeConstant = -308487#tbd
 algaeZero = 498933
 
 def start():
+    errorLog = open("errorLog.txt","r") 
+    if os.stat("errorLog.txt").st_size != 0:
+        errors = errorLog.readlines()
+        for i in errors: 
+            wc.publish("Feeding status", i)
+    errorLog.close()
     
     clock = clk.Clock()
     tempSensor = ts.TemperatureSensor(lookup,tempPin)
