@@ -61,7 +61,7 @@ class SystemController:
             
             tempTempLevel = self.temperatureController.get_latest_temperature()
             if tempTempLevel != self.previousTempLevel:
-                self.previousAlgaeLevel = tempTempLevel
+                self.previousTempLevel = tempTempLevel
                 self.web.publish("Current Temperature",str(self.previousTempLevel))
             
             tempAlgaeLevel = self.feedingAPI.get_current_algea_density()
