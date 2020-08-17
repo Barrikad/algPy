@@ -8,6 +8,7 @@ Created on Fri Aug  7 13:52:40 2020
 #600 cycles : 400ml
 #2/3ml per cycle
 
+feedingThirdBucketPeriod = 0 #tbd!
 feedingMusselsPeriod = 360000 #tbd
 temperaturePeriod = 500
 comPeriod = 800
@@ -15,10 +16,8 @@ oledPeriod = 500
 defaultGoal = 17
 
 
-
-
 class SystemController:
-    def __init__(self,pid,temperatureController,clock,web,oled,feedingAPI):
+    def __init__(self,pid,temperatureController,clock,web,oled,feedingAPI,thirdBucketAPI):
         """pid should be the same as the one used in temp-controller
         """
         persFile = open("persistenceFile.txt","r") 
@@ -31,6 +30,7 @@ class SystemController:
         defaultMaxErrors = int(self.values[4][:-2])
         defaultErrorGap = int(self.values[5][:-2])
         algaeLevelToFeed = int(self.values[6][:-2])
+        poolPumpingAmount = 0 #tbd
         persFile.close()
         
         self.temperatureController = temperatureController
@@ -38,6 +38,7 @@ class SystemController:
         self.pid = pid
         self.oled = oled
         self.feedingAPI = feedingAPI
+        self.thirdBucketAPI = thirdBucketAPI
         self.temperatureController.set_pid_threshold(defaultThreshold)
         self.pid.set_P(defaultP)
         self.pid.set_I(defaultI)
@@ -50,17 +51,20 @@ class SystemController:
         self.clock.add_flag("oled",oledPeriod)
         self.clock.add_flag("feedMussels", feedingMusselsPeriod)
         self.clock.add_flag("feedAlgae", feedingMusselsPeriod,int(feedingMusselsPeriod/2))
+        self.clock.add_flag("feedThirdBucket", feedingThirdBucketPeriod)
+        self.clock.add_flag("ReverseFeedThirdBucket", feedingThirdBucketPeriod,int(feedingThirdBucketPeriod/2))
         self.feedingMussels = False
         self.sendingBackWater = False
         self.web = web        
         self.previousAlgaeLevel = 0
         self.previousTempLevel = 0
         self.algaeLevelToFeed = algaeLevelToFeed
+        self.poolPumpingAmount = poolPumpingAmount
         
     
     def system_tick(self):
         #print("yo")
-        if(self.clock.check_flag("temp") and not (self.feedingMussels or self.sendingBackWater)):
+        if(self.clock.check_flag("temp") and not (self.feedingMussels or self.sendingBackWater or self.feedingThirdBucket or self.sendingBackThirdBucketWater)):
             print("Checking the temp")
             self.temperatureController.measure_temperature()
             self.temperatureController.correct_cooling_value()
@@ -120,7 +124,37 @@ class SystemController:
             if not not errorLog.read(1): #ErrorLog is not empty
                 line3 = line3 + " Err"
             errorLog.close()
-            self.oled.write_to_oled(line1,line2,line3)        
+            self.oled.write_to_oled(line1,line2,line3)     
+            
+        if(self.clock.check_flag("feedThirdBucket")):
+            print("time to feed")
+            self.thirdBucketAPI.pump.set_rps(1)
+            self.thirdBucketAPI.start_pumping()
+            self.feedingThirdBucket = True
+            self.web.publish("Feeding status", "Feeding third bucket")
+        
+        if self.feedingThirdBucket:  
+            print("feeding third bucket")
+            if(self.thirdBucketAPI.total_pumped_water() >= self.poolPumpingAmount):
+                print("done feeding third bucket")
+                self.web.publish("Feeding status", "Stop third bucket")
+                self.thirdBucketAPI.stop_pumping()
+                self.feedingThirdBucket = False
+        
+        if(self.clock.check_flag("ReverseFeedThirdBucket")):
+            print("time to send back pool water")
+            self.thirdBucketAPI.pump.set_rps(1)
+            self.thirdBucketAPI.start_back_water()
+            self.sendingBackThirdBucketWater = True
+            self.web.publish("Feeding status", "Sending back pool water")
+        
+        if(self.sendingBackWater):
+            print("sending back water")
+            if self.thirdBucketAPI.should_stop_back_water():
+                print("stop sending back water")
+                self.sendingBackThirdBucketWater = False
+                self.thirdBucketAPI.stop_back_water()
+                self.web.publish("Feeding status", "Stop sending back water")
                 
     def _update_parameters(self):
         pWprev = self.web.get_latest_value("P parameter")

@@ -14,6 +14,7 @@ import code.HAL.temperature_sensor as ts
 import code.HAL.relay as rl
 import code.HAL.oled as ol
 import code.API.feeding_api as fa
+import code.API.thirdBucket_API as tb
 import code.API.cooling_api as ca
 import code.API.clock as clk
 import code.API.web_coms as wc
@@ -35,6 +36,8 @@ stepPinCool = 27
 odPin = 33
 feedPumpPin = 14
 feedDirPin = 15
+thirdBucketPumpPin = 12
+thirdBucketDirPin = 4
 
 mlPerRev = 2/3
 stepsPerRev = 3600
@@ -55,6 +58,8 @@ def start():
     feedingAPI = fa.FeedingAPI(algaeSensor, feedPump)
     coolPump = pa.Stepper(stepPinCool,stepsPerRev, rps, mlPerRev)
     coolingAPI = ca.CoolingAPI(tempSensor,relay,coolPump)
+    thirdBucketPump = pa.Stepper(thirdBucketPumpPin, stepsPerRev, rps, mlPerRev,thirdBucketDirPin)
+    thirdBucketAPI = tb.thirdBucket(thirdBucketPump)
     pid = pd.PID()
     oled = ol.Oled()
     tempCont = tc.TemperatureController(coolingAPI, pid)
@@ -62,7 +67,7 @@ def start():
     web = web.connectToWifi()
     web.connectToMQTT()
     web.subscribe_to_keys(subscribeKeys)
-    sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI)
+    sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI,thirdBucketAPI)
     errorLog = open("errorLog.txt","r+") 
     errorHistory = open("errorHistory.txt","a") 
     if not not errorLog.read(1): #ErrorLog is not empty
