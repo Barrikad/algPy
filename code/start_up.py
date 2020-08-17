@@ -64,7 +64,7 @@ def start():
     web.subscribe_to_keys(subscribeKeys)
     sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI)
     errorLog = open("errorLog.txt","r+") 
-    errorHistory = open("errorHistory.txt","w") 
+    errorHistory = open("errorHistory.txt","a") 
     if not not errorLog.read(1): #ErrorLog is not empty
         errors = errorLog.readlines()
         for i in errors: 
@@ -79,7 +79,7 @@ def start():
         try:
             sysCont.system_tick()
         except Exception as e:
-            errorLog = open("errorLog.txt","w") 
+            errorLog = open("errorLog.txt","a") 
            # errorLog.write(traceback.format_exc()+"\n")
             errorLog.write(str(e))
          #   sys.print_exception(Exception,file=errorLog)
