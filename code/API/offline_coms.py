@@ -4,6 +4,7 @@ class Offline :
     
     def __init__(self, file_path):
         self.path = file_path
+        print("Initializing the offline version..")
     
     def connectToWifi(self):
         pass
@@ -23,13 +24,16 @@ class Offline :
         
     def publish(self, feedname, stringToPublish): 
         fileWithData = open(self.path,'a')
+        print("starting to publish to file..")
         try:
             fileWithData.write("....")
             fileWithData.write(feedname)
             fileWithData.write("\n")
             fileWithData.write(stringToPublish)
+            print("writing..")
         finally:
             fileWithData.close()
+            print("closed the file..")
     
     def subscribe_to_keys(self,listOfKeys):
         pass

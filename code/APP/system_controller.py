@@ -4,7 +4,7 @@ Created on Fri Aug  7 13:52:40 2020
 
 @author: simon
 """
-from machine import Timer
+import os
 
 #pump experiment:
 #600 cycles : 400ml
@@ -116,8 +116,10 @@ class SystemController:
         if(self.clock.check_flag("oled")):
             print("print to oled")
             line1 = "p{:.4}:t{:.4}".format(self.pid.get_p_correction(), int(self.temperatureController.get_latest_temperature()*10)/10)
-            line2 = "i{:.4}".format(self.pid.get_i_correction())
-            line3 = "d{:.4}".format(self.pid.get_d_correction())
+            line2 = "i{:.4}:d{:.4}".format(self.pid.get_i_correction(), self.pid.get_d_correction())
+            line3 = "Online: {}".format(self.web.getConnected())
+            if os.stat("errorLog.txt").st_size != 0:
+                line3 = line3 + " Err"
             self.oled.write_to_oled(line1,line2,line3)        
                 
     def _update_parameters(self):

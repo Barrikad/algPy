@@ -1,6 +1,7 @@
 import network
 import time
 from umqtt.robust import MQTTClient
+import code.API.offline_coms as Offline
 import os
 
 ###############################QMTT_test#########################
@@ -25,7 +26,7 @@ class Web :
         self.ADAFRUIT_IO_URL = ADAFRUIT_IO_URL
         self.ADAFRUIT_USERNAME = ADAFRUIT_USERNAME
         self.ADAFRUIT_IO_KEY = ADAFRUIT_IO_KEY
-        
+        self.Connected = "F"
         # create a random MQTT clientID 
         random_num = int.from_bytes(os.urandom(3), 'little')
         self.mqtt_client_id = bytes('client_'+str(random_num), 'utf-8')
@@ -43,6 +44,9 @@ class Web :
                                  ssl=False)
         
         self.values = {}
+    
+    def getConnected(self):
+        return self.Connected
     
     def connectToWifi(self):
         # WiFi connection information
@@ -67,9 +71,11 @@ class Web :
 
         if attempt_count == MAX_ATTEMPTS:
             print('could not connect to the WiFi network')
-            return -1
+            self.Connected = "F"
+            return Offline.Offline("Offline_Data.txt")
         
-        return 0
+        self.Connected = "T"
+        return self
     
     def connectToMQTT(self):
         try:      
