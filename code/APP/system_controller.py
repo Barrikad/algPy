@@ -65,7 +65,6 @@ class SystemController:
         
     
     def system_tick(self):
-        #print("yo")
         if(self.clock.check_flag("temp") and not (self.feedingMussels or self.sendingBackWater or self.feedingThirdBucket or self.sendingBackThirdBucketWater)):
             print("Checking the temp")
             self.temperatureController.measure_temperature()
