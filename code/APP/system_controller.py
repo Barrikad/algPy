@@ -8,7 +8,7 @@ Created on Fri Aug  7 13:52:40 2020
 #600 cycles : 400ml
 #2/3ml per cycle
 
-feedingThirdBucketPeriod = 0 #tbd!
+feedingThirdBucketPeriod = 9999999999 #tbd!
 feedingMusselsPeriod = 360000 #tbd
 temperaturePeriod = 500
 comPeriod = 800
