@@ -29,10 +29,10 @@ class Offline :
         fileWithData = open(self.path,'a')
         print("starting to publish to file..")
         try:
-            fileWithData.write("....")
+            fileWithData.write("....\n")
             fileWithData.write(feedname)
             fileWithData.write("\n")
-            fileWithData.write(stringToPublish)
+            fileWithData.write(stringToPublish + "\n")
             print("writing..")
         finally:
             fileWithData.close()
