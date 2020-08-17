@@ -8,7 +8,7 @@ Created on Fri Aug  7 13:52:40 2020
 #600 cycles : 400ml
 #2/3ml per cycle
 
-feedingThirdBucketPeriod = 9999999999 #tbd!
+feedingThirdBucketPeriod = 1000 #tbd!
 feedingMusselsPeriod = 360000 #tbd
 temperaturePeriod = 500
 comPeriod = 800
@@ -65,7 +65,6 @@ class SystemController:
         
     
     def system_tick(self):
-        #print("yo")
         if(self.clock.check_flag("temp") and not (self.feedingMussels or self.sendingBackWater or self.feedingThirdBucket or self.sendingBackThirdBucketWater)):
             print("Checking the temp")
             self.temperatureController.measure_temperature()
