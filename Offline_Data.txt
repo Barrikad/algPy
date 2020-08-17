@@ -1,0 +1,76 @@
+....Current Temperature
+197.6509....OD
+261715.6....OD
+491311.6....OD
+92709.93....OD
+384611.3....OD
+491311.6....OD
+103888.2....Current Temperature
+187.1239....OD
+491311.6....Current Temperature
+197.6509....OD
+339835.4....OD
+387151.8....OD
+316971.0....OD
+345233.9....OD
+403665.0....OD
+491311.6....Current Temperature
+192.1943....Current Temperature
+197.6509....OD
+280769.2....Current Temperature
+197.6509....OD
+337612.4....OD
+352855.3....OD
+491311.6....Current Temperature
+187.1239....OD
+349044.6....Current Temperature
+197.6509....OD
+491311.6....OD
+349679.7....OD
+464636.5....OD
+288073.1....OD
+342693.4....
+Current Temperature
+197.6509
+....
+OD
+359841.6
+....
+OD
+352855.3
+....
+OD
+188994.2
+....
+OD
+491311.6
+....
+OD
+350314.9
+....
+OD
+252188.8
+....
+Current Temperature
+187.1239
+....
+OD
+239803.9
+....
+Current Temperature
+197.6509
+....
+OD
+127387.6
+....
+Current Temperature
+197.6509
+....
+OD
+491311.6
+....
+OD
+396043.5
+....
+OD
+411286.4
