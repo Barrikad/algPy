@@ -69,8 +69,9 @@ def start():
         errors = errorLog.readlines()
         for i in errors: 
             errorHistory.write(i+"\n")
-            web.publish("Feeding status", i)    
-        #errorLog.truncate(0)
+            web.publish("Feeding status", i)  
+        errorLog.close()
+        errorLog = open("errorLog.txt","w") #erase content in file
     errorHistory.close()
     errorLog.close()
     
