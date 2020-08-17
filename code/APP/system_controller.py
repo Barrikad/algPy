@@ -117,7 +117,7 @@ class SystemController:
             line2 = "i{:.4}:d{:.4}".format(self.pid.get_i_correction(), self.pid.get_d_correction())
             line3 = "Online: {}".format(self.web.getConnected())
             errorLog = open("errorLog.txt","r") 
-            if errorLog.read(1): #ErrorLog is not empty
+            if not not errorLog.read(1): #ErrorLog is not empty
                 line3 = line3 + " Err"
             errorLog.close()
             self.oled.write_to_oled(line1,line2,line3)        

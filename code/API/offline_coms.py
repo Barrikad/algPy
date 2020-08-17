@@ -22,6 +22,9 @@ class Offline :
         pass
         
         
+    def getConnected(self):
+        return "f"
+    
     def publish(self, feedname, stringToPublish): 
         fileWithData = open(self.path,'a')
         print("starting to publish to file..")

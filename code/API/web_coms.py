@@ -72,6 +72,7 @@ class Web :
         if attempt_count == MAX_ATTEMPTS:
             print('could not connect to the WiFi network')
             self.Connected = "F"
+            wifi.active(False)
             return Offline.Offline("Offline_Data.txt")
         
         self.Connected = "T"

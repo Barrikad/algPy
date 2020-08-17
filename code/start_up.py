@@ -46,16 +46,6 @@ algaeConstant = -308487#tbd
 algaeZero = 498933
 
 def start():
-    errorLog = open("errorLog.txt","r") 
-    errorHistory = open("errorHistory.txt","w") 
-    if errorLog.read(1): #ErrorLog is not empty
-        errors = errorLog.readlines()
-        for i in errors: 
-            errorHistory.write(i+"\n")
-            wc.publish("Feeding status", i)    
-        errorLog.truncate(0)
-    errorHistory.close()
-    errorLog.close()
     
     clock = clk.Clock()
     tempSensor = ts.TemperatureSensor(lookup,tempPin)
@@ -68,11 +58,21 @@ def start():
     pid = pd.PID()
     oled = ol.Oled()
     tempCont = tc.TemperatureController(coolingAPI, pid)
-    web = wc.Web(wifiName,wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY)
-    web.connectToWifi()
+    web = wc.Web("wrong name",wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY)
+    web = web.connectToWifi()
     web.connectToMQTT()
     web.subscribe_to_keys(subscribeKeys)
     sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI)
+    errorLog = open("errorLog.txt","r+") 
+    errorHistory = open("errorHistory.txt","w") 
+    if not not errorLog.read(1): #ErrorLog is not empty
+        errors = errorLog.readlines()
+        for i in errors: 
+            errorHistory.write(i+"\n")
+            web.publish("Feeding status", i)    
+        #errorLog.truncate(0)
+    errorHistory.close()
+    errorLog.close()
     
     while(True):
         try:
@@ -80,8 +80,8 @@ def start():
         except Exception as e:
             errorLog = open("errorLog.txt","w") 
            # errorLog.write(traceback.format_exc()+"\n")
-            errorLog.write(e + "\n")
-            sys.print_exception(Exception,file=errorLog)
+            errorLog.write(str(e))
+         #   sys.print_exception(Exception,file=errorLog)
             errorLog.close()
             mc.reset()
  
