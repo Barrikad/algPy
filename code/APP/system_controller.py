@@ -15,6 +15,7 @@ feedingMusselsPeriod = 360000 #tbd
 temperaturePeriod = 500
 comPeriod = 800
 oledPeriod = 500
+pumpRestartPeriod = 60000
 defaultGoal = 17
 
 
@@ -53,6 +54,7 @@ class SystemController:
         self.clock.add_flag("oled",oledPeriod)
         self.clock.add_flag("feedMussels", feedingMusselsPeriod)
         self.clock.add_flag("feedAlgae", feedingMusselsPeriod,int(feedingMusselsPeriod/2))
+        self.clock.add_flag("pumpRestart", pumpRestartPeriod)
         self.feedingMussels = False
         self.sendingBackWater = False
         self.web = web        
@@ -174,6 +176,8 @@ class SystemController:
                 errorLog.close()
                 machine.reset()"""
         
+        if(self.clock.check_flag("pumpRestart")):
+            self.temperatureController.coolingAPI.set_rps(1)
                 
     def _update_parameters(self):
         pWprev = self.web.get_latest_value("P parameter")

@@ -20,7 +20,7 @@ class Stepper:
         self.mlPerRev = mlPerRev
         self.running = False
         
-        freq = self.rps * self.steps_per_rev
+        freq = int(self.rps * self.steps_per_rev)
         self.pwm = mc.PWM(self.stp)
         self.pwm.freq(freq)
         self.pwm.duty(0)
@@ -29,10 +29,8 @@ class Stepper:
         Stepper.rps = rps
     
     def set_rps(self,rps):
-        """Only use when pump is on!!
-        """
-        Stepper.rps = rps
-        self.pwm.freq(int(self.rps * self.steps_per_rev))
+        Stepper.rps = min(Stepper.rps + 0.5,rps)
+        self.pwm.freq(int(Stepper.rps * self.steps_per_rev))
 
     def reverse_direction(self):
         if self.direction==1:

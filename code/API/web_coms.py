@@ -71,6 +71,7 @@ class Web :
         
         return 0
     
+    
     def connectToMQTT(self):
         try:      
             self.client.connect()
