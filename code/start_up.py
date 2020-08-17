@@ -6,7 +6,7 @@ Created on Tue Aug  4 12:51:29 2020
 """
 
 import machine as mc
-import time
+import traceback
 import os
 import code.HAL.photoSensor as ps
 import code.HAL.pump_API as pa
@@ -46,10 +46,14 @@ algaeZero = 498933
 
 def start():
     errorLog = open("errorLog.txt","r") 
+    errorHistory = open("errorHistory.txt","w") 
     if os.stat("errorLog.txt").st_size != 0:
         errors = errorLog.readlines()
         for i in errors: 
-            wc.publish("Feeding status", i)
+            errorHistory.write(i+"\n")
+            wc.publish("Feeding status", i)    
+        errorLog.truncate(0)
+    errorHistory.close()
     errorLog.close()
     
     clock = clk.Clock()
@@ -70,5 +74,13 @@ def start():
     sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI)
     
     while(True):
-        sysCont.system_tick()
+        try:
+            sysCont.system_tick()
+        except:
+            errorLog = open("errorLog.txt","w") 
+            errorLog.write(traceback.format_exc()+"\n")
+            errorLog.close()
+            mc.reset()
+ 
+
         
