@@ -39,7 +39,7 @@ class Offline :
         pass
     
     def get_latest_value(self,key):
-        pass
+        return -9999
 
     def update_values(self):
         pass
