@@ -55,6 +55,8 @@ class SystemController:
         self.clock.add_flag("ReverseFeedThirdBucket", feedingThirdBucketPeriod,int(feedingThirdBucketPeriod/2))
         self.feedingMussels = False
         self.sendingBackWater = False
+        self.feedingThirdBucket = False
+        self.sendingBackThirdBucketWater = False
         self.web = web        
         self.previousAlgaeLevel = 0
         self.previousTempLevel = 0
