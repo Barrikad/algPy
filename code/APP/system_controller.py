@@ -8,8 +8,8 @@ Created on Fri Aug  7 13:52:40 2020
 #600 cycles : 400ml
 #2/3ml per cycle
 
-feedingThirdBucketPeriod = 9999999999 #tbd!
-feedingMusselsPeriod = 360000 #tbd
+feedingThirdBucketPeriod = 360000 #an hour
+feedingMusselsPeriod = 360000 #an hour
 temperaturePeriod = 500
 comPeriod = 800
 oledPeriod = 500
@@ -30,7 +30,7 @@ class SystemController:
         defaultMaxErrors = int(self.values[4][:-2])
         defaultErrorGap = int(self.values[5][:-2])
         algaeLevelToFeed = int(self.values[6][:-2])
-        poolPumpingAmount = 0 #tbd
+        poolPumpingAmount = 500 
         persFile.close()
         
         self.temperatureController = temperatureController
