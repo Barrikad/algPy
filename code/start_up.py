@@ -8,7 +8,6 @@ Created on Tue Aug  4 12:51:29 2020
 import machine as mc
 #import traceback
 import sys
-import os
 import code.HAL.photoSensor as ps
 import code.HAL.pump_API as pa
 import code.HAL.temperature_sensor as ts
@@ -49,7 +48,7 @@ algaeZero = 498933
 def start():
     errorLog = open("errorLog.txt","r") 
     errorHistory = open("errorHistory.txt","w") 
-    if os.stat("errorLog.txt").st_size != 0:
+    if errorLog.read(1): #ErrorLog is not empty
         errors = errorLog.readlines()
         for i in errors: 
             errorHistory.write(i+"\n")
