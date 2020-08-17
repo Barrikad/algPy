@@ -6,7 +6,7 @@ Created on Tue Aug  4 12:51:29 2020
 """
 
 import machine as mc
-import traceback
+#import traceback
 import os
 import code.HAL.photoSensor as ps
 import code.HAL.pump_API as pa
@@ -27,6 +27,7 @@ wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
 ADAFRUIT_IO_KEY = 'Censored'
+
 
 tempPin = 32
 relayPin = 25
@@ -76,9 +77,10 @@ def start():
     while(True):
         try:
             sysCont.system_tick()
-        except:
+        except Exception as e:
             errorLog = open("errorLog.txt","w") 
-            errorLog.write(traceback.format_exc()+"\n")
+           # errorLog.write(traceback.format_exc()+"\n")
+            errorLog.write(e + "\n")
             errorLog.close()
             mc.reset()
  
