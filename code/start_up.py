@@ -7,6 +7,7 @@ Created on Tue Aug  4 12:51:29 2020
 
 import machine as mc
 #import traceback
+import sys
 import os
 import code.HAL.photoSensor as ps
 import code.HAL.pump_API as pa
@@ -81,6 +82,7 @@ def start():
             errorLog = open("errorLog.txt","w") 
            # errorLog.write(traceback.format_exc()+"\n")
             errorLog.write(e + "\n")
+            sys.print_exception(Exception,file=errorLog)
             errorLog.close()
             mc.reset()
  
