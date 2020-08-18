@@ -8,12 +8,12 @@ Created on Fri Aug  7 13:52:40 2020
 #600 cycles : 400ml
 #2/3ml per cycle
 
-feedingThirdBucketPeriod = 360000 #an hour
-feedingMusselsPeriod = 360000 #an hour
+feedingThirdBucketPeriod = 60000 #an hour
+feedingMusselsPeriod = 60000 #an hour
 temperaturePeriod = 500
 comPeriod = 800
 oledPeriod = 500
-pumpRestartPeriod = 60000
+pumpRestartPeriod = 80000
 defaultGoal = 17
 
 
@@ -31,7 +31,7 @@ class SystemController:
         defaultMaxErrors = int(self.values[4][:-2])
         defaultErrorGap = int(self.values[5][:-2])
         algaeLevelToFeed = int(self.values[6][:-2])
-        poolPumpingAmount = 500 
+        poolPumpingAmount = 400 
         persFile.close()
         
         self.temperatureController = temperatureController
@@ -90,7 +90,7 @@ class SystemController:
         
         if(self.clock.check_flag("feedMussels")):
             print("time to feed")
-            self.feedingAPI.pump.set_rps(1)
+            self.feedingAPI.pump.set_rps(3)
             self.feedingAPI.start_feeding()
             self.feedingMussels = True
             self.web.publish("Feeding status", "Feeding mussels")
@@ -105,9 +105,9 @@ class SystemController:
         
         if(self.clock.check_flag("feedAlgae")):
             print("time to feed algae")
-            self.feedingAPI.pump.set_rps(1)
+            self.feedingAPI.pump.set_rps(3)
             self.feedingAPI.start_back_water()
-            self.sendingBackWater = True
+            self.feedingMussels = True
             self.web.publish("Feeding status", "Feeding algae")
         
         if(self.sendingBackWater):
@@ -131,7 +131,7 @@ class SystemController:
             
         if(self.clock.check_flag("feedThirdBucket")):
             print("time to feed")
-            self.thirdBucketAPI.pump.set_rps(1)
+            self.thirdBucketAPI.pump.set_rps(3)
             self.thirdBucketAPI.start_pumping()
             self.feedingThirdBucket = True
             self.web.publish("Feeding status", "Feeding third bucket")
@@ -146,7 +146,7 @@ class SystemController:
         
         if(self.clock.check_flag("ReverseFeedThirdBucket")):
             print("time to send back pool water")
-            self.thirdBucketAPI.pump.set_rps(1)
+            self.thirdBucketAPI.pump.set_rps(3)
             self.thirdBucketAPI.start_back_water()
             self.sendingBackThirdBucketWater = True
             self.web.publish("Feeding status", "Sending back pool water")
