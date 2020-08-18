@@ -1,9 +1,10 @@
-
+import time
 
 class Offline :
     
     def __init__(self, file_path):
         self.path = file_path
+        self.start = time.time()
         print("Initializing the offline version..")
     
     def connectToWifi(self):
@@ -29,9 +30,8 @@ class Offline :
         fileWithData = open(self.path,'a')
         print("starting to publish to file..")
         try:
-            fileWithData.write("....\n")
-            fileWithData.write(feedname)
-            fileWithData.write("\n")
+            fileWithData.write(feedname + '\n')
+            fileWithData.write(str(time.time() - self.start))
             fileWithData.write(stringToPublish + "\n")
             print("writing..")
         finally:
