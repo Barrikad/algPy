@@ -4,14 +4,12 @@ Created on Fri Aug  7 13:52:40 2020
 
 @author: simon
 """
-from machine import Timer
-import machine
-
 #pump experiment:
 #600 cycles : 400ml
 #2/3ml per cycle
 
-feedingMusselsPeriod = 360000 #tbd
+feedingThirdBucketPeriod = 360000 #an hour
+feedingMusselsPeriod = 360000 #an hour
 temperaturePeriod = 500
 comPeriod = 800
 oledPeriod = 500
@@ -19,10 +17,8 @@ pumpRestartPeriod = 60000
 defaultGoal = 17
 
 
-
-
 class SystemController:
-    def __init__(self,pid,temperatureController,clock,web,oled,feedingAPI):
+    def __init__(self,pid,temperatureController,clock,web,oled,feedingAPI,thirdBucketAPI):
         """pid should be the same as the one used in temp-controller
         """
         persFile = open("persistenceFile.txt","r") 
@@ -35,6 +31,7 @@ class SystemController:
         defaultMaxErrors = int(self.values[4][:-2])
         defaultErrorGap = int(self.values[5][:-2])
         algaeLevelToFeed = int(self.values[6][:-2])
+        poolPumpingAmount = 500 
         persFile.close()
         
         self.temperatureController = temperatureController
@@ -42,6 +39,7 @@ class SystemController:
         self.pid = pid
         self.oled = oled
         self.feedingAPI = feedingAPI
+        self.thirdBucketAPI = thirdBucketAPI
         self.temperatureController.set_pid_threshold(defaultThreshold)
         self.pid.set_P(defaultP)
         self.pid.set_I(defaultI)
@@ -55,26 +53,24 @@ class SystemController:
         self.clock.add_flag("feedMussels", feedingMusselsPeriod)
         self.clock.add_flag("feedAlgae", feedingMusselsPeriod,int(feedingMusselsPeriod/2))
         self.clock.add_flag("pumpRestart", pumpRestartPeriod)
+        self.clock.add_flag("feedThirdBucket", feedingThirdBucketPeriod)
+        self.clock.add_flag("ReverseFeedThirdBucket", feedingThirdBucketPeriod,int(feedingThirdBucketPeriod/2))
         self.feedingMussels = False
         self.sendingBackWater = False
+        self.feedingThirdBucket = False
+        self.sendingBackThirdBucketWater = False
         self.web = web        
         self.previousAlgaeLevel = 0
         self.previousTempLevel = 0
         self.algaeLevelToFeed = algaeLevelToFeed
+        self.poolPumpingAmount = poolPumpingAmount
         
     
     def system_tick(self):
-        #print("yo")
-        if(self.clock.check_flag("temp") and not (self.feedingMussels or self.sendingBackWater)):
-            #try:
+        if(self.clock.check_flag("temp") and not (self.feedingMussels or self.sendingBackWater or self.feedingThirdBucket or self.sendingBackThirdBucketWater)):
             print("Checking the temp")
             self.temperatureController.measure_temperature()
             self.temperatureController.correct_cooling_value()
-            """except:
-                errorLog = open("errorLog.txt","w") 
-                errorLog.write("Program crash for checking temp. Restarting program \n")
-                errorLog.close()
-                machine.reset()"""
         
         if(self.clock.check_flag("coms")):
             #try:
@@ -82,100 +78,87 @@ class SystemController:
             print("sending data to web")
             tempTempLevel = self.temperatureController.get_latest_temperature()
             if tempTempLevel != self.previousTempLevel:
-                #try:
                 print("sending temp")
                 self.previousTempLevel = tempTempLevel
                 self.web.publish("Current Temperature",str(self.previousTempLevel))
-                """except:
-                    errorLog = open("errorLog.txt","w") 
-                    errorLog.write("Program crash for sending temp. Restarting program \n")
-                    errorLog.close()
-                    machine.reset()"""
                         
             tempAlgaeLevel = self.feedingAPI.get_current_algea_density()
             if tempAlgaeLevel != self.previousAlgaeLevel:
-                #try: 
                 print("sending od")
                 self.previousAlgaeLevel = tempAlgaeLevel
                 self.web.publish("OD",str(self.previousAlgaeLevel))
-                """except:
-                    errorLog = open("errorLog.txt","w") 
-                    errorLog.write("Program crash for sending od. Restarting program \n")
-                    errorLog.close()
-                    machine.reset()"""
-            """except:
-                errorLog = open("errorLog.txt","w") 
-                errorLog.write("Program crash for coms. Restarting program \n")
-                errorLog.close()
-                machine.reset()"""
         
         if(self.clock.check_flag("feedMussels")):
-            #try:
             print("time to feed")
             self.feedingAPI.pump.set_rps(1)
             self.feedingAPI.start_feeding()
             self.feedingMussels = True
             self.web.publish("Feeding status", "Feeding mussels")
-            """except:
-                errorLog = open("errorLog.txt","w") 
-                errorLog.write("Program crash for time to feed mussels. Restarting program \n")
-                errorLog.close()
-                machine.reset()"""
         
-        if self.feedingMussels:
-            #try:   
+        if self.feedingMussels:  
             print("feeding")
             if(self.feedingAPI.total_fed_algea() >= self.algaeLevelToFeed):
                 print("done feeding")
                 self.web.publish("Feeding status", "Stop feeding mussels")
                 self.feedingAPI.stop_feeding()
                 self.feedingMussels = False
-            """except:
-                errorLog = open("errorLog.txt","w") 
-                errorLog.write("Program crash for stopping feeding. Restarting program \n")
-                errorLog.close()
-                machine.reset()"""
         
         if(self.clock.check_flag("feedAlgae")):
-            #try:  
             print("time to feed algae")
             self.feedingAPI.pump.set_rps(1)
             self.feedingAPI.start_back_water()
             self.sendingBackWater = True
             self.web.publish("Feeding status", "Feeding algae")
-            """except:
-                errorLog = open("errorLog.txt","w") 
-                errorLog.write("Program crash for time to feed algae. Restarting program \n")
-                errorLog.close()
-                machine.reset()"""
         
         if(self.sendingBackWater):
-            #try:
             print("sending back water")
             if self.feedingAPI.should_stop_back_water():
                 print("stop sending back water")
                 self.sendingBackWater = False
                 self.feedingAPI.stop_back_water()
                 self.web.publish("Feeding status", "Stop feeding algae")
-            """except:
-                errorLog = open("errorLog.txt","w") 
-                errorLog.write("Program crash for sending back water. Restarting program \n")
-                errorLog.close()
-                machine.reset()"""
                 
         if(self.clock.check_flag("oled")):
-            #try:  
             print("print to oled")
             line1 = "p{:.4}:t{:.4}".format(self.pid.get_p_correction(), int(self.temperatureController.get_latest_temperature()*10)/10)
-            line2 = "i{:.4}".format(self.pid.get_i_correction())
-            line3 = "d{:.4}".format(self.pid.get_d_correction())
-            self.oled.write_to_oled(line1,line2,line3)
-            """except:
-                errorLog = open("errorLog.txt","w") 
-                errorLog.write("Program crash for print to oled. Restarting program \n")
-                errorLog.close()
-                machine.reset()"""
+            line2 = "i{:.4}:d{:.4}".format(self.pid.get_i_correction(), self.pid.get_d_correction())
+            line3 = "Online: {}".format(self.web.getConnected())
+            errorLog = open("errorLog.txt","r") 
+            if not not errorLog.read(1): #ErrorLog is not empty
+                line3 = line3 + " Err"
+            errorLog.close()
+            self.oled.write_to_oled(line1,line2,line3)     
+            
+        if(self.clock.check_flag("feedThirdBucket")):
+            print("time to feed")
+            self.thirdBucketAPI.pump.set_rps(1)
+            self.thirdBucketAPI.start_pumping()
+            self.feedingThirdBucket = True
+            self.web.publish("Feeding status", "Feeding third bucket")
         
+        if self.feedingThirdBucket:  
+            print("feeding third bucket")
+            if(self.thirdBucketAPI.total_pumped_water() >= self.poolPumpingAmount):
+                print("done feeding third bucket")
+                self.web.publish("Feeding status", "Stop third bucket")
+                self.thirdBucketAPI.stop_pumping()
+                self.feedingThirdBucket = False
+        
+        if(self.clock.check_flag("ReverseFeedThirdBucket")):
+            print("time to send back pool water")
+            self.thirdBucketAPI.pump.set_rps(1)
+            self.thirdBucketAPI.start_back_water()
+            self.sendingBackThirdBucketWater = True
+            self.web.publish("Feeding status", "Sending back pool water")
+        
+        if(self.sendingBackWater):
+            print("sending back water")
+            if self.thirdBucketAPI.should_stop_back_water():
+                print("stop sending back water")
+                self.sendingBackThirdBucketWater = False
+                self.thirdBucketAPI.stop_back_water()
+                self.web.publish("Feeding status", "Stop sending back water")
+                
         if(self.clock.check_flag("pumpRestart")):
             self.temperatureController.coolingAPI.set_rps(1)
                 

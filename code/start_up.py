@@ -6,14 +6,15 @@ Created on Tue Aug  4 12:51:29 2020
 """
 
 import machine as mc
-import time
-import os
+#import traceback
+import sys
 import code.HAL.photoSensor as ps
 import code.HAL.pump_API as pa
 import code.HAL.temperature_sensor as ts
 import code.HAL.relay as rl
 import code.HAL.oled as ol
 import code.API.feeding_api as fa
+import code.API.thirdBucket_API as tb
 import code.API.cooling_api as ca
 import code.API.clock as clk
 import code.API.web_coms as wc
@@ -28,12 +29,15 @@ ADAFRUIT_IO_URL = b'io.adafruit.com'
 ADAFRUIT_USERNAME = b'munz234'
 ADAFRUIT_IO_KEY = 'aio_QRfe15JIpwuOeejKSSOGEsg1MnBp'
 
+
 tempPin = 32
 relayPin = 25
 stepPinCool = 27
 odPin = 33
 feedPumpPin = 14
 feedDirPin = 15
+thirdBucketPumpPin = 12
+thirdBucketDirPin = 4
 
 mlPerRev = 2/3
 stepsPerRev = 3600
@@ -44,14 +48,7 @@ lookup = [0.02470588, 0.02058824, 0.04117647, 0.06176471, 0.06588235, 0.07, 0.07
 algaeConstant = -387685
 algaeZero = 631093
 
-def start():
-    #errorLog = open("errorLog.txt","r") 
-    #if os.stat("errorLog.txt").st_size != 0:
-    #    errors = errorLog.readlines()
-    #    for i in errors: 
-    #        wc.publish("Feeding status", i)
-    #errorLog.close()
-    
+def start():    
     clock = clk.Clock()
     tempSensor = ts.TemperatureSensor(lookup,tempPin)
     relay = rl.Relay(relayPin)
@@ -60,15 +57,39 @@ def start():
     feedingAPI = fa.FeedingAPI(algaeSensor, feedPump)
     coolPump = pa.Stepper(stepPinCool,stepsPerRev, rps, mlPerRev)
     coolingAPI = ca.CoolingAPI(tempSensor,relay,coolPump)
+    thirdBucketPump = pa.Stepper(thirdBucketPumpPin, stepsPerRev, rps, mlPerRev,thirdBucketDirPin)
+    thirdBucketAPI = tb.thirdBucket(thirdBucketPump)
     pid = pd.PID()
     oled = ol.Oled()
     tempCont = tc.TemperatureController(coolingAPI, pid)
     web = wc.Web(wifiName,wifiPassword,ADAFRUIT_IO_URL,ADAFRUIT_USERNAME,ADAFRUIT_IO_KEY)
-    web.connectToWifi()
+    web = web.connectToWifi()
     web.connectToMQTT()
     web.subscribe_to_keys(subscribeKeys)
-    sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI)
+    sysCont = sc.SystemController(pid,tempCont,clock,web,oled,feedingAPI,thirdBucketAPI)
+    
+    errorLog = open("errorLog.txt","r+") 
+    errorHistory = open("errorHistory.txt","a") 
+    if not not errorLog.read(1): #ErrorLog is not empty
+        errors = errorLog.readlines()
+        for i in errors: 
+            errorHistory.write(i+"\n")
+            web.publish("Feeding status", i)  
+        errorLog.close()
+        errorLog = open("errorLog.txt","w") #erase content in file
+    errorHistory.close()
+    errorLog.close()
     
     while(True):
-        sysCont.system_tick()
+        try:
+            sysCont.system_tick()
+        except Exception as e:
+            errorLog = open("errorLog.txt","a") 
+           # errorLog.write(traceback.format_exc()+"\n")
+            errorLog.write(str(e))
+         #   sys.print_exception(Exception,file=errorLog)
+            errorLog.close()
+            mc.reset()
+ 
+
         

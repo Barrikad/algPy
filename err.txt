@@ -1,0 +1,1 @@
+'Offline' object has no attribute 'getConnected'
