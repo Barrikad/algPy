@@ -1,5 +1,4 @@
 import time
-import csv
 
 class Offline :
     
@@ -31,10 +30,9 @@ class Offline :
         fileWithData = open(self.path,'a')
         print("starting to publish to file..")
         try:
-            timestamp = str(time.time() - self.start)
-            data = [feedname,stringToPublish,timestamp]
-            writer = csv.writer(fileWithData)
-            writer.writerow(data)
+            fileWithData.write(feedname + '\n')
+            fileWithData.write(str(time.time() - self.start) + '\n')
+            fileWithData.write(stringToPublish + "\n")
             print("writing..")
         finally:
             fileWithData.close()

@@ -8,12 +8,13 @@ Created on Fri Aug  7 13:52:40 2020
 #600 cycles : 400ml
 #2/3ml per cycle
 
-feedingThirdBucketPeriod = 60000 #an hour
-feedingMusselsPeriod = 60000 #an hour
+feedingThirdBucketPeriod = 360000 #an hour
+feedingMusselsPeriod = 360000 #an hour
 temperaturePeriod = 500
 comPeriod = 800
 oledPeriod = 500
 pumpRestartPeriod = 80000
+poolPumpingAmount = 500 
 defaultGoal = 17
 
 
@@ -31,7 +32,6 @@ class SystemController:
         defaultMaxErrors = int(self.values[4][:-2])
         defaultErrorGap = int(self.values[5][:-2])
         algaeLevelToFeed = int(self.values[6][:-2])
-        poolPumpingAmount = 400 
         persFile.close()
         
         self.temperatureController = temperatureController
@@ -97,7 +97,8 @@ class SystemController:
         
         if self.feedingMussels:  
             print("feeding")
-            if(self.feedingAPI.total_fed_algea() >= self.algaeLevelToFeed):
+            self.feedingAPI.pump.set_rps(3)
+            if(self.feedingAPI.total_fed_algea() >= self.algaeLevelToFeed + 3):
                 print("done feeding")
                 self.web.publish("Feeding status", "Stop feeding mussels")
                 self.feedingAPI.stop_feeding()
@@ -107,11 +108,12 @@ class SystemController:
             print("time to feed algae")
             self.feedingAPI.pump.set_rps(3)
             self.feedingAPI.start_back_water()
-            self.feedingMussels = True
+            self.sendingBackWater = True
             self.web.publish("Feeding status", "Feeding algae")
         
         if(self.sendingBackWater):
             print("sending back water")
+            self.feedingAPI.pump.set_rps(3)
             if self.feedingAPI.should_stop_back_water():
                 print("stop sending back water")
                 self.sendingBackWater = False
@@ -137,8 +139,9 @@ class SystemController:
             self.web.publish("Feeding status", "Feeding third bucket")
         
         if self.feedingThirdBucket:  
+            self.thirdBucketAPI.pump.set_rps(3)
             print("feeding third bucket")
-            if(self.thirdBucketAPI.total_pumped_water() >= self.poolPumpingAmount):
+            if(self.thirdBucketAPI.total_pumped_water() >= self.poolPumpingAmount + 3):
                 print("done feeding third bucket")
                 self.web.publish("Feeding status", "Stop third bucket")
                 self.thirdBucketAPI.stop_pumping()
@@ -151,7 +154,8 @@ class SystemController:
             self.sendingBackThirdBucketWater = True
             self.web.publish("Feeding status", "Sending back pool water")
         
-        if(self.sendingBackWater):
+        if(self.sendingBackThirdBucketWater):
+            self.thirdBucketAPI.pump.set_rps(3)
             print("sending back water")
             if self.thirdBucketAPI.should_stop_back_water():
                 print("stop sending back water")

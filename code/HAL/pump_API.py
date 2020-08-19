@@ -53,7 +53,7 @@ class Stepper:
     def get_pumped_volume(self):
         if self.running:
             curTime = time.time()
-            return (curTime - self.startTime) * self.mlPerRev * self.steps_per_rev * self.rps
+            return (curTime - self.startTime) * self.mlPerRev * self.rps
         else:
             return 0
     

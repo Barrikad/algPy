@@ -31,4 +31,4 @@ class thirdBucket:
         self.pump.reverse_direction()
     
     def should_stop_back_water(self):
-        return self.pump.get_pumped_volume() >= self.pumpedVolume
+        return self.pump.get_pumped_volume() >= self.pumpedVolume + 3

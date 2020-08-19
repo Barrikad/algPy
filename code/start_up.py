@@ -27,7 +27,7 @@ wifiName = "Simons_network"
 wifiPassword = "85858585"
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'munz234'
-ADAFRUIT_IO_KEY = 'aio_JllJ55gQwnct6RTytp6DPcTvtPJA'
+ADAFRUIT_IO_KEY = 'aio_rsJK39uqSlGBRGt22EnndwaLs6z0'
 
 
 tempPin = 32
@@ -46,7 +46,7 @@ lookup = [0.02470588, 0.02058824, 0.04117647, 0.06176471, 0.06588235, 0.07, 0.07
 
 
 algaeConstant = -387685
-algaeZero = 631093
+algaeZero = 631093 - 85000
 
 def start():    
     clock = clk.Clock()
