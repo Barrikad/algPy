@@ -1,0 +1,5388 @@
+Current Temperature
+5
+18.61051
+OD
+9
+536514.9
+Current Temperature
+13
+17.83127
+Current Temperature
+22
+17.90073
+Current Temperature
+30
+18.045
+Current Temperature
+39
+17.87184
+Current Temperature
+5
+18.00467
+OD
+9
+536514.9
+Current Temperature
+13
+18.63816
+Current Temperature
+22
+17.40994
+Current Temperature
+30
+17.80687
+Current Temperature
+39
+17.87156
+Current Temperature
+47
+17.8949
+Current Temperature
+56
+17.80223
+Current Temperature
+64
+18.4373
+Current Temperature
+73
+17.57159
+Current Temperature
+81
+17.58405
+Current Temperature
+90
+17.91806
+Current Temperature
+98
+17.92365
+Current Temperature
+107
+17.82545
+Current Temperature
+115
+17.40414
+Current Temperature
+124
+17.66981
+Current Temperature
+132
+18.31043
+Current Temperature
+141
+17.86608
+Current Temperature
+149
+17.14298
+Current Temperature
+158
+17.88185
+Current Temperature
+166
+18.06784
+Current Temperature
+175
+17.83144
+Current Temperature
+183
+17.25394
+Current Temperature
+192
+18.78355
+Current Temperature
+200
+18.13149
+Current Temperature
+209
+18.31043
+Current Temperature
+217
+18.03915
+Current Temperature
+226
+18.11422
+Current Temperature
+234
+18.15464
+Current Temperature
+243
+18.54127
+Current Temperature
+251
+17.96421
+Current Temperature
+260
+17.64096
+Current Temperature
+268
+17.71026
+Current Temperature
+277
+18.045
+Current Temperature
+285
+17.63516
+Current Temperature
+294
+17.92366
+Current Temperature
+302
+17.5174
+Current Temperature
+311
+17.84275
+Current Temperature
+319
+18.30576
+Current Temperature
+328
+17.71025
+Current Temperature
+336
+18.24103
+Current Temperature
+345
+18.33929
+Current Temperature
+353
+17.88343
+Current Temperature
+362
+17.96642
+Current Temperature
+370
+18.24698
+Current Temperature
+379
+17.91792
+Current Temperature
+387
+17.92958
+Current Temperature
+396
+17.58879
+Current Temperature
+404
+17.84872
+Current Temperature
+413
+17.82559
+Current Temperature
+421
+17.63514
+Current Temperature
+430
+17.95339
+Current Temperature
+438
+17.64072
+Current Temperature
+447
+17.16352
+Current Temperature
+455
+17.56563
+Feeding status
+457
+Feeding algae
+Feeding status
+459
+Stop feeding algae
+Current Temperature
+464
+17.79681
+Current Temperature
+472
+17.89492
+Current Temperature
+481
+17.79079
+Current Temperature
+489
+17.69264
+Current Temperature
+498
+17.68707
+Current Temperature
+506
+18.3854
+Current Temperature
+515
+18.25274
+Current Temperature
+523
+17.51965
+Current Temperature
+532
+18.27582
+Current Temperature
+540
+17.77949
+Current Temperature
+549
+18.28157
+Current Temperature
+557
+17.97554
+Current Temperature
+566
+17.71024
+Current Temperature
+574
+17.86344
+Current Temperature
+583
+17.03378
+Current Temperature
+591
+17.90649
+Current Temperature
+600
+17.72133
+Current Temperature
+608
+17.91806
+Current Temperature
+617
+17.35662
+Current Temperature
+625
+18.31386
+Current Temperature
+634
+17.95259
+Current Temperature
+642
+17.79652
+Current Temperature
+651
+18.14312
+Current Temperature
+659
+17.79066
+Current Temperature
+668
+17.69846
+Current Temperature
+676
+18.03922
+Current Temperature
+685
+17.63668
+Current Temperature
+693
+17.70444
+Current Temperature
+702
+17.9699
+Current Temperature
+710
+17.38546
+Current Temperature
+719
+17.65248
+Current Temperature
+727
+18.05649
+Current Temperature
+736
+17.62363
+Current Temperature
+744
+18.36815
+Current Temperature
+753
+17.75064
+Current Temperature
+761
+18.19467
+Current Temperature
+770
+17.62341
+Current Temperature
+778
+17.86613
+Current Temperature
+787
+17.88345
+Current Temperature
+795
+17.45607
+Current Temperature
+804
+17.43977
+Current Temperature
+812
+17.76791
+Current Temperature
+821
+17.41572
+Current Temperature
+829
+17.65812
+Current Temperature
+838
+18.20653
+Current Temperature
+846
+18.04498
+Current Temperature
+855
+18.24686
+Current Temperature
+863
+17.7968
+Current Temperature
+872
+18.00458
+Current Temperature
+880
+18.25272
+Current Temperature
+889
+18.05756
+Current Temperature
+897
+17.79686
+Current Temperature
+906
+17.43877
+Current Temperature
+914
+17.63441
+Current Temperature
+923
+17.64666
+Current Temperature
+931
+17.30013
+Feeding status
+935
+Feeding mussels
+OD
+936
+538111.3
+OD
+936
+536514.9
+OD
+936
+486229.8
+OD
+937
+536514.9
+OD
+937
+513766.9
+OD
+937
+536514.9
+OD
+938
+469468.2
+OD
+938
+536514.9
+OD
+939
+514964.2
+OD
+939
+536514.9
+OD
+939
+510973.3
+OD
+939
+536514.9
+OD
+939
+504907.2
+OD
+940
+514964.2
+OD
+940
+522147.8
+OD
+940
+536514.9
+OD
+940
+520551.4
+OD
+940
+536514.9
+OD
+941
+497244.7
+OD
+941
+493413.4
+OD
+941
+506822.8
+OD
+941
+518955.0
+OD
+942
+474257.2
+OD
+942
+469468.2
+OD
+942
+471862.7
+OD
+942
+455101.1
+OD
+942
+452706.5
+OD
+943
+447917.5
+OD
+943
+415591.4
+OD
+943
+431155.8
+OD
+943
+437541.2
+OD
+943
+410802.4
+OD
+943
+408407.8
+OD
+944
+425169.5
+OD
+944
+423972.2
+OD
+944
+415591.4
+OD
+944
+384462.5
+OD
+944
+385659.8
+OD
+945
+400825.1
+OD
+945
+368898.1
+OD
+945
+367700.9
+OD
+945
+370095.4
+OD
+945
+376879.9
+OD
+945
+391646.1
+OD
+946
+368898.1
+OD
+946
+388054.3
+OD
+946
+383265.3
+OD
+946
+367700.9
+OD
+946
+349741.9
+OD
+946
+368898.1
+OD
+947
+354531.0
+OD
+947
+371292.7
+OD
+947
+360916.4
+OD
+947
+330585.7
+OD
+947
+349741.9
+OD
+947
+319810.4
+OD
+948
+358521.8
+OD
+948
+362512.8
+OD
+948
+332182.1
+OD
+948
+344952.8
+OD
+948
+358521.8
+OD
+948
+348544.7
+OD
+949
+356925.5
+OD
+949
+347347.4
+OD
+949
+362512.8
+OD
+949
+355329.2
+OD
+949
+326993.9
+OD
+949
+346150.1
+OD
+950
+344952.8
+OD
+950
+337769.3
+OD
+950
+315021.3
+OD
+950
+338966.6
+OD
+950
+324200.4
+OD
+950
+344952.8
+OD
+951
+330585.7
+OD
+951
+318613.1
+OD
+951
+325796.7
+OD
+951
+330585.7
+OD
+951
+298658.7
+OD
+952
+343356.6
+OD
+952
+341760.2
+OD
+952
+303048.8
+OD
+952
+310232.3
+OD
+952
+316218.5
+OD
+952
+311429.6
+OD
+953
+352934.6
+OD
+953
+335374.8
+OD
+953
+328191.2
+OD
+953
+319810.4
+OD
+953
+317415.8
+OD
+953
+332182.1
+OD
+954
+326993.9
+OD
+954
+287484.3
+OD
+954
+321007.6
+OD
+954
+326993.9
+OD
+954
+294667.9
+OD
+955
+326993.9
+OD
+955
+306640.5
+OD
+955
+330585.7
+OD
+955
+289080.6
+OD
+955
+335374.8
+OD
+955
+293470.6
+OD
+956
+332182.1
+OD
+956
+316218.5
+OD
+956
+315021.3
+OD
+956
+317415.8
+OD
+956
+333778.5
+OD
+956
+298658.7
+OD
+957
+297062.4
+OD
+957
+289080.6
+OD
+957
+306640.5
+OD
+957
+329388.5
+OD
+957
+306640.5
+OD
+957
+311429.6
+OD
+958
+321007.6
+OD
+958
+317415.8
+OD
+958
+329388.5
+OD
+959
+324200.4
+OD
+959
+328191.2
+OD
+959
+306640.5
+OD
+959
+311429.6
+OD
+959
+315021.3
+OD
+959
+293470.6
+OD
+960
+309035.0
+OD
+960
+316218.5
+OD
+960
+317415.8
+OD
+960
+311429.6
+OD
+960
+305443.3
+OD
+960
+321007.6
+OD
+961
+311429.6
+OD
+961
+318613.1
+OD
+961
+322604.0
+OD
+961
+316218.5
+OD
+961
+321007.6
+OD
+961
+309035.0
+OD
+962
+303048.8
+OD
+962
+311429.6
+OD
+962
+290677.0
+OD
+962
+321007.6
+OD
+962
+279502.5
+OD
+962
+319810.4
+OD
+963
+316218.5
+OD
+963
+319810.4
+OD
+963
+304246.0
+OD
+963
+298658.7
+OD
+963
+319810.4
+OD
+963
+316218.5
+OD
+964
+310232.3
+OD
+964
+322604.0
+OD
+964
+277906.2
+OD
+964
+283892.5
+OD
+964
+310232.3
+OD
+965
+321007.6
+OD
+965
+315021.3
+OD
+965
+286287.1
+OD
+965
+301851.4
+OD
+965
+298658.7
+OD
+966
+317415.8
+OD
+966
+306640.5
+OD
+966
+307837.7
+OD
+966
+306640.5
+OD
+966
+328191.2
+OD
+966
+313824.1
+OD
+967
+292273.3
+OD
+967
+289080.6
+OD
+967
+305443.3
+OD
+967
+275511.7
+OD
+967
+324200.4
+OD
+967
+321007.6
+OD
+968
+292273.3
+OD
+968
+311429.6
+OD
+968
+316218.5
+OD
+968
+287484.3
+OD
+968
+292273.3
+OD
+968
+307837.7
+OD
+969
+301851.4
+OD
+969
+298658.7
+OD
+969
+311429.6
+OD
+969
+298658.7
+OD
+969
+328191.2
+OD
+969
+329388.5
+Feeding status
+0
+unction takes 3 positional arguments but 4 were given
+Current Temperature
+5
+17.3985
+OD
+9
+269525.4
+Current Temperature
+13
+17.94109
+OD
+17
+251566.4
+Current Temperature
+22
+17.47772
+OD
+26
+285089.8
+Current Temperature
+31
+17.98021
+OD
+35
+290677.0
+Current Temperature
+39
+18.3162
+OD
+43
+268328.1
+Current Temperature
+48
+17.93527
+OD
+52
+283892.5
+Current Temperature
+56
+17.987
+OD
+60
+273117.1
+Current Temperature
+65
+17.7563
+OD
+69
+267130.8
+Current Temperature
+73
+17.71023
+OD
+78
+269525.4
+Current Temperature
+82
+17.53118
+OD
+86
+277906.2
+Current Temperature
+91
+17.83124
+OD
+95
+270722.6
+Current Temperature
+99
+17.35636
+OD
+103
+268328.1
+Current Temperature
+108
+17.61775
+OD
+112
+265933.6
+Current Temperature
+116
+18.35543
+OD
+120
+285089.8
+Current Temperature
+125
+17.71026
+OD
+129
+258750.0
+Current Temperature
+134
+17.58886
+OD
+138
+290677.0
+Current Temperature
+142
+17.38101
+OD
+146
+273117.1
+Current Temperature
+151
+18.46588
+Current Temperature
+159
+17.52545
+OD
+163
+274314.4
+Current Temperature
+168
+17.56009
+OD
+172
+275511.7
+Current Temperature
+177
+17.49073
+OD
+181
+287484.3
+Current Temperature
+185
+17.75052
+OD
+189
+279502.5
+Current Temperature
+194
+17.31749
+OD
+198
+251566.4
+Current Temperature
+202
+17.71027
+OD
+206
+258750.0
+Current Temperature
+211
+17.47345
+OD
+215
+275511.7
+Current Temperature
+220
+17.93534
+Current Temperature
+228
+18.00372
+OD
+232
+249171.9
+Current Temperature
+237
+18.24102
+OD
+241
+267130.8
+Current Temperature
+246
+18.29298
+OD
+250
+271919.9
+Current Temperature
+254
+17.27345
+OD
+258
+281098.9
+Current Temperature
+263
+17.39786
+OD
+267
+285089.8
+Current Temperature
+271
+17.92374
+OD
+275
+261942.7
+Current Temperature
+280
+18.128
+OD
+284
+264736.3
+Current Temperature
+289
+17.8947
+OD
+293
+267130.8
+Current Temperature
+297
+17.32073
+OD
+301
+261942.7
+Current Temperature
+306
+17.81947
+OD
+310
+276709.0
+Current Temperature
+314
+17.7333
+OD
+318
+264736.3
+Current Temperature
+323
+17.8659
+OD
+327
+275511.7
+Current Temperature
+332
+17.83301
+OD
+336
+267130.8
+Current Temperature
+340
+17.779
+OD
+344
+270722.6
+Current Temperature
+349
+17.74487
+OD
+353
+265933.6
+Current Temperature
+358
+17.47351
+OD
+362
+275511.7
+Current Temperature
+366
+17.68859
+OD
+370
+265933.6
+Current Temperature
+375
+17.55435
+OD
+379
+277906.2
+Current Temperature
+383
+17.76222
+OD
+387
+273117.1
+Current Temperature
+392
+17.91803
+OD
+396
+257552.7
+Current Temperature
+401
+17.85452
+OD
+405
+276709.0
+Current Temperature
+409
+17.92595
+OD
+413
+269525.4
+Current Temperature
+418
+17.93537
+OD
+422
+258750.0
+Current Temperature
+427
+17.90073
+OD
+431
+279502.5
+Current Temperature
+435
+17.76218
+OD
+439
+264736.3
+Current Temperature
+444
+17.56006
+OD
+448
+258750.0
+Current Temperature
+453
+18.56195
+OD
+457
+264736.3
+Current Temperature
+461
+17.43306
+Feeding status
+463
+Feeding algae
+Feeding status
+465
+Stop feeding algae
+OD
+466
+279502.5
+Current Temperature
+470
+17.67563
+OD
+474
+274314.4
+Current Temperature
+479
+17.58254
+OD
+483
+364109.1
+Current Temperature
+487
+17.72174
+OD
+491
+305443.3
+Current Temperature
+496
+17.86607
+OD
+500
+285089.8
+Current Temperature
+505
+17.79678
+OD
+509
+269525.4
+Current Temperature
+513
+17.34063
+OD
+517
+304246.0
+Current Temperature
+522
+18.42805
+OD
+526
+268328.1
+Current Temperature
+531
+17.67559
+OD
+535
+263539.0
+Current Temperature
+539
+17.08034
+OD
+543
+257552.7
+Current Temperature
+548
+17.31513
+OD
+552
+277906.2
+Current Temperature
+556
+17.60052
+OD
+561
+258750.0
+Current Temperature
+565
+17.43277
+OD
+569
+269525.4
+Current Temperature
+574
+17.50241
+OD
+578
+215648.5
+Current Temperature
+582
+17.7564
+OD
+586
+263539.0
+Current Temperature
+591
+17.629
+OD
+595
+256355.5
+Current Temperature
+599
+17.52638
+OD
+604
+239593.8
+Current Temperature
+608
+17.45609
+OD
+612
+249171.9
+Current Temperature
+617
+18.36813
+OD
+621
+264736.3
+Current Temperature
+625
+17.57159
+OD
+629
+263539.0
+Current Temperature
+634
+17.7679
+OD
+638
+283892.5
+Current Temperature
+643
+17.88644
+OD
+647
+269525.4
+Current Temperature
+651
+17.42729
+OD
+655
+251566.4
+Current Temperature
+660
+17.34959
+OD
+664
+267130.8
+Current Temperature
+668
+17.75062
+OD
+672
+271919.9
+Current Temperature
+677
+17.42724
+OD
+681
+263539.0
+Current Temperature
+686
+17.93535
+Current Temperature
+694
+18.2179
+OD
+698
+249171.9
+Current Temperature
+703
+17.22723
+OD
+707
+270722.6
+Current Temperature
+712
+17.75825
+OD
+716
+260346.3
+Current Temperature
+720
+16.90638
+OD
+724
+275511.7
+Current Temperature
+729
+17.23097
+OD
+733
+277906.2
+Current Temperature
+737
+17.7968
+OD
+741
+252763.7
+Current Temperature
+746
+17.47339
+OD
+750
+265933.6
+Current Temperature
+755
+17.76191
+OD
+759
+277906.2
+Current Temperature
+763
+17.80824
+OD
+767
+264736.3
+Current Temperature
+772
+18.38543
+OD
+776
+258750.0
+Current Temperature
+781
+17.72755
+OD
+785
+292273.3
+Current Temperature
+789
+18.02174
+OD
+793
+252763.7
+Current Temperature
+798
+18.0218
+OD
+802
+258750.0
+Current Temperature
+807
+18.02767
+OD
+811
+281098.9
+Current Temperature
+815
+17.43248
+OD
+819
+257552.7
+Current Temperature
+824
+17.50662
+OD
+828
+274314.4
+Current Temperature
+832
+17.27706
+OD
+837
+271919.9
+Current Temperature
+841
+17.57164
+OD
+845
+277906.2
+Current Temperature
+850
+17.8345
+OD
+854
+220437.6
+Current Temperature
+858
+17.91793
+OD
+862
+255158.2
+Current Temperature
+867
+16.83649
+OD
+871
+238396.5
+Current Temperature
+876
+17.86611
+OD
+880
+270722.6
+Current Temperature
+884
+17.32911
+OD
+888
+258750.0
+Current Temperature
+893
+18.06799
+OD
+897
+276709.0
+Current Temperature
+902
+17.51941
+OD
+906
+269525.4
+Current Temperature
+910
+17.67747
+OD
+914
+271919.9
+Current Temperature
+919
+17.60036
+OD
+923
+268328.1
+Current Temperature
+928
+17.81398
+OD
+932
+263539.0
+Current Temperature
+936
+17.90645
+OD
+940
+252763.7
+Current Temperature
+945
+17.38303
+OD
+949
+269525.4
+Feeding status
+949
+Feeding mussels
+OD
+950
+236002.0
+OD
+950
+297062.4
+OD
+950
+279502.5
+OD
+950
+275511.7
+OD
+951
+264736.3
+OD
+951
+290677.0
+OD
+951
+285089.8
+OD
+951
+281098.9
+OD
+951
+295865.1
+OD
+951
+285089.8
+OD
+952
+279502.5
+OD
+952
+286287.1
+OD
+952
+273117.1
+OD
+952
+269525.4
+OD
+952
+282695.2
+OD
+952
+281098.9
+OD
+953
+269525.4
+OD
+953
+265933.6
+OD
+953
+303048.8
+OD
+953
+277906.2
+OD
+953
+290677.0
+OD
+953
+260346.3
+OD
+954
+289080.6
+OD
+954
+286287.1
+OD
+954
+279502.5
+OD
+954
+269525.4
+OD
+954
+244382.8
+OD
+954
+297062.4
+OD
+955
+282695.2
+OD
+955
+281098.9
+OD
+955
+253960.9
+OD
+955
+281098.9
+OD
+955
+274314.4
+OD
+955
+295865.1
+OD
+956
+292273.3
+OD
+956
+285089.8
+OD
+956
+294667.9
+OD
+956
+258750.0
+OD
+956
+295865.1
+OD
+956
+279502.5
+OD
+957
+287484.3
+OD
+957
+258750.0
+OD
+957
+283892.5
+OD
+957
+279502.5
+OD
+957
+267130.8
+OD
+958
+286287.1
+OD
+958
+269525.4
+OD
+958
+292273.3
+OD
+959
+287484.3
+OD
+959
+301851.4
+OD
+959
+269525.4
+OD
+959
+265933.6
+OD
+959
+261942.7
+OD
+959
+290677.0
+OD
+960
+294667.9
+OD
+960
+271919.9
+OD
+960
+260346.3
+OD
+960
+293470.6
+OD
+960
+282695.2
+OD
+961
+264736.3
+OD
+961
+289080.6
+OD
+961
+290677.0
+OD
+961
+273117.1
+OD
+961
+279502.5
+OD
+962
+270722.6
+OD
+962
+283892.5
+OD
+962
+285089.8
+OD
+962
+290677.0
+OD
+962
+274314.4
+OD
+962
+260346.3
+OD
+963
+253960.9
+OD
+963
+273117.1
+OD
+963
+250369.2
+OD
+963
+289080.6
+OD
+963
+260346.3
+OD
+964
+269525.4
+OD
+964
+289080.6
+OD
+964
+285089.8
+OD
+964
+258750.0
+OD
+964
+281098.9
+OD
+964
+282695.2
+OD
+965
+289080.6
+OD
+965
+274314.4
+OD
+965
+275511.7
+OD
+965
+264736.3
+OD
+965
+282695.2
+OD
+965
+267130.8
+OD
+966
+292273.3
+OD
+966
+285089.8
+OD
+966
+283892.5
+OD
+966
+279502.5
+OD
+966
+285089.8
+OD
+967
+282695.2
+OD
+967
+253960.9
+OD
+967
+274314.4
+OD
+967
+270722.6
+OD
+967
+287484.3
+OD
+967
+283892.5
+OD
+968
+289080.6
+OD
+968
+309035.0
+OD
+968
+279502.5
+OD
+968
+281098.9
+OD
+968
+283892.5
+OD
+968
+301851.4
+OD
+969
+282695.2
+OD
+969
+281098.9
+OD
+969
+301851.4
+OD
+969
+279502.5
+OD
+969
+277906.2
+OD
+970
+269525.4
+OD
+970
+290677.0
+OD
+970
+274314.4
+OD
+970
+270722.6
+OD
+970
+274314.4
+OD
+970
+281098.9
+OD
+971
+277906.2
+OD
+971
+274314.4
+OD
+971
+260346.3
+OD
+971
+279502.5
+OD
+971
+281098.9
+OD
+972
+269525.4
+OD
+972
+227621.2
+OD
+972
+273117.1
+OD
+972
+270722.6
+OD
+972
+282695.2
+OD
+973
+269525.4
+OD
+973
+231612.0
+OD
+973
+273117.1
+OD
+973
+290677.0
+OD
+973
+274314.4
+OD
+973
+297062.4
+OD
+974
+263539.0
+OD
+974
+253960.9
+OD
+974
+263539.0
+OD
+974
+260346.3
+OD
+974
+268328.1
+OD
+975
+279502.5
+OD
+975
+270722.6
+OD
+975
+286287.1
+OD
+975
+274314.4
+OD
+975
+285089.8
+OD
+975
+277906.2
+OD
+976
+257552.7
+OD
+976
+285089.8
+OD
+976
+292273.3
+OD
+977
+257552.7
+OD
+977
+269525.4
+OD
+977
+261942.7
+OD
+977
+274314.4
+OD
+977
+270722.6
+OD
+977
+261942.7
+OD
+978
+279502.5
+OD
+978
+285089.8
+OD
+978
+258750.0
+OD
+978
+287484.3
+OD
+978
+298658.7
+OD
+978
+281098.9
+OD
+979
+245580.1
+OD
+979
+269525.4
+OD
+979
+289080.6
+OD
+979
+301851.4
+OD
+979
+277906.2
+OD
+980
+273117.1
+OD
+980
+286287.1
+OD
+980
+269525.4
+OD
+980
+279502.5
+OD
+980
+267130.8
+OD
+980
+277906.2
+OD
+981
+251566.4
+OD
+981
+287484.3
+OD
+981
+285089.8
+OD
+981
+264736.3
+OD
+981
+263539.0
+OD
+982
+282695.2
+OD
+982
+255158.2
+OD
+982
+286287.1
+OD
+982
+264736.3
+OD
+982
+285089.8
+OD
+983
+293470.6
+OD
+983
+287484.3
+OD
+983
+264736.3
+OD
+983
+281098.9
+OD
+983
+258750.0
+OD
+983
+283892.5
+OD
+984
+268328.1
+OD
+984
+256355.5
+OD
+984
+279502.5
+OD
+984
+304246.0
+OD
+984
+283892.5
+OD
+985
+282695.2
+OD
+985
+273117.1
+OD
+985
+281098.9
+OD
+985
+237199.3
+OD
+985
+242786.5
+OD
+985
+264736.3
+OD
+986
+245580.1
+OD
+986
+290677.0
+OD
+986
+274314.4
+OD
+986
+263539.0
+OD
+986
+249171.9
+OD
+987
+261942.7
+OD
+987
+290677.0
+OD
+987
+255158.2
+OD
+987
+257552.7
+OD
+987
+264736.3
+OD
+987
+289080.6
+OD
+988
+269525.4
+OD
+988
+268328.1
+OD
+988
+255158.2
+OD
+988
+269525.4
+OD
+988
+281098.9
+OD
+988
+258750.0
+OD
+989
+268328.1
+OD
+989
+289080.6
+OD
+989
+265933.6
+OD
+989
+269525.4
+OD
+989
+275511.7
+OD
+989
+274314.4
+OD
+990
+199685.0
+OD
+990
+268328.1
+OD
+990
+256355.5
+OD
+990
+295865.1
+OD
+990
+292273.3
+OD
+991
+263539.0
+OD
+991
+275511.7
+OD
+991
+269525.4
+OD
+991
+290677.0
+OD
+991
+279502.5
+OD
+991
+273117.1
+OD
+992
+276709.0
+OD
+992
+273117.1
+OD
+992
+285089.8
+OD
+992
+260346.3
+OD
+992
+293470.6
+OD
+993
+283892.5
+OD
+993
+275511.7
+OD
+993
+279502.5
+OD
+993
+283892.5
+OD
+994
+244382.8
+OD
+994
+289080.6
+OD
+994
+279502.5
+OD
+994
+273117.1
+OD
+995
+274314.4
+OD
+995
+275511.7
+OD
+995
+289080.6
+OD
+995
+275511.7
+OD
+995
+290677.0
+OD
+995
+255158.2
+Feeding status
+0
+unction takes 3 positional arguments but 4 were given
+Current Temperature
+5
+16.87848
+OD
+9
+283892.5
+Current Temperature
+14
+17.67557
+OD
+18
+270722.6
+Current Temperature
+23
+17.3093
+OD
+27
+261942.7
+Current Temperature
+31
+18.04482
+OD
+35
+244382.8
+Current Temperature
+40
+17.8718
+OD
+44
+264736.3
+Current Temperature
+49
+17.94082
+OD
+53
+271919.9
+Current Temperature
+57
+17.82565
+OD
+61
+267130.8
+Current Temperature
+66
+17.46765
+OD
+70
+239593.8
+Current Temperature
+74
+17.49068
+OD
+78
+250369.2
+Current Temperature
+83
+17.47925
+OD
+87
+274314.4
+Current Temperature
+92
+17.64657
+OD
+96
+244382.8
+Current Temperature
+100
+17.42083
+OD
+104
+249171.9
+Current Temperature
+109
+18.24122
+OD
+113
+267130.8
+Current Temperature
+117
+17.65249
+OD
+121
+251566.4
+Current Temperature
+126
+17.44445
+OD
+130
+263539.0
+Current Temperature
+135
+18.48922
+OD
+139
+256355.5
+Current Temperature
+143
+18.195
+OD
+147
+265933.6
+Current Temperature
+152
+17.19048
+OD
+156
+244382.8
+Current Temperature
+160
+17.79683
+OD
+165
+253960.9
+Current Temperature
+169
+17.3058
+OD
+173
+256355.5
+Current Temperature
+178
+17.70756
+OD
+182
+269525.4
+Current Temperature
+186
+18.01604
+Current Temperature
+195
+17.79626
+OD
+199
+271919.9
+Current Temperature
+204
+17.50806
+OD
+208
+287484.3
+Current Temperature
+212
+18.18915
+OD
+216
+268328.1
+Current Temperature
+221
+17.62936
+OD
+225
+269525.4
+Current Temperature
+229
+17.50799
+OD
+233
+286287.1
+Current Temperature
+238
+17.09158
+OD
+242
+260346.3
+Current Temperature
+247
+17.34062
+OD
+251
+277906.2
+Current Temperature
+255
+17.77952
+OD
+259
+257552.7
+Current Temperature
+264
+17.45936
+Current Temperature
+272
+17.918
+OD
+276
+269525.4
+Current Temperature
+281
+17.86448
+OD
+285
+268328.1
+Current Temperature
+290
+17.39262
+OD
+294
+258750.0
+Current Temperature
+298
+17.62305
+OD
+302
+264736.3
+Current Temperature
+307
+17.4791
+OD
+311
+274314.4
+Current Temperature
+315
+17.71585
+OD
+319
+260346.3
+Current Temperature
+324
+17.5658
+OD
+328
+279502.5
+Current Temperature
+333
+17.27181
+OD
+337
+255158.2
+Current Temperature
+341
+17.6698
+OD
+345
+249171.9
+Current Temperature
+350
+17.58303
+OD
+354
+257552.7
+Current Temperature
+358
+17.60626
+OD
+362
+167758.0
+Current Temperature
+367
+17.67538
+OD
+371
+239593.8
+Current Temperature
+375
+17.25403
+OD
+380
+271919.9
+Current Temperature
+384
+18.01026
+OD
+388
+274314.4
+Current Temperature
+393
+16.97862
+OD
+397
+267130.8
+Current Temperature
+401
+17.54245
+OD
+405
+258750.0
+Current Temperature
+410
+17.86611
+OD
+414
+279502.5
+Current Temperature
+419
+17.07124
+OD
+423
+267130.8
+Current Temperature
+427
+17.32903
+OD
+431
+279502.5
+Current Temperature
+436
+17.59454
+OD
+440
+277906.2
+Current Temperature
+445
+17.84863
+OD
+449
+263539.0
+Current Temperature
+453
+17.5022
+OD
+457
+279502.5
+Current Temperature
+462
+17.20884
+Feeding status
+464
+Feeding algae
+Feeding status
+466
+Stop feeding algae
+OD
+466
+310232.3
+Current Temperature
+471
+17.28142
+OD
+475
+276709.0
+Current Temperature
+479
+17.87762
+OD
+483
+324200.4
+Current Temperature
+488
+17.4845
+OD
+492
+321007.6
+Current Temperature
+497
+17.589
+OD
+501
+292273.3
+Current Temperature
+505
+17.45613
+OD
+509
+279502.5
+Current Temperature
+514
+17.67558
+OD
+518
+297062.4
+Current Temperature
+523
+17.64669
+OD
+527
+279502.5
+Current Temperature
+531
+17.68338
+OD
+535
+310232.3
+Current Temperature
+540
+18.42118
+OD
+544
+282695.2
+Current Temperature
+548
+17.87964
+OD
+552
+265933.6
+Current Temperature
+557
+17.50562
+OD
+561
+241190.1
+Current Temperature
+566
+17.89481
+OD
+570
+269525.4
+Current Temperature
+574
+18.03916
+OD
+578
+285089.8
+Current Temperature
+583
+17.25348
+OD
+587
+281098.9
+Current Temperature
+592
+18.0738
+OD
+596
+282695.2
+Current Temperature
+600
+17.73884
+OD
+604
+290677.0
+Current Temperature
+609
+18.07368
+OD
+613
+269525.4
+Current Temperature
+617
+17.29998
+OD
+622
+295865.1
+Current Temperature
+626
+17.46186
+OD
+630
+282695.2
+Current Temperature
+635
+17.73906
+OD
+639
+281098.9
+Current Temperature
+643
+17.24099
+OD
+647
+297062.4
+Current Temperature
+652
+18.00459
+OD
+656
+294667.9
+Current Temperature
+661
+17.51591
+OD
+665
+286287.1
+Current Temperature
+670
+18.18896
+OD
+673
+274314.4
+Current Temperature
+678
+17.16592
+OD
+682
+275511.7
+Current Temperature
+687
+17.38311
+OD
+691
+303048.8
+Current Temperature
+695
+17.60632
+OD
+699
+290677.0
+Current Temperature
+704
+17.88897
+OD
+708
+270722.6
+Current Temperature
+713
+18.06231
+OD
+717
+271919.9
+Current Temperature
+721
+17.63491
+OD
+725
+276709.0
+Current Temperature
+730
+17.42721
+OD
+734
+283892.5
+Current Temperature
+739
+17.07238
+OD
+743
+258750.0
+Current Temperature
+747
+17.5715
+OD
+751
+277906.2
+Current Temperature
+756
+17.25978
+OD
+760
+264736.3
+Current Temperature
+765
+17.24822
+OD
+769
+289080.6
+Current Temperature
+773
+17.49652
+OD
+777
+264736.3
+Current Temperature
+782
+17.31121
+OD
+786
+290677.0
+Current Temperature
+791
+17.52545
+OD
+795
+281098.9
+Current Temperature
+799
+17.48583
+OD
+803
+279502.5
+Current Temperature
+808
+17.80241
+OD
+812
+290677.0
+Current Temperature
+817
+17.62368
+OD
+821
+260346.3
+Current Temperature
+825
+17.84878
+OD
+829
+297062.4
+Current Temperature
+834
+17.27658
+OD
+838
+257552.7
+Current Temperature
+843
+18.20062
+OD
+846
+267130.8
+Current Temperature
+851
+17.84878
+OD
+855
+275511.7
+Current Temperature
+860
+16.92426
+OD
+864
+263539.0
+Current Temperature
+868
+17.85426
+OD
+872
+270722.6
+Current Temperature
+877
+17.51241
+OD
+881
+258750.0
+Current Temperature
+886
+17.68127
+OD
+890
+245580.1
+Current Temperature
+894
+17.06863
+OD
+898
+283892.5
+Current Temperature
+903
+17.65825
+OD
+907
+294667.9
+Current Temperature
+911
+17.7044
+OD
+915
+277906.2
+Current Temperature
+920
+17.47869
+OD
+924
+279502.5
+Current Temperature
+929
+17.4042
+OD
+933
+281098.9
+Current Temperature
+937
+17.45574
+OD
+941
+265933.6
+Current Temperature
+946
+17.60006
+OD
+950
+264736.3
+Feeding status
+950
+Feeding mussels
+OD
+950
+301851.4
+OD
+951
+295865.1
+OD
+951
+281098.9
+OD
+951
+292273.3
+OD
+951
+307837.7
+OD
+951
+289080.6
+OD
+952
+301851.4
+OD
+952
+321007.6
+OD
+952
+325796.7
+OD
+952
+290677.0
+OD
+952
+279502.5
+OD
+952
+268328.1
+OD
+953
+289080.6
+OD
+953
+301851.4
+OD
+953
+312626.8
+OD
+953
+277906.2
+OD
+953
+279502.5
+OD
+953
+312626.8
+OD
+954
+307837.7
+OD
+954
+306640.5
+OD
+954
+289080.6
+OD
+954
+279502.5
+OD
+954
+270722.6
+OD
+954
+274314.4
+OD
+955
+294667.9
+OD
+955
+275511.7
+OD
+955
+290677.0
+OD
+955
+289080.6
+OD
+955
+297062.4
+OD
+955
+293470.6
+OD
+956
+297062.4
+OD
+956
+281098.9
+OD
+956
+285089.8
+OD
+956
+300255.1
+OD
+956
+295865.1
+OD
+957
+271919.9
+OD
+957
+292273.3
+OD
+957
+309035.0
+OD
+957
+287484.3
+OD
+957
+281098.9
+OD
+957
+298658.7
+OD
+958
+319810.4
+OD
+958
+283892.5
+OD
+958
+297062.4
+OD
+958
+276709.0
+OD
+958
+307837.7
+OD
+959
+293470.6
+OD
+959
+301851.4
+Current Temperature
+959
+17.67562
+OD
+960
+292273.3
+OD
+960
+273117.1
+OD
+960
+267130.8
+OD
+960
+285089.8
+OD
+960
+310232.3
+OD
+960
+300255.1
+OD
+961
+301851.4
+OD
+961
+305443.3
+OD
+961
+300255.1
+OD
+961
+274314.4
+OD
+961
+309035.0
+OD
+962
+295865.1
+OD
+962
+269525.4
+OD
+962
+313824.1
+OD
+962
+301851.4
+OD
+962
+275511.7
+OD
+962
+303048.8
+OD
+963
+277906.2
+OD
+963
+292273.3
+OD
+963
+274314.4
+OD
+963
+321007.6
+OD
+963
+310232.3
+OD
+963
+275511.7
+OD
+964
+303048.8
+OD
+964
+281098.9
+OD
+964
+306640.5
+OD
+964
+304246.0
+OD
+964
+286287.1
+OD
+965
+304246.0
+OD
+965
+261942.7
+OD
+965
+247974.6
+OD
+965
+283892.5
+OD
+965
+292273.3
+OD
+965
+297062.4
+OD
+966
+285089.8
+OD
+966
+301851.4
+OD
+966
+305443.3
+OD
+966
+315021.3
+OD
+966
+306640.5
+OD
+966
+300255.1
+OD
+967
+265933.6
+OD
+967
+311429.6
+OD
+967
+293470.6
+OD
+967
+311429.6
+OD
+967
+295865.1
+OD
+967
+307837.7
+OD
+968
+294667.9
+OD
+968
+300255.1
+OD
+968
+305443.3
+OD
+968
+290677.0
+OD
+968
+311429.6
+OD
+968
+333778.5
+OD
+969
+293470.6
+OD
+969
+301851.4
+OD
+969
+279502.5
+OD
+969
+290677.0
+OD
+969
+312626.8
+OD
+970
+290677.0
+OD
+970
+279502.5
+OD
+970
+306640.5
+OD
+970
+304246.0
+OD
+970
+311429.6
+OD
+970
+310232.3
+OD
+971
+300255.1
+OD
+971
+267130.8
+OD
+971
+303048.8
+OD
+971
+274314.4
+OD
+971
+304246.0
+OD
+971
+300255.1
+OD
+972
+310232.3
+OD
+972
+290677.0
+OD
+972
+279502.5
+OD
+972
+306640.5
+OD
+972
+279502.5
+OD
+973
+295865.1
+OD
+973
+282695.2
+OD
+973
+276709.0
+OD
+973
+274314.4
+OD
+973
+317415.8
+OD
+973
+305443.3
+OD
+974
+294667.9
+OD
+974
+321007.6
+OD
+974
+290677.0
+OD
+974
+277906.2
+OD
+974
+316218.5
+OD
+974
+285089.8
+OD
+975
+300255.1
+OD
+975
+309035.0
+OD
+975
+279502.5
+OD
+975
+276709.0
+OD
+975
+244382.8
+OD
+976
+270722.6
+OD
+976
+301851.4
+OD
+976
+305443.3
+OD
+977
+307837.7
+OD
+977
+275511.7
+OD
+977
+290677.0
+OD
+977
+297062.4
+OD
+977
+286287.1
+OD
+977
+306640.5
+OD
+978
+297062.4
+OD
+978
+279502.5
+OD
+978
+307837.7
+OD
+978
+304246.0
+OD
+978
+269525.4
+OD
+979
+277906.2
+OD
+979
+311429.6
+OD
+979
+281098.9
+OD
+979
+295865.1
+OD
+979
+277906.2
+OD
+979
+281098.9
+OD
+980
+305443.3
+OD
+980
+300255.1
+OD
+980
+290677.0
+OD
+980
+285089.8
+OD
+980
+294667.9
+OD
+980
+281098.9
+OD
+981
+279502.5
+OD
+981
+298658.7
+OD
+981
+303048.8
+OD
+981
+283892.5
+OD
+981
+274314.4
+OD
+981
+279502.5
+OD
+982
+301851.4
+OD
+982
+285089.8
+OD
+982
+293470.6
+OD
+982
+287484.3
+OD
+982
+309035.0
+OD
+983
+297062.4
+OD
+983
+289080.6
+OD
+983
+282695.2
+OD
+983
+275511.7
+OD
+983
+292273.3
+OD
+984
+265933.6
+OD
+984
+292273.3
+OD
+984
+319810.4
+OD
+984
+298658.7
+OD
+984
+295865.1
+OD
+984
+301851.4
+OD
+985
+306640.5
+OD
+985
+290677.0
+OD
+985
+295865.1
+OD
+985
+310232.3
+OD
+985
+294667.9
+OD
+986
+292273.3
+OD
+986
+277906.2
+OD
+986
+282695.2
+OD
+986
+303048.8
+OD
+986
+297062.4
+OD
+986
+289080.6
+OD
+987
+294667.9
+OD
+987
+290677.0
+OD
+987
+285089.8
+OD
+987
+292273.3
+OD
+987
+289080.6
+OD
+987
+292273.3
+OD
+988
+305443.3
+OD
+988
+294667.9
+OD
+988
+300255.1
+OD
+988
+312626.8
+OD
+988
+311429.6
+OD
+988
+304246.0
+OD
+988
+279502.5
+OD
+989
+281098.9
+OD
+989
+311429.6
+OD
+989
+306640.5
+OD
+989
+279502.5
+OD
+989
+289080.6
+OD
+989
+310232.3
+OD
+990
+304246.0
+OD
+990
+297062.4
+OD
+990
+294667.9
+OD
+990
+305443.3
+OD
+990
+283892.5
+OD
+991
+313824.1
+OD
+991
+306640.5
+OD
+991
+282695.2
+OD
+991
+290677.0
+OD
+991
+321007.6
+OD
+991
+281098.9
+OD
+992
+292273.3
+OD
+992
+290677.0
+OD
+992
+305443.3
+OD
+992
+290677.0
+OD
+992
+281098.9
+OD
+992
+300255.1
+OD
+993
+311429.6
+OD
+993
+270722.6
+OD
+993
+300255.1
+OD
+993
+289080.6
+Feeding status
+0
+unction takes 3 positional arguments but 4 were given
+Current Temperature
+5
+18.17777
+OD
+9
+277906.2
+Current Temperature
+14
+18.26309
+OD
+18
+251566.4
+Current Temperature
+23
+17.79101
+OD
+27
+289080.6
+Current Temperature
+31
+17.34637
+OD
+35
+249171.9
+Current Temperature
+40
+16.94159
+OD
+44
+258750.0
+Current Temperature
+48
+17.60634
+OD
+52
+283892.5
+Current Temperature
+57
+17.19047
+OD
+61
+279502.5
+Current Temperature
+66
+17.36932
+OD
+70
+269525.4
+Current Temperature
+74
+17.23038
+OD
+78
+265933.6
+Current Temperature
+83
+16.86091
+OD
+87
+283892.5
+Current Temperature
+91
+17.43372
+Current Temperature
+100
+17.68116
+OD
+104
+252763.7
+Current Temperature
+109
+17.09147
+OD
+113
+281098.9
+Current Temperature
+117
+17.54257
+OD
+121
+264736.3
+Current Temperature
+126
+17.36367
+OD
+130
+276709.0
+Current Temperature
+134
+17.77837
+OD
+138
+282695.2
+Current Temperature
+143
+17.19626
+OD
+147
+270722.6
+Current Temperature
+152
+18.0681
+OD
+156
+268328.1
+Current Temperature
+160
+17.63489
+OD
+164
+250369.2
+Current Temperature
+169
+17.72139
+OD
+173
+289080.6
+Current Temperature
+178
+17.49652
+OD
+182
+277906.2
+Current Temperature
+186
+17.69293
+OD
+190
+287484.3
+Current Temperature
+195
+17.67636
+OD
+199
+258750.0
+Current Temperature
+203
+17.36346
+OD
+207
+285089.8
+Current Temperature
+212
+16.95804
+OD
+216
+261942.7
+Current Temperature
+221
+17.57171
+OD
+225
+269525.4
+Current Temperature
+229
+17.04116
+OD
+233
+268328.1
+Current Temperature
+238
+17.63514
+OD
+242
+276709.0
+Current Temperature
+247
+16.90126
+OD
+251
+250369.2
+Current Temperature
+255
+17.42724
+OD
+259
+273117.1
+Current Temperature
+264
+17.22271
+OD
+268
+258750.0
+Current Temperature
+272
+17.40982
+OD
+276
+268328.1
+Current Temperature
+281
+17.43885
+OD
+285
+277906.2
+Current Temperature
+290
+17.46849
+OD
+294
+267130.8
+Current Temperature
+298
+17.51973
+OD
+302
+270722.6
+Current Temperature
+307
+17.43884
+OD
+311
+274314.4
+Current Temperature
+315
+17.5023
+OD
+319
+277906.2
+Current Temperature
+324
+17.29781
+OD
+328
+279502.5
+Current Temperature
+333
+17.37527
+OD
+337
+270722.6
+Current Temperature
+341
+17.79684
+OD
+345
+290677.0
+Current Temperature
+350
+17.22491
+OD
+354
+276709.0
+Current Temperature
+358
+17.77953
+OD
+362
+251566.4
+Current Temperature
+367
+17.48262
+OD
+371
+270722.6
+Current Temperature
+375
+17.27137
+OD
+379
+287484.3
+Current Temperature
+384
+17.18473
+OD
+388
+257552.7
+Current Temperature
+393
+17.10007
+OD
+397
+251566.4
+Current Temperature
+401
+17.15537
+OD
+405
+268328.1
+Current Temperature
+410
+17.36358
+OD
+414
+281098.9
+Current Temperature
+418
+17.54257
+OD
+422
+271919.9
+Current Temperature
+427
+17.39256
+OD
+431
+279502.5
+Current Temperature
+436
+17.43768
+OD
+440
+290677.0
+Current Temperature
+444
+17.2593
+OD
+448
+274314.4
+Current Temperature
+453
+17.89799
+OD
+457
+289080.6
+Current Temperature
+462
+17.60599
+Feeding status
+464
+Feeding algae
+Feeding status
+466
+Stop feeding algae
+OD
+466
+300255.1
+Current Temperature
+470
+16.93619
+OD
+474
+316218.5
+Current Temperature
+479
+18.42579
+OD
+483
+304246.0
+Current Temperature
+488
+17.64651
+OD
+492
+305443.3
+Current Temperature
+496
+17.57167
+OD
+500
+317415.8
+Current Temperature
+505
+17.23665
+OD
+509
+282695.2
+Current Temperature
+513
+17.60634
+OD
+517
+283892.5
+Current Temperature
+522
+17.31168
+OD
+526
+290677.0
+Current Temperature
+531
+17.91093
+OD
+535
+298658.7
+Current Temperature
+540
+17.28857
+OD
+543
+265933.6
+Current Temperature
+548
+17.6045
+OD
+552
+275511.7
+Current Temperature
+557
+17.76784
+OD
+561
+305443.3
+Current Temperature
+565
+17.43625
+OD
+569
+293470.6
+Current Temperature
+574
+17.91804
+OD
+578
+271919.9
+Current Temperature
+582
+18.05643
+OD
+586
+277906.2
+Current Temperature
+591
+17.66397
+OD
+595
+305443.3
+Current Temperature
+600
+17.49637
+OD
+604
+252763.7
+Current Temperature
+608
+17.76221
+OD
+612
+294667.9
+Current Temperature
+617
+17.77368
+OD
+621
+293470.6
+Current Temperature
+626
+17.20701
+OD
+630
+276709.0
+Current Temperature
+634
+18.13149
+OD
+638
+295865.1
+Current Temperature
+643
+17.64668
+OD
+647
+277906.2
+Current Temperature
+651
+16.66366
+OD
+655
+285089.8
+Current Temperature
+660
+17.43876
+OD
+664
+275511.7
+Current Temperature
+669
+17.88342
+OD
+673
+269525.4
+Current Temperature
+677
+16.52938
+OD
+681
+275511.7
+Current Temperature
+686
+17.3117
+OD
+690
+258750.0
+Current Temperature
+694
+16.99343
+OD
+698
+301851.4
+Current Temperature
+703
+17.64633
+OD
+707
+265933.6
+Current Temperature
+712
+17.39849
+OD
+716
+245580.1
+Current Temperature
+720
+17.45808
+OD
+724
+270722.6
+Current Temperature
+729
+18.51262
+OD
+733
+263539.0
+Current Temperature
+738
+17.16725
+OD
+742
+289080.6
+Current Temperature
+746
+17.71791
+OD
+750
+274314.4
+Current Temperature
+755
+17.46752
+OD
+759
+286287.1
+Current Temperature
+763
+17.3463
+OD
+767
+295865.1
+Current Temperature
+772
+18.25845
+OD
+776
+286287.1
+Current Temperature
+781
+17.35225
+OD
+785
+253960.9
+Current Temperature
+789
+17.61781
+OD
+793
+244382.8
+Current Temperature
+798
+17.15546
+OD
+802
+275511.7
+Current Temperature
+806
+17.43872
+OD
+811
+255158.2
+Current Temperature
+815
+17.17878
+OD
+819
+265933.6
+Current Temperature
+824
+17.63371
+OD
+828
+277906.2
+Current Temperature
+832
+17.65748
+OD
+836
+270722.6
+Current Temperature
+841
+17.46177
+OD
+845
+261942.7
+Current Temperature
+850
+17.0327
+OD
+854
+258750.0
+Current Temperature
+858
+17.29427
+OD
+862
+273117.1
+Current Temperature
+867
+17.26542
+OD
+871
+279502.5
+Current Temperature
+875
+17.32911
+OD
+879
+283892.5
+Current Temperature
+884
+17.59088
+OD
+888
+274314.4
+Current Temperature
+893
+17.30458
+OD
+897
+277906.2
+Current Temperature
+901
+17.19208
+OD
+905
+244382.8
+Current Temperature
+910
+17.54854
+OD
+914
+269525.4
+Current Temperature
+919
+17.47916
+OD
+923
+289080.6
+Current Temperature
+927
+16.93583
+OD
+931
+276709.0
+Current Temperature
+936
+17.57148
+OD
+940
+258750.0
+Current Temperature
+944
+17.79672
+Feeding status
+948
+Feeding mussels
+OD
+949
+303048.8
+OD
+949
+287484.3
+OD
+949
+276709.0
+OD
+949
+286287.1
+OD
+949
+317415.8
+OD
+950
+312626.8
+OD
+950
+306640.5
+OD
+950
+305443.3
+OD
+950
+279502.5
+OD
+950
+317415.8
+OD
+951
+311429.6
+OD
+951
+304246.0
+OD
+951
+330585.7
+OD
+951
+306640.5
+OD
+951
+322604.0
+OD
+951
+309035.0
+OD
+952
+315021.3
+OD
+952
+300255.1
+OD
+952
+315021.3
+OD
+952
+311429.6
+OD
+952
+316218.5
+OD
+952
+312626.8
+OD
+953
+303048.8
+OD
+953
+310232.3
+OD
+953
+312626.8
+OD
+953
+270722.6
+OD
+953
+298658.7
+OD
+953
+304246.0
+OD
+954
+309035.0
+OD
+954
+312626.8
+OD
+954
+319810.4
+OD
+954
+293470.6
+OD
+954
+319810.4
+OD
+954
+315021.3
+OD
+955
+297062.4
+OD
+955
+276709.0
+OD
+955
+312626.8
+OD
+955
+304246.0
+OD
+955
+287484.3
+OD
+955
+311429.6
+OD
+956
+304246.0
+OD
+956
+311429.6
+OD
+956
+286287.1
+OD
+956
+300255.1
+OD
+956
+292273.3
+OD
+956
+321007.6
+OD
+957
+279502.5
+Current Temperature
+957
+17.86599
+OD
+957
+283892.5
+OD
+958
+294667.9
+OD
+958
+318613.1
+OD
+958
+317415.8
+OD
+958
+319810.4
+OD
+958
+283892.5
+OD
+958
+304246.0
+OD
+959
+355329.2
+OD
+959
+295865.1
+OD
+959
+289080.6
+OD
+959
+297062.4
+OD
+959
+309035.0
+OD
+960
+304246.0
+OD
+960
+313824.1
+OD
+960
+300255.1
+OD
+960
+318613.1
+OD
+960
+300255.1
+OD
+960
+303048.8
+OD
+961
+315021.3
+OD
+961
+306640.5
+OD
+961
+312626.8
+OD
+961
+274314.4
+OD
+961
+293470.6
+OD
+962
+313824.1
+OD
+962
+295865.1
+OD
+962
+306640.5
+OD
+962
+301851.4
+OD
+962
+311429.6
+OD
+962
+313824.1
+OD
+963
+285089.8
+OD
+963
+313824.1
+OD
+963
+311429.6
+OD
+963
+301851.4
+OD
+963
+285089.8
+OD
+963
+321007.6
+OD
+964
+303048.8
+OD
+964
+332182.1
+OD
+964
+318613.1
+OD
+964
+305443.3
+OD
+964
+283892.5
+OD
+964
+304246.0
+OD
+965
+295865.1
+OD
+965
+315021.3
+OD
+965
+304246.0
+OD
+965
+301851.4
+OD
+965
+295865.1
+OD
+966
+309035.0
+OD
+966
+279502.5
+OD
+966
+301851.4
+OD
+966
+311429.6
+OD
+966
+306640.5
+OD
+966
+322604.0
+OD
+967
+306640.5
+OD
+967
+317415.8
+OD
+967
+281098.9
+OD
+967
+306640.5
+OD
+967
+294667.9
+OD
+968
+315021.3
+OD
+968
+300255.1
+OD
+968
+261942.7
+OD
+968
+304246.0
+OD
+968
+309035.0
+OD
+968
+305443.3
+OD
+969
+306640.5
+OD
+969
+274314.4
+OD
+969
+312626.8
+OD
+969
+318613.1
+OD
+969
+303048.8
+OD
+969
+330585.7
+OD
+970
+332182.1
+OD
+970
+298658.7
+OD
+970
+312626.8
+OD
+970
+297062.4
+OD
+970
+318613.1
+OD
+971
+310232.3
+OD
+971
+281098.9
+OD
+971
+303048.8
+OD
+971
+282695.2
+OD
+971
+301851.4
+OD
+971
+303048.8
+OD
+972
+309035.0
+OD
+972
+312626.8
+OD
+972
+274314.4
+OD
+972
+295865.1
+OD
+972
+310232.3
+OD
+972
+304246.0
+OD
+973
+322604.0
+OD
+973
+311429.6
+OD
+973
+295865.1
+OD
+973
+316218.5
+OD
+973
+294667.9
+OD
+973
+293470.6
+OD
+974
+310232.3
+OD
+974
+295865.1
+OD
+974
+305443.3
+OD
+975
+279502.5
+OD
+975
+319810.4
+OD
+975
+310232.3
+OD
+975
+283892.5
+OD
+975
+311429.6
+OD
+975
+304246.0
+OD
+976
+315021.3
+OD
+976
+311429.6
+OD
+976
+307837.7
+OD
+976
+312626.8
+OD
+976
+276709.0
+OD
+976
+309035.0
+OD
+976
+310232.3
+OD
+977
+311429.6
+OD
+977
+306640.5
+OD
+977
+289080.6
+OD
+977
+290677.0
+OD
+977
+315021.3
+OD
+978
+316218.5
+OD
+978
+319810.4
+OD
+978
+310232.3
+OD
+978
+305443.3
+OD
+978
+295865.1
+OD
+978
+294667.9
+OD
+979
+309035.0
+OD
+979
+295865.1
+OD
+979
+319810.4
+OD
+979
+298658.7
+OD
+979
+315021.3
+OD
+979
+306640.5
+OD
+980
+290677.0
+OD
+980
+316218.5
+OD
+980
+285089.8
+OD
+980
+317415.8
+OD
+980
+289080.6
+OD
+981
+290677.0
+OD
+981
+311429.6
+OD
+981
+300255.1
+OD
+981
+275511.7
+OD
+981
+310232.3
+OD
+982
+301851.4
+OD
+982
+290677.0
+OD
+982
+317415.8
+OD
+982
+300255.1
+OD
+982
+271919.9
+OD
+982
+309035.0
+OD
+983
+289080.6
+OD
+983
+317415.8
+OD
+983
+301851.4
+OD
+983
+311429.6
+OD
+983
+310232.3
+OD
+984
+311429.6
+OD
+984
+305443.3
+OD
+984
+297062.4
+OD
+984
+279502.5
+OD
+984
+317415.8
+OD
+984
+305443.3
+OD
+985
+282695.2
+OD
+985
+289080.6
+OD
+985
+287484.3
+OD
+985
+309035.0
+OD
+985
+311429.6
+OD
+985
+298658.7
+OD
+986
+286287.1
+OD
+986
+292273.3
+OD
+986
+297062.4
+OD
+986
+322604.0
+OD
+986
+277906.2
+OD
+987
+286287.1
+OD
+987
+312626.8
+OD
+987
+289080.6
+OD
+987
+325796.7
+OD
+987
+281098.9
+OD
+987
+312626.8
+OD
+988
+286287.1
+OD
+988
+300255.1
+OD
+988
+269525.4
+OD
+988
+294667.9
+OD
+988
+277906.2
+OD
+988
+301851.4
+OD
+989
+318613.1
+OD
+989
+313824.1
+OD
+989
+309035.0
+OD
+989
+316218.5
+OD
+989
+294667.9
+Feeding status
+0
+unction takes 3 positional arguments but 4 were given
+Current Temperature
+5
+17.65833
+OD
+9
+249171.9
+Current Temperature
+14
+17.05474
+OD
+18
+293470.6
+Current Temperature
+22
+17.38105
+OD
+26
+270722.6
+Current Temperature
+31
+17.21074
+OD
+35
+263539.0
+Current Temperature
+40
+17.92482
+OD
+44
+283892.5
+Current Temperature
+48
+17.06552
+OD
+52
+265933.6
+Current Temperature
+57
+17.27107
+OD
+61
+238396.5
+Current Temperature
+66
+17.31161
+OD
+70
+273117.1
+Current Temperature
+74
+18.07356
+OD
+78
+225226.6
+Current Temperature
+83
+17.36343
+OD
+87
+267130.8
+Current Temperature
+92
+17.4156
+OD
+96
+279502.5
+Current Temperature
+100
+17.50802
+OD
+104
+260346.3
+Current Temperature
+109
+18.19501
+OD
+113
+273117.1
+Current Temperature
+117
+17.38782
+OD
+121
+231612.0
+Current Temperature
+126
+17.42733
+OD
+130
+269525.4
+Current Temperature
+135
+16.96998
+OD
+139
+253960.9
+Current Temperature
+143
+17.67562
+OD
+147
+252763.7
+Current Temperature
+152
+17.37999
+OD
+156
+246777.3
+Current Temperature
+161
+17.31742
+OD
+165
+241190.1
+Current Temperature
+169
+17.22721
+OD
+173
+282695.2
+Current Temperature
+178
+17.29396
+OD
+182
+276709.0
+Current Temperature
+186
+17.57735
+OD
+190
+286287.1
+Current Temperature
+195
+17.65831
+OD
+199
+281098.9
+Current Temperature
+204
+17.50811
+OD
+208
+274314.4
+Current Temperature
+212
+17.25032
+OD
+216
+252763.7
+Current Temperature
+221
+17.3233
+OD
+225
+273117.1
+Current Temperature
+229
+17.60042
+OD
+234
+271919.9
+Current Temperature
+238
+17.47912
+OD
+242
+258750.0
+Current Temperature
+247
+17.58878
+OD
+251
+275511.7
+Current Temperature
+255
+16.84889
+OD
+259
+256355.5
+Current Temperature
+264
+17.47896
+OD
+268
+273117.1
+Current Temperature
+273
+18.19833
+OD
+277
+265933.6
+Current Temperature
+281
+17.13818
+OD
+285
+258750.0
+Current Temperature
+290
+17.02818
+OD
+294
+269525.4
+Current Temperature
+299
+16.68285
+OD
+303
+233208.4
+Current Temperature
+307
+17.45035
+OD
+311
+244382.8
+Current Temperature
+316
+17.10888
+OD
+320
+265933.6
+Current Temperature
+324
+17.30593
+OD
+328
+325796.7
+Current Temperature
+333
+17.56008
+OD
+337
+251566.4
+Current Temperature
+342
+17.91212
+OD
+346
+290677.0
+Current Temperature
+350
+16.86092
+OD
+354
+239593.8
+Current Temperature
+359
+17.60632
+OD
+363
+247974.6
+Current Temperature
+368
+17.13193
+OD
+372
+260346.3
+Current Temperature
+377
+17.52743
+OD
+381
+253960.9
+Current Temperature
+385
+16.9696
+OD
+389
+281098.9
+Current Temperature
+394
+17.6756
+OD
+398
+269525.4
+Current Temperature
+402
+17.99846
+Current Temperature
+411
+17.03437
+OD
+415
+236002.0
+Current Temperature
+420
+17.71001
+OD
+424
+224029.4
+Current Temperature
+428
+17.51394
+OD
+432
+249171.9
+Current Temperature
+437
+17.69274
+OD
+441
+242786.5
+Current Temperature
+446
+17.06884
+OD
+450
+226423.9
+Current Temperature
+454
+17.46743
+OD
+458
+212056.8
+Current Temperature
+463
+17.31735
+Feeding status
+465
+Feeding algae
+Feeding status
+467
+Stop feeding algae
+OD
+467
+252763.7
+Current Temperature
+5
+17.7449
+OD
+9
+261942.7
+Current Temperature
+13
+17.47916
+OD
+17
+264736.3
+Current Temperature
+22
+17.57159

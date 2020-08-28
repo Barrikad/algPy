@@ -9,7 +9,7 @@ Created on Fri Aug  7 13:52:40 2020
 #2/3ml per cycle
 
 feedingThirdBucketPeriod = 360000 #an hour
-feedingMusselsPeriod = 360000 #an hour
+feedingMusselsPeriod = 360000/4 #an hour
 temperaturePeriod = 500
 comPeriod = 800
 oledPeriod = 500
@@ -48,7 +48,8 @@ class SystemController:
         self.pid.set_max_errors(defaultMaxErrors)
         self.pid.set_derivative_error_gap(defaultErrorGap)
         self.clock.add_flag("temp", temperaturePeriod)
-        self.clock.add_flag("coms", comPeriod)
+        self.clock.add_flag("coms1", comPeriod)
+        self.clock.add_flag("coms2", comPeriod,int(comPeriod/2))
         self.clock.add_flag("oled",oledPeriod)
         self.clock.add_flag("feedMussels", feedingMusselsPeriod)
         self.clock.add_flag("feedAlgae", feedingMusselsPeriod,int(feedingMusselsPeriod/2))
@@ -72,8 +73,8 @@ class SystemController:
             self.temperatureController.measure_temperature()
             self.temperatureController.correct_cooling_value()
         
-        if(self.clock.check_flag("coms")):
             #try:
+        if(self.clock.check_flag("coms1")):
             self._update_parameters()
             print("sending data to web")
             tempTempLevel = self.temperatureController.get_latest_temperature()
@@ -81,7 +82,8 @@ class SystemController:
                 print("sending temp")
                 self.previousTempLevel = tempTempLevel
                 self.web.publish("Current Temperature",str(self.previousTempLevel))
-                        
+        
+        if(self.clock.check_flag("coms2")):
             tempAlgaeLevel = self.feedingAPI.get_current_algea_density()
             if tempAlgaeLevel != self.previousAlgaeLevel:
                 print("sending od")
@@ -100,10 +102,10 @@ class SystemController:
             self.feedingAPI.pump.set_rps(3)
             if(self.feedingAPI.total_fed_algea() >= self.algaeLevelToFeed + 3):
                 print("done feeding")
-                self.web.publish("Feeding status", "Stop feeding mussels")
+                self.web.publish("Feeding status", "Stop feeding mussels: " + str(self.feedingAPI.pump.get_pumped_volume()))
                 self.feedingAPI.stop_feeding()
                 self.feedingMussels = False
-        
+                
         if(self.clock.check_flag("feedAlgae")):
             print("time to feed algae")
             self.feedingAPI.pump.set_rps(3)
