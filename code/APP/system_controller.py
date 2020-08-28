@@ -73,7 +73,6 @@ class SystemController:
             self.temperatureController.measure_temperature()
             self.temperatureController.correct_cooling_value()
         
-            #try:
         if(self.clock.check_flag("coms1")):
             self._update_parameters()
             print("sending data to web")
